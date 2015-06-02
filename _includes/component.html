@@ -1,0 +1,63 @@
+    <div class="row">
+      <div class="col-md-8 well">
+	    <div class="media">
+	      <div class="media-left">
+	        <a href="{{ component.url }}">
+	          <i class="fa fa-scissors fa-3x media-object text-muted"></i>
+	        </a>
+	      </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		      <a href="#">{{ component.name }}</a>
+		      <small class="pull-right">
+		        {% for v in component.solr_versions %}
+		          <span class="label label-solr">{{ v }}</span>
+		        {% endfor %}
+		      </small>
+		    </h4>
+	        <p>
+              {{ component.description }}
+		    </p>
+		    <ul class="list-inline">
+		      <li>
+		        <i class="fa fa-university"></i>
+		        <a href="{{ component.url }}">Documentation</a>
+		      </li>
+		      {% if component.maven %}
+		      <li>
+		        <i class="fa fa-link"></i>
+		        <a href="{{ component.maven }}">Maven Central</a>
+		      </li>
+		      {% endif %}
+		      <li>
+		        <i class="fa fa-github"></i>
+		        <a href="{{ component.source }}">Sources</a>
+		      </li>
+		      <li>
+		        <i class="fa fa-file-text-o"></i>
+		        <a href="http://choosealicense.com/licenses/apache-2.0/">
+		          {{ component.license }}
+		        </a>
+		      </li>
+		    </ul>
+		  </div>
+		</div>
+      </div>
+      <div class="col-md-4 summary">
+      
+        {% if component.pros or component.cons or component.installation %}
+        <ul class="list-unstyled fa-ul">
+          {% for e in component.pros %}
+          <li class="text-success"><i class="fa-li fa fa-star-o"></i>{{ e }}</li>
+          {% endfor %}
+          {% for e in component.cons %}
+          <li class="text-warning"><i class="fa-li fa fa-bomb"></i>{{ e }}</li>
+          {% endfor %}
+          {% if component.installation %}
+          <li class="text-info"><i class="fa-li fa fa-floppy-o"></i>{{ component.installation }}</li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  

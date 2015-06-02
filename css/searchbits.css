@@ -1,6 +1,9 @@
 .navbar {
 	background-color: #D9411E;
 	height: 90px;
+	
+	border: none;
+	border-radius: initial;
 }
 
 .navbar-header {
@@ -26,8 +29,21 @@
     padding-top: 15px;
 }
 
-.body {
-	margin-top: 120px;
+button a, button a:HOVER {
+	color: #333;
+	text-decoration: none;
+}
+
+h1, h2, h3 {
+	text-transform: uppercase;
+    font-size: 20px;
+    color: #777;
+    font-weight: 200;
+}
+
+h2 a, h2 a:HOVER {
+	color: #777;
+	text-decoration: none;
 }
 
 .media-left a {
@@ -40,4 +56,27 @@
 
 .summary ul {
 	margin-top: 25px;
+}
+
+.label-solr {
+	background-color: #D9411E;
+}
+
+footer {
+	background-color: rgb(38, 33, 48);
+	
+	color: white;
+    font-weight: 100;
+}
+
+footer h6 {
+	font-weight: 200;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+footer a, footer a:HOVER {
+	color: white;
 }

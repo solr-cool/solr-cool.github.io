@@ -4,6 +4,9 @@
 <title>{{ page.title }}</title>
 
 <meta name="robots" content="index, follow" />
+<meta name="keywords" content="apache, apache lucene, apache solr, solr, lucene
+            search, information retrieval, spell checking, faceting, inverted index, open source
+            plugins, extensions, query parser, response writer, analyzer">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
 
@@ -21,7 +24,7 @@
 <meta name="twitter:image:src" content="{{ site.url }}/images/team/group/team_{{ author.team }}.jpg">
 </head>
 <body>
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
@@ -34,75 +37,90 @@
     </div>
   </nav>
   <div class="container body">
-  
-  <!-- 
-    <div class="well">
-      <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="#">Extension directory</a></li>
-        <li role="presentation"><a href="#">Blog</a></li>
-      </ul>
-    </div>
-    --> 
-    
-  {% for component in site.components %}
+
+
     <div class="row">
-      <div class="col-md-8 well">
-	    <div class="media">
-	      <div class="media-left">
-	        <a href="{{ component.url }}">
-	          <i class="fa fa-scissors fa-3x media-object text-muted"></i>
-	        </a>
-	      </div>
-		  <div class="media-body">
-		    <h4 class="media-heading">
-		      {{ component.category }}: <a href="#">{{ component.name }}</a>
-		    </h4>
-	        <p>
-              {{ component.description }}
-		    </p>
-		    <ul class="list-inline">
-		      <li>
-		        <i class="fa fa-university"></i>
-		        <a href="{{ component.url }}">Documentation</a>
-		      </li>
-		      {% if component.maven %}
-		      <li>
-		        <i class="fa fa-link"></i>
-		        <a href="{{ component.maven }}">Maven Central</a>
-		      </li>
-		      {% endif %}
-		      <li>
-		        <i class="fa fa-github"></i>
-		        <a href="{{ component.source }}">Sources</a>
-		      </li>
-		      <li>
-		        <i class="fa fa-file-text-o"></i>
-		        <a href="http://choosealicense.com/licenses/apache-2.0/">
-		          License: {{ component.license }}
-		        </a>
-		      </li>
-		    </ul>
-		  </div>
-		</div>
-      </div>
-      <div class="col-md-4 summary">
-      
-        {% if component.pros or component.cons or component.installation %}
-        <ul class="list-unstyled fa-ul">
-          {% if component.pros %}
-          <li class="text-success"><i class="fa-li fa fa-star-o"></i>{{ component.pros }}</li>
-          {% endif %}
-          {% if component.cons %}
-          <li class="text-warning"><i class="fa-li fa fa-bomb"></i>{{ component.cons }}</li>
-          {% endif %}
-          {% if component.installation %}
-          <li class="text-info"><i class="fa-li fa fa-floppy-o"></i>{{ component.installation }}</li>
-          {% endif %}
-        </ul>
-        {% endif %}
+      <div class="col-md-8 text-center">
+	    <div class="btn-group " role="group">
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-scissors"></i>
+            <a href="#queryparsers">Query Parsers</a>
+          </button>
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-scissors"></i>
+            <a href="#analyzers">Analyzers</a>
+          </button>
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-scissors"></i>
+            <a href="#responsewriters">ResponseWriters</a>
+          </button>
+        </div>
+        
+        <hr />
       </div>
     </div>
+    
+    
+<h2>
+  <a name="queryparsers">Query Parsers</a>
+</h2>
+  {% for component in site.queryparsers %}
+    {% include component.html %}
   {% endfor %}
+  
+<h2>
+  <a name="analyzers">Analyzers</a>
+</h2>
+  {% for component in site.analyzers %}
+    {% include component.html %}
+  {% endfor %}
+
+<h2>
+  <a name="responsewriters">Response Writers</a>
+</h2>
+  {% for component in site.responsewriters %}
+    {% include component.html %}
+  {% endfor %}
+
+  <div class="row">
+    <div class="col-md-8">
+      {{ content }}
+    </div>
   </div>
+  
+  </div>
+  <footer>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-3 col-md-offset-1">
+            <h6>Sponsors</h6>
+            <ul class="list-unstyled">
+              <li><a href="https://www.meetup.com">Search Technology Meetup Hamburg</a></li>
+              <li><a href="https://developer.s24.com">shopping24 internet group</a></li>
+            </ul>
+         </div>
+         <div class="col-md-3">
+            <h6>Contribute</h6>
+            <ul class="list-unstyled">
+              <li><a href="#">Add a component</a></li>
+              <li><a href="#">Team</a></li>
+            </ul>
+         </div>
+         <div class="col-md-3">
+            <h6>Imprint</h6>
+            <address>
+              <strong>shopping24 internet group</strong><br/>
+              Werner-Otto-Str. 1-7<br/>
+              22179 Hamburg<br/>
+              <abbr title="Phone">P:</abbr> +49 40 64 61 83 91<br />
+              <abbr title="Mail">M:</abbr> service(at)s24(dot)com
+            </address>
+            <p class="muted">
+               generated on {{ site.time | date_to_long_string }}
+            </p>
+         </div>
+      </div>
+   </div>
+  </footer>
 </body>
 </html>
