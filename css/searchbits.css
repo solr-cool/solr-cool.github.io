@@ -1,0 +1,43 @@
+.navbar {
+	background-color: #D9411E;
+	height: 90px;
+}
+
+.navbar-header {
+	padding-top: 20px;
+}
+
+.navbar {
+    padding-left: 100px;
+}
+
+.navbar-brand img {
+	width: 100px;
+}
+
+.navbar-brand {
+	padding-top: 0;
+}
+
+.navbar-default .navbar-text {
+	color: #fff;
+    font-size: 20px;
+    font-weight: 100;
+    padding-top: 15px;
+}
+
+.body {
+	margin-top: 120px;
+}
+
+.media-left a {
+	color: #333;
+}
+
+.media-left i {
+	padding-right: 10px;
+}
+
+.summary ul {
+	margin-top: 25px;
+}

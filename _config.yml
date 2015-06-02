@@ -1,0 +1,38 @@
+# github defaults
+safe: true
+lsi: false
+
+# exclude meta files
+exclude: ['.project', 'README.md', 'Gemfile', 'Gemfile.lock', 'deploy.sh', 'Rakefile', 'images/team/_original', 'ansible.cfg']
+
+# url
+#url: https://developer.s24.com
+
+# put permalinks into subdirectory
+permalink: /blog/:title.html
+
+excerpt_separator: "<!--more-->"
+
+timezone: Europe/Berlin
+
+# add components here
+components:
+  - name: Bmax Query Parser
+    category: Query parser
+    description: A boosting dismax query parser for Apache Solr. The bmax query parser relies on field types  and tokenizer chains to parse the user query, discover synonyms, boost and penalize terms at  query time. Hence it is highly configurable. The lucene query composed is a boosted and  reranked dismax query with a minimum must match of 100%.
+    pros: Simple ecommerce searches
+    cons: Native Lucene query syntax does not work
+    installation: Solr Plugin (JAR)
+    url: https://github.com/shopping24/solr-bmax-queryparser
+    maven: "http://search.maven.org/#browse%7C-1697835338"
+    source: https://github.com/shopping24/solr-bmax-queryparser
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+  - name: Querqy
+    category: Query parser
+    description: Rule-based query preprocessor for Java-based search engines
+    installation: Solr Plugin (JAR)
+    url: https://github.com/renekrie/querqy
+    source: https://github.com/renekrie/querqy
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/

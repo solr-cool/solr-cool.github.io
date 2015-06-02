@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>{{ page.title }}</title>
+
+<meta name="robots" content="index, follow" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+
+<link href="/css/bootstrap/3.3.4/bootstrap.min.css" rel="stylesheet">
+<link href="/css/font-awesome/4.3.0/font-awesome.min.css" rel="stylesheet">
+<link href="/css/pygments-github.css" rel="stylesheet" type="text/css" />
+<link href="/css/searchbits.css" rel="stylesheet" type="text/css" />
+<script src="/js/bootstrap/3.3.4/bootstrap.min.js" type="text/javascript"></script>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@shopping24">
+<meta name="twitter:creator" content="@tboeghk">
+<meta name="twitter:title" content="{{ page.title }}">
+<meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines }}">
+<meta name="twitter:image:src" content="{{ site.url }}/images/team/group/team_{{ author.team }}.jpg">
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">
+          <img alt="Solr Logo" src="/images/solr-logo.png">
+        </a>
+        <p class="navbar-text navbar-text-title">
+          Searchbits Solr Extension Directory
+        </p>
+      </div>
+    </div>
+  </nav>
+  <div class="container body">
+  
+  <!-- 
+    <div class="well">
+      <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">Extension directory</a></li>
+        <li role="presentation"><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    --> 
+    
+  {% for component in site.components %}
+    <div class="row">
+      <div class="col-md-8 well">
+	    <div class="media">
+	      <div class="media-left">
+	        <a href="{{ component.url }}">
+	          <i class="fa fa-scissors fa-3x media-object text-muted"></i>
+	        </a>
+	      </div>
+		  <div class="media-body">
+		    <h4 class="media-heading">
+		      {{ component.category }}: <a href="#">{{ component.name }}</a>
+		    </h4>
+	        <p>
+              {{ component.description }}
+		    </p>
+		    <ul class="list-inline">
+		      <li>
+		        <i class="fa fa-university"></i>
+		        <a href="{{ component.url }}">Documentation</a>
+		      </li>
+		      {% if component.maven %}
+		      <li>
+		        <i class="fa fa-link"></i>
+		        <a href="{{ component.maven }}">Maven Central</a>
+		      </li>
+		      {% endif %}
+		      <li>
+		        <i class="fa fa-github"></i>
+		        <a href="{{ component.source }}">Sources</a>
+		      </li>
+		      <li>
+		        <i class="fa fa-file-text-o"></i>
+		        <a href="http://choosealicense.com/licenses/apache-2.0/">
+		          License: {{ component.license }}
+		        </a>
+		      </li>
+		    </ul>
+		  </div>
+		</div>
+      </div>
+      <div class="col-md-4 summary">
+      
+        {% if component.pros or component.cons or component.installation %}
+        <ul class="list-unstyled fa-ul">
+          {% if component.pros %}
+          <li class="text-success"><i class="fa-li fa fa-star-o"></i>{{ component.pros }}</li>
+          {% endif %}
+          {% if component.cons %}
+          <li class="text-warning"><i class="fa-li fa fa-bomb"></i>{{ component.cons }}</li>
+          {% endif %}
+          {% if component.installation %}
+          <li class="text-info"><i class="fa-li fa fa-floppy-o"></i>{{ component.installation }}</li>
+          {% endif %}
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</body>
+</html>

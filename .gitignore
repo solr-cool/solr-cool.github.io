@@ -1,0 +1,16 @@
+_site/*
+_theme_packages/*
+
+Thumbs.db
+.DS_Store
+
+!.gitkeep
+
+.project
+.rbenv-version
+.rvmrc
+.rbenv-gemsets
+Gemfile.lock
+.idea
+*.iml
+.bundle/
