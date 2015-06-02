@@ -46,34 +46,8 @@ Preview your changes:
 
     $ bundle exec jekyll serve
 
-and point your browser to `http://localhost:4000/`. Hit `ctrl-c` to end the preview. As you just created a draft, you can work on your draft and commit / push your changes without publishing it. As soon as you're done with your post, move the file from `_drafts` to `_posts`.
-
-### Post Contents
-
-A Blog post has a so called _font matter_ header. The header contains meta data about the author and the post. It is separated from the post using `---`.
-
-    ---
-    layout: blog-post                   # do not change
-    title: post title
-    published: true                     # do not change
-    tags: comma,separated,tags
-    excerpt: an optional excerpt as workaround \
-        for a bug in jekyll when working with footnotes. \
-        When in question, leave blank
-    email: your.email@s24.com            # will be used for gravatar lookups
-    author: Your Full Name
-    author-twittername: yourtwittername  # leave blank if you have none
-    ---
-
-The first paragraph of your post will be used as a preview on the blog overview and index page. Separate preview from full post text by adding a line with
-
-    <!--more-->
-
-in your post.
-
+and point your browser to `http://localhost:4000/`.
+ 
 ## Deployment
 
-Execute the rake deployment task:
-
-    $ rake deploy
-
+Push to `master` on Github. Done.
