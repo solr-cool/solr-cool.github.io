@@ -1,6 +1,6 @@
 .navbar {
 	background-color: #D9411E;
-	height: 90px;
+	height: auto;
 	
 	border: none;
 	border-radius: initial;
@@ -20,6 +20,7 @@
 
 .navbar-brand {
 	padding-top: 0;
+	height: auto;
 }
 
 .navbar-default .navbar-text {
@@ -27,6 +28,7 @@
     font-size: 20px;
     font-weight: 100;
     padding-top: 15px;
+    margin-bottom: 0;
 }
 
 button a, button a:HOVER {
@@ -84,4 +86,24 @@ footer h6 {
 
 footer a, footer a:HOVER {
 	color: white;
+}
+
+
+@media (max-width: 630px) {
+	.navbar {
+		padding-left: 0;
+	}
+}
+
+@media (max-width: 420px) {
+	.navbar-default .navbar-text {
+		width: 200px;
+  		float: left;
+  		margin-top: 0;
+  		padding-top: 0;
+	}
+
+	.btn {
+		padding: 6px;
+	}
 }
