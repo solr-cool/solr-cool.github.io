@@ -95,7 +95,7 @@ footer a, footer a:HOVER {
 	}
 }
 
-@media (max-width: 420px) {
+@media (max-width: 430px) {
 	.navbar-default .navbar-text {
 		width: 200px;
   		float: left;
