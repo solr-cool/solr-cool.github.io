@@ -95,18 +95,22 @@
          <div class="col-md-3 col-md-offset-1">
             <h6>Contributors</h6>
             <ul class="list-unstyled">
-              <li><a href="http://www.meetup.com/de/Search-Technology-Meetup-Hamburg/">Search Technology Meetup Hamburg</a></li>
-              <li><a href="https://developer.s24.com">shopping24 internet group</a></li>
-              
+              {% for c in site.github.organization_members %}
+              <li>
+                <a href="{{ c.html_url }}"><i class="fa fa-github"></i>{{ c.login }}</a>
+              </li>
+              {% endfor %}
               {% for c in site.github.contributors %}
-              <li><a href="{{ c.html_url }}">@{{ c.login }}</a></li>
+              <li>
+                <a href="{{ c.html_url }}"><i class="fa fa-github"></i>{{ c.login }}</a>
+              </li>
               {% endfor %}
             </ul>
          </div>
          <div class="col-md-3">
             <h6>Contribute</h6>
             <ul class="list-unstyled">
-              <li><a href="{{ site.github.repository_url }}/pulls">New Component (Pull Request)</a></li>
+              <li><a href="{{ site.github.repository_url }}/pulls">Add Component</a></li>
               <li><a href="{{ site.github.issues_url }}">Issues</a></li>
               <li><a href="https://github.com/orgs/searchbits/people">Team</a></li>
             </ul>
