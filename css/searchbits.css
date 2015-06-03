@@ -1,3 +1,7 @@
+.body {
+	font-family: Raleway,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
 .navbar {
 	background-color: #D9411E;
 	height: auto;
@@ -86,6 +90,10 @@ footer h6 {
 
 footer a, footer a:HOVER {
 	color: white;
+}
+
+footer .contributor-github {
+	 margin-right: 4px;
 }
 
 
