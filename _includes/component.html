@@ -3,13 +3,24 @@
 	    <div class="media">
 	      <div class="media-left">
 	        <a href="{{ component.url }}">
-	          <i class="fa fa-scissors fa-3x media-object text-muted"></i>
+	          {% if component.category == 'queryparsers' %}
+	            <i class="fa fa-scissors fa-3x media-object text-muted"></i>
+	          {% elsif component.category == 'analyzers' %}
+	            <i class="fa fa-cogs fa-3x media-object text-muted"></i>
+	          {% elsif component.category == 'responsewriters' %}
+	            <i class="fa fa-file-text-o fa-3x media-object text-muted"></i>
+	          {% endif %}
 	        </a>
 	      </div>
 		  <div class="media-body">
 		    <h4 class="media-heading">
-		      <a href="#">{{ component.name }}</a>
+		      <a href="#"><code>{{ component.name }}</code></a>
+		      
+		      
 		      <small class="pull-right">
+                {% if component.build %}
+		          <img src="{{ component.build_status }}" class="build-status"/>
+		        {% endif %}
 		        {% for v in component.solr_versions %}
 		          <span class="label label-solr">{{ v }}</span>
 		        {% endfor %}
@@ -21,18 +32,24 @@
 		    <ul class="list-inline">
 		      <li>
 		        <i class="fa fa-university"></i>
-		        <a href="{{ component.url }}">Documentation</a>
+                <a href="{{ component.url }}">Docs</a>
 		      </li>
 		      {% if component.maven %}
 		      <li>
-		        <i class="fa fa-link"></i>
-		        <a href="{{ component.maven }}">Maven Central</a>
+		        <i class="fa fa-cloud-download"></i>
+		        <a href="{{ component.maven }}">Maven</a>
 		      </li>
 		      {% endif %}
 		      <li>
 		        <i class="fa fa-github"></i>
-		        <a href="{{ component.source }}">Sources</a>
+		        <a href="{{ component.source }}">Source</a>
 		      </li>
+		      {% if component.build %}
+              <li>
+                <i class="fa fa-tachometer"></i>
+                <a href="{{ component.build }}">Build</a>
+              </li>
+              {% endif %}
 		      <li>
 		        <i class="fa fa-file-text-o"></i>
 		        <a href="http://choosealicense.com/licenses/apache-2.0/">

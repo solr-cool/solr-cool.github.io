@@ -54,6 +54,11 @@ h2 a, h2 a:HOVER {
 	padding-right: 10px;
 }
 
+.build-status {
+	height: 17px;
+    margin-right: 10px;
+}
+
 .summary ul {
 	margin-top: 25px;
 }

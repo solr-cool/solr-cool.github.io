@@ -47,11 +47,11 @@
             <a href="#queryparsers">Query Parsers</a>
           </button>
           <button type="button" class="btn btn-default">
-            <i class="fa fa-scissors"></i>
+            <i class="fa fa-cogs"></i>
             <a href="#analyzers">Analyzers</a>
           </button>
           <button type="button" class="btn btn-default">
-            <i class="fa fa-scissors"></i>
+            <i class="fa fa-file-text-o"></i>
             <a href="#responsewriters">ResponseWriters</a>
           </button>
         </div>
@@ -93,17 +93,22 @@
    <div class="container">
       <div class="row">
          <div class="col-md-3 col-md-offset-1">
-            <h6>Sponsors</h6>
+            <h6>Contributors</h6>
             <ul class="list-unstyled">
-              <li><a href="https://www.meetup.com">Search Technology Meetup Hamburg</a></li>
+              <li><a href="http://www.meetup.com/de/Search-Technology-Meetup-Hamburg/">Search Technology Meetup Hamburg</a></li>
               <li><a href="https://developer.s24.com">shopping24 internet group</a></li>
+              
+              {% for c in site.github.contributors %}
+              <li><a href="{{ c.html_url }}">@{{ c.login }}</a></li>
+              {% endfor %}
             </ul>
          </div>
          <div class="col-md-3">
             <h6>Contribute</h6>
             <ul class="list-unstyled">
-              <li><a href="#">Add a component</a></li>
-              <li><a href="#">Team</a></li>
+              <li><a href="{{ site.github.repository_url }}/pulls">New Component (Pull Request)</a></li>
+              <li><a href="{{ site.github.issues_url }}">Issues</a></li>
+              <li><a href="https://github.com/orgs/searchbits/people">Team</a></li>
             </ul>
          </div>
          <div class="col-md-3">
@@ -116,7 +121,7 @@
               <abbr title="Mail">M:</abbr> service(at)s24(dot)com
             </address>
             <p class="muted">
-               generated on {{ site.time | date_to_long_string }}
+               last updated on {{ site.time | date_to_long_string }}
             </p>
          </div>
       </div>

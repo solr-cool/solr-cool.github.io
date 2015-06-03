@@ -15,9 +15,12 @@ excerpt_separator: "<!--more-->"
 
 timezone: Europe/Berlin
 
+# ---------------------------------------------------------------------
 # add components here
+# ---------------------------------------------------------------------
 queryparsers:
   - name: Bmax Query Parser
+    category: queryparsers
     description: A boosting dismax query parser for Apache Solr. The bmax query parser relies on field types  and tokenizer chains to parse the user query, discover synonyms, boost and penalize terms at  query time. Hence it is highly configurable. The lucene query composed is a boosted and  reranked dismax query with a minimum must match of 100%.
     pros: 
       - Simple searches
@@ -32,10 +35,13 @@ queryparsers:
     url: https://github.com/shopping24/solr-bmax-queryparser
     maven: "http://search.maven.org/#browse%7C-1697835338"
     source: https://github.com/shopping24/solr-bmax-queryparser
+    build: https://travis-ci.org/shopping24/solr-bmax-queryparser
+    build_status: https://travis-ci.org/shopping24/solr-bmax-queryparser.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
   - name: Querqy
+    category: queryparsers
     description: Rule-based query preprocessor for Java-based search engines
     pros: 
       - Used in production
@@ -46,5 +52,44 @@ queryparsers:
     installation: Solr Plugin (JAR)
     url: https://github.com/renekrie/querqy
     source: https://github.com/renekrie/querqy
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+analyzers:
+  - name: JDBC Synonym Filter
+    category: analyzers
+    description: A Solr synonym and stopwotd filter for reading synonyms out of JDBC.
+    pros: 
+      - Pull synonyms via JDBC out of databases
+      - Highly configurable, use SQL to retrieve synonyms
+      - Used in production
+      - Updated within in the last 6 months
+    solr_versions:
+      - "4.10"
+    installation: Solr Plugin (JAR)
+    url: https://github.com/shopping24/solr-jdbc-synonyms
+    maven: "http://search.maven.org/#browse%7C-1733826686"
+    source: https://github.com/shopping24/solr-jdbc-synonyms
+    build: https://travis-ci.org/shopping24/solr-jdbc-synonyms
+    build_status: https://travis-ci.org/shopping24/solr-jdbc-synonyms.svg
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+responsewriters:
+  - name: Thymeleaf response writer
+    category: responsewriters
+    description: A Solr response writer to use the Thymeleaf templating engine for HTML templating.
+    pros: 
+      - Easy templating in Thymeleaf
+      - Used in production
+      - Updated within in the last 6 months
+    solr_versions:
+      - "4.10"
+    installation: Solr Plugin (JAR)
+    url: https://github.com/shopping24/solr-thymeleaf
+    maven: "http://search.maven.org/#browse%7C-1345016623"
+    source: https://github.com/shopping24/solr-thymeleaf
+    build: https://travis-ci.org/shopping24/solr-thymeleaf
+    build_status: https://travis-ci.org/shopping24/solr-thymeleaf.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
