@@ -52,8 +52,12 @@
             <a href="#analyzers">Analyzers</a>
           </button>
           <button type="button" class="btn btn-default">
+            <i class="fa fa-ship"></i>
+            <a href="#searchcomponents">SearchComponents</a>
+          </button>
+          <button type="button" class="btn btn-default">
             <i class="fa fa-file-text-o"></i>
-            <a href="#responsewriters">ResponseWriters</a>
+            <a href="#other">Other</a>
           </button>
         </div>
         
@@ -77,9 +81,16 @@
   {% endfor %}
 
 <h2>
-  <a name="responsewriters">Response Writers</a>
+  <a name="searchcomponents">SearchComponents</a>
 </h2>
-  {% for component in site.responsewriters %}
+  {% for component in site.searchcomponents %}
+    {% include component.html %}
+  {% endfor %}
+
+<h2>
+  <a name="other">Other</a>
+</h2>
+  {% for component in site.other %}
     {% include component.html %}
   {% endfor %}
 

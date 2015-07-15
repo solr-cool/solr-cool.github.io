@@ -42,7 +42,7 @@ queryparsers:
 
   - name: Querqy
     category: queryparsers
-    description: Rule-based query preprocessor for Java-based search engines
+    description: Querqy is a framework for query preprocessing in Java-based search engines. It comes with a powerful, rule-based preprocessor named 'Common Rules Preprocessor', which provides query-time synonyms, query-dependent boosting and down-ranking, and query-dependent filters.
     pros: 
       - Used in production
       - Updated within in the last 6 months
@@ -52,8 +52,22 @@ queryparsers:
     installation: Solr Plugin (JAR)
     url: https://github.com/renekrie/querqy
     source: https://github.com/renekrie/querqy
+    build: https://travis-ci.org/renekrie/querqy
+    build_status: https://travis-ci.org/renekrie/querqy.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: Lucene/Solr Synonym-Expanding EDisMax Parser
+    category: queryparsers
+    description: Solr query parser plugin that performs proper query-time synonym expansion.
+    cons:
+      - Not maintained anymore 
+    solr_versions: 
+      - "4.3+"
+    installation: Solr Plugin (JAR)
+    url: http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr
+    source: https://github.com/healthonnet/hon-lucene-synonyms
+    license: Unknown
 
 analyzers:
   - name: JDBC Synonym Filter
@@ -75,9 +89,20 @@ analyzers:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
-responsewriters:
+searchcomponents:
+  - name: Language Detection Component
+    category: searchcomponents
+    description: Solr search component for language detection.
+    solr_versions:
+      - "4.10"
+    installation: Build Your Own
+    url: https://gist.github.com/vsdev1/8397079
+    source: https://gist.github.com/vsdev1/8397079
+    license: Unknown
+
+other:
   - name: Thymeleaf response writer
-    category: responsewriters
+    category: other
     description: A Solr response writer to use the Thymeleaf templating engine for HTML templating.
     pros: 
       - Easy templating in Thymeleaf
@@ -91,5 +116,18 @@ responsewriters:
     source: https://github.com/shopping24/solr-thymeleaf
     build: https://travis-ci.org/shopping24/solr-thymeleaf
     build_status: https://travis-ci.org/shopping24/solr-thymeleaf.svg
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: "SolRDF: Apache Solr meets RDF"
+    category: other
+    description: SolRDF (i.e. Solr + RDF) is a set of Solr extensions for managing (index and search) RDF data.
+    solr_versions:
+      - "4.10"
+    installation: Solr Plugin (JAR)
+    url: https://github.com/agazzarini/SolRDF
+    source: https://github.com/agazzarini/SolRDF
+    build: https://travis-ci.org/agazzarini/SolRDF
+    build_status: https://travis-ci.org/agazzarini/SolRDF.svg?branch=master
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
