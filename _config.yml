@@ -31,6 +31,8 @@ queryparsers:
       - Native Lucene query syntax does not work
     solr_versions:
       - "4.10"
+      - "5.x"
+      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-bmax-queryparser
     maven: "http://search.maven.org/#browse%7C-1697835338"
@@ -70,22 +72,42 @@ queryparsers:
     license: Unknown
 
 analyzers:
-  - name: JDBC Synonym Filter
+  - name: solr-analyzers
     category: analyzers
-    description: A Solr synonym and stopwotd filter for reading synonyms out of JDBC.
+    description: A Solr analyzer collection of tokenizers and filters.
+    pros: 
+      - AnalyzingSentenceTokenizer to remove bad sentences from text
+      - Used in production
+      - Updated within in the last 6 months
+    solr_versions:
+      - "5.x"
+      - "6.x"
+    installation: Solr Plugin (JAR)
+    url: https://github.com/shopping24/solr-analyzers
+    maven: "http://search.maven.org/#browse%7C-1733826686"
+    source: https://github.com/shopping24/solr-analyzers
+    build: https://travis-ci.org/shopping24/solr-analyzers
+    build_status: https://travis-ci.org/shopping24/solr-analyzers.svg
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: solr-JDBC
+    category: analyzers
+    description: A Solr synonym and stopword filter for reading synonyms out of JDBC.
     pros: 
       - Pull synonyms via JDBC out of databases
       - Highly configurable, use SQL to retrieve synonyms
       - Used in production
       - Updated within in the last 6 months
     solr_versions:
-      - "4.10"
+      - "5.x"
+      - "6.x"
     installation: Solr Plugin (JAR)
-    url: https://github.com/shopping24/solr-jdbc-synonyms
+    url: https://github.com/shopping24/solr-jdbc
     maven: "http://search.maven.org/#browse%7C-1733826686"
-    source: https://github.com/shopping24/solr-jdbc-synonyms
-    build: https://travis-ci.org/shopping24/solr-jdbc-synonyms
-    build_status: https://travis-ci.org/shopping24/solr-jdbc-synonyms.svg
+    source: https://github.com/shopping24/solr-jdbc
+    build: https://travis-ci.org/shopping24/solr-jdbc
+    build_status: https://travis-ci.org/shopping24/solr-jdbc.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
@@ -110,6 +132,8 @@ other:
       - Updated within in the last 6 months
     solr_versions:
       - "4.10"
+      - "5.x"
+      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-thymeleaf
     maven: "http://search.maven.org/#browse%7C-1345016623"
