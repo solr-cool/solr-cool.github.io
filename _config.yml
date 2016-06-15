@@ -149,7 +149,7 @@ other:
     solr_versions:
       - "4.10"
     installation: Solr Plugin (JAR)
-    url: https://github.com/agazzarini/SolRDF
+    url: https://github.com/agazzarini/SolRDF/wiki
     source: https://github.com/agazzarini/SolRDF
     build: https://travis-ci.org/agazzarini/SolRDF
     build_status: https://travis-ci.org/agazzarini/SolRDF.svg?branch=master
