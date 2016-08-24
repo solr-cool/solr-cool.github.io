@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "searchbits: solr extensions directory"
+title: "Solr extensions directory"
 ---
 
 ## Contributing
