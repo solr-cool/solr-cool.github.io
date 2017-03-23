@@ -62,14 +62,24 @@ queryparsers:
   - name: Lucene/Solr Synonym-Expanding EDisMax Parser
     category: queryparsers
     description: Solr query parser plugin that performs proper query-time synonym expansion.
+    pros:
+      - Supports phrases in query-time synonyms
+      - Apply same synonyms across all fields
+      - Simple setup
     cons:
-      - Not maintained anymore 
+      - Cannot tune synonyms per field
+      - May generate huge queries
     solr_versions: 
-      - "4.3+"
+      - "4.x"
+      - "5.x"
+      - "6.2"
     installation: Solr Plugin (JAR)
     url: http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr
     source: https://github.com/healthonnet/hon-lucene-synonyms
-    license: Unknown
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+    build: https://travis-ci.org/healthonnet/hon-lucene-synonyms
+    build_status: https://travis-ci.org/healthonnet/hon-lucene-synonyms.svg
 
 analyzers:
   - name: solr-analyzers
@@ -122,6 +132,23 @@ searchcomponents:
     source: https://gist.github.com/vsdev1/8397079
     license: Unknown
 
+  - name: Request Sanitizer Component
+    category: searchcomponents
+    description: Solr search component for avoiding insane request params such as too large rows or offset params
+    solr_versions:
+      - "5.x"
+      - "6.x"
+    pros:
+      - Override client request params in config
+      - Harden RequestHandler endpoints without code
+    installation: Solr Plugin (JAR)
+    url: https://github.com/cominvent/request-sanitizer-component
+    build: https://travis-ci.org/cominvent/request-sanitizer-component
+    build_status: https://travis-ci.org/cominvent/request-sanitizer-component.svg
+    source: https://github.com/cominvent/request-sanitizer-component
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
 other:
   - name: Thymeleaf response writer
     category: other
@@ -153,5 +180,18 @@ other:
     source: https://github.com/agazzarini/SolRDF
     build: https://travis-ci.org/agazzarini/SolRDF
     build_status: https://travis-ci.org/agazzarini/SolRDF.svg?branch=master
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: Mapping Update Processor
+    category: other
+    description: The MappingUpdateProcessor lets you map value of a field to some other value based on a dictionary
+    solr_versions:
+      - "6.x"
+    installation: Build Your Own
+    url: https://github.com/cominvent/solr-update-processors
+    source: https://github.com/cominvent/solr-update-processors
+    build: https://travis-ci.org/cominvent/solr-update-processors
+    build_status: https://travis-ci.org/cominvent/solr-update-processors.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
