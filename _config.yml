@@ -81,6 +81,44 @@ queryparsers:
     build: https://travis-ci.org/healthonnet/hon-lucene-synonyms
     build_status: https://travis-ci.org/healthonnet/hon-lucene-synonyms.svg
 
+  - name: Query Segmenter
+    category: queryparsers
+    description: The QuerySegmenter core library is used to find typed segments within a user query. For example, for the query “Pizza New York”, the segment “New York” can be extracted as a segment of type “city”. The typed segments are matched against a dictionary, which is usually a text file.
+    pros:
+      - Used in production
+      - Supported Text, Geo, Date Segmenter
+      - Updated within in the last 6 months
+    solr_versions: 
+      - "4.x"
+      - "5.x"
+      - "6.x"
+    installation: Solr Plugin (JAR)
+    url: https://github.com/sematext/query-segmenter
+    source: https://github.com/sematext/query-segmenter
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+    build: https://travis-ci.org/sematext/query-segmenter
+    build_status: https://travis-ci.org/sematext/query-segmenter.svg
+
+ - name: Query Redis
+    category: queryparsers
+    description: This extension is a ParserPlugin that provides a Solr query parser based on data stored in Redis. RedisQParserPlugin creates a connection with Redis and passes the connection object to RedisQParser responsible for fetching data and building a query.
+    pros:
+      - Used in production
+      - Highlight redis query
+      - Updated within in the last 1 year
+    solr_versions: 
+      - "4.x"
+      - "5.x"
+      - "6.x"
+    installation: Solr Plugin (JAR)
+    url: https://github.com/sematext/query-redis
+    source: https://github.com/sematext/query-redis
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+    build: https://travis-ci.org/sematext/query-redis
+    build_status: https://travis-ci.org/sematext/query-redis.svg
+
 analyzers:
   - name: solr-analyzers
     category: analyzers
@@ -149,6 +187,49 @@ searchcomponents:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
+  - name: Solr Researcher
+    category: searchcomponents
+    description: The AutoComplete (AC) enhances the search experience through suggest-as-you-type and auto-complete functionality built into the search form. As one starts to enter search terms, the module detects a pause in typing and offers a list of suggested searches. One can then easily pick one of the suggestions or continue refining the suggestions by typing in more of the query. For example, if you type "bass" AC might offer suggestions that include "bass fishing" or "bass guitar", and even "sea bass" (note how "bass" is not necessarily the first word)
+    solr_versions:
+      - "4.x"
+      - "5.x"
+      - "6.x"
+    pros:
+      - Used in production
+      - Automatic mispelling correction
+      - Suggestion group by a field
+      - Full word match boosting, "word order" boost
+      - Supported distributed search
+      - Updated within in the last 6 months
+    installation: Solr Plugin (JAR)
+    url: https://github.com/sematext/solr-researcher
+    build: https://travis-ci.org/sematext/solr-researcher
+    build_status: https://travis-ci.org/sematext/solr-researcher.svg
+    source: https://github.com/sematext/solr-researcher
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+  
+  - name: Solr AutoComplete
+    category: searchcomponents
+    description: Solr SearchComponent for altering and re-executing queries that product poor results. It contains two components: Relaxer &amp; DYM (aka Did You Mean ReSearcher). They can be used to improve user's search experience.
+    solr_versions:
+      - "4.x"
+      - "5.x"
+      - "6.x"
+    pros:
+      - Used in production
+      - Relax phrase query, mm parameter, term
+      - Correct mispell query
+      - Supported distributed search
+      - Updated within in the last 6 months
+    installation: Solr Plugin (JAR)
+    url: https://github.com/sematext/solr-autocomplete
+    build: https://travis-ci.org/sematext/solr-autocomplete
+    build_status: https://travis-ci.org/sematext/solr-autocomplete.svg
+    source: https://github.com/sematext/solr-autocomplete
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
 other:
   - name: Thymeleaf response writer
     category: other
@@ -193,5 +274,20 @@ other:
     source: https://github.com/cominvent/solr-update-processors
     build: https://travis-ci.org/cominvent/solr-update-processors
     build_status: https://travis-ci.org/cominvent/solr-update-processors.svg
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: SearchSchemer
+    category: other
+    description: SearchSchemer is a simple application which allows to convert index structure between the following search engines: Solr, ElasticSearch, SenseiDB
+    solr_versions:
+      - "4.x"
+      - "5.x"
+      - "6.x"
+    installation: Build Your Own
+    url: https://github.com/sematext/SearchSchemer
+    source: https://github.com/sematext/SearchSchemer
+    build: https://travis-ci.org/sematext/SearchSchemer
+    build_status: https://travis-ci.org/sematext/SearchSchemer.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
