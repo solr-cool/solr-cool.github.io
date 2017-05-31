@@ -1,7 +1,3 @@
-# github defaults
-safe: true
-lsi: false
-
 # exclude meta files
 exclude: ['.project', 'README.md', 'Gemfile', 'Gemfile.lock', 'deploy.sh', 'Rakefile', 'images/team/_original', 'ansible.cfg']
 
