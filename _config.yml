@@ -96,7 +96,7 @@ queryparsers:
     build: https://travis-ci.org/sematext/query-segmenter
     build_status: https://travis-ci.org/sematext/query-segmenter.svg
 
- - name: Query Redis
+  - name: Query Redis
     category: queryparsers
     description: This extension is a ParserPlugin that provides a Solr query parser based on data stored in Redis. RedisQParserPlugin creates a connection with Redis and passes the connection object to RedisQParser responsible for fetching data and building a query.
     pros:
@@ -207,7 +207,7 @@ searchcomponents:
   
   - name: Solr AutoComplete
     category: searchcomponents
-    description: Solr SearchComponent for altering and re-executing queries that product poor results. It contains two components: Relaxer &amp; DYM (aka Did You Mean ReSearcher). They can be used to improve user's search experience.
+    description: "Solr SearchComponent for altering and re-executing queries that product poor results. It contains two components: Relaxer &amp; DYM (aka Did You Mean ReSearcher). They can be used to improve user's search experience."
     solr_versions:
       - "4.x"
       - "5.x"
@@ -275,7 +275,7 @@ other:
 
   - name: SearchSchemer
     category: other
-    description: SearchSchemer is a simple application which allows to convert index structure between the following search engines: Solr, ElasticSearch, SenseiDB
+    description: "SearchSchemer is a simple application which allows to convert index structure between the following search engines: Solr, ElasticSearch, SenseiDB"
     solr_versions:
       - "4.x"
       - "5.x"
