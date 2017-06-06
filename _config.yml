@@ -112,12 +112,12 @@ queryparsers:
       - "5.x"
       - "6.x"
     installation: Solr Plugin (JAR)
-    url: https://github.com/sematext/query-redis
-    source: https://github.com/sematext/query-redis
+    url: https://github.com/sematext/solr-redis
+    source: https://github.com/sematext/solr-redis
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
-    build: https://travis-ci.org/sematext/query-redis
-    build_status: https://travis-ci.org/sematext/query-redis.svg
+    build: https://travis-ci.org/sematext/solr-redis
+    build_status: https://travis-ci.org/sematext/solr-redis.svg
 
 analyzers:
   - name: solr-analyzers
