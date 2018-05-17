@@ -1,4 +1,4 @@
-This repo holds the content for the [http://searchbits.org](http://searchbits.org) website. It's built using jekyll.
+This repo holds the content for the [http://solr.cool](http://solr.cool) website. It's built using jekyll.
 
 ## Setup
 Make sure you have `ruby` installed properly. For example by using [rbenv](https://github.com/sstephenson/rbenv)
