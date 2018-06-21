@@ -23,16 +23,10 @@ queryparsers:
     category: queryparsers
     description: A boosting dismax query parser for Apache Solr. The bmax query parser relies on field types  and tokenizer chains to parse the user query, discover synonyms, boost and penalize terms at  query time. Hence it is highly configurable. The lucene query composed is a boosted and  reranked dismax query with a minimum must match of 100%.
     pros: 
-      - Simple searches
-      - Ecommerce applications
+      - For E-Commerce centric applications
       - Used in production
-      - Updated within in the last 6 months
     cons: 
-      - Native Lucene query syntax does not work
-    solr_versions:
-      - "4.10"
-      - "5.x"
-      - "6.x"
+      - Native Lucene query syntax not supported
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-bmax-queryparser
     maven: "http://search.maven.org/#browse%7C-1697835338"
@@ -47,11 +41,6 @@ queryparsers:
     description: Querqy is a framework for query preprocessing in Java-based search engines. It comes with a powerful, rule-based preprocessor named 'Common Rules Preprocessor', which provides query-time synonyms, query-dependent boosting and down-ranking, and query-dependent filters.
     pros: 
       - Used in production
-      - Updated within in the last 6 months
-    solr_versions:
-      - "4.10"
-      - "5.x"
-      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/renekrie/querqy
     source: https://github.com/renekrie/querqy
@@ -70,10 +59,6 @@ queryparsers:
     cons:
       - Cannot tune synonyms per field
       - May generate huge queries
-    solr_versions: 
-      - "4.x"
-      - "5.x"
-      - "6.2"
     installation: Solr Plugin (JAR)
     url: http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr
     source: https://github.com/healthonnet/hon-lucene-synonyms
@@ -88,11 +73,6 @@ queryparsers:
     pros:
       - Used in production
       - Supported Text, Geo, Date Segmenter
-      - Updated within in the last 6 months
-    solr_versions: 
-      - "4.x"
-      - "5.x"
-      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/sematext/query-segmenter
     source: https://github.com/sematext/query-segmenter
@@ -107,11 +87,6 @@ queryparsers:
     pros:
       - Used in production
       - Highlight redis query
-      - Updated within in the last 1 year
-    solr_versions: 
-      - "4.x"
-      - "5.x"
-      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/sematext/solr-redis
     source: https://github.com/sematext/solr-redis
@@ -127,10 +102,6 @@ analyzers:
     pros: 
       - AnalyzingSentenceTokenizer to remove bad sentences from text
       - Used in production
-      - Updated within in the last 6 months
-    solr_versions:
-      - "5.x"
-      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-analyzers
     maven: "http://search.maven.org/#browse%7C-1733826686"
@@ -147,10 +118,6 @@ analyzers:
       - Pull synonyms via JDBC out of databases
       - Highly configurable, use SQL to retrieve synonyms
       - Used in production
-      - Updated within in the last 6 months
-    solr_versions:
-      - "5.x"
-      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-jdbc
     maven: "http://search.maven.org/#browse%7C-1733826686"
@@ -164,8 +131,6 @@ searchcomponents:
   - name: Language Detection Component
     category: searchcomponents
     description: Solr search component for language detection.
-    solr_versions:
-      - "4.10"
     installation: Build Your Own
     url: https://gist.github.com/vsdev1/8397079
     source: https://gist.github.com/vsdev1/8397079
@@ -174,9 +139,6 @@ searchcomponents:
   - name: Request Sanitizer Component
     category: searchcomponents
     description: Solr search component for avoiding insane request params such as too large rows or offset params
-    solr_versions:
-      - "5.x"
-      - "6.x"
     pros:
       - Override client request params in config
       - Harden RequestHandler endpoints without code
@@ -191,17 +153,12 @@ searchcomponents:
   - name: Solr Researcher
     category: searchcomponents
     description: The AutoComplete (AC) enhances the search experience through suggest-as-you-type and auto-complete functionality built into the search form. As one starts to enter search terms, the module detects a pause in typing and offers a list of suggested searches. One can then easily pick one of the suggestions or continue refining the suggestions by typing in more of the query. For example, if you type "bass" AC might offer suggestions that include "bass fishing" or "bass guitar", and even "sea bass" (note how "bass" is not necessarily the first word)
-    solr_versions:
-      - "4.x"
-      - "5.x"
-      - "6.x"
     pros:
       - Used in production
       - Automatic mispelling correction
       - Suggestion group by a field
       - Full word match boosting, "word order" boost
       - Supported distributed search
-      - Updated within in the last 6 months
     installation: Solr Plugin (JAR)
     url: https://github.com/sematext/solr-researcher
     build: https://travis-ci.org/sematext/solr-researcher
@@ -213,16 +170,11 @@ searchcomponents:
   - name: Solr AutoComplete
     category: searchcomponents
     description: "Solr SearchComponent for altering and re-executing queries that product poor results. It contains two components: Relaxer &amp; DYM (aka Did You Mean ReSearcher). They can be used to improve user's search experience."
-    solr_versions:
-      - "4.x"
-      - "5.x"
-      - "6.x"
     pros:
       - Used in production
       - Relax phrase query, mm parameter, term
       - Correct mispell query
       - Supported distributed search
-      - Updated within in the last 6 months
     installation: Solr Plugin (JAR)
     url: https://github.com/sematext/solr-autocomplete
     build: https://travis-ci.org/sematext/solr-autocomplete
@@ -238,11 +190,6 @@ other:
     pros: 
       - Easy templating in Thymeleaf
       - Used in production
-      - Updated within in the last 6 months
-    solr_versions:
-      - "4.10"
-      - "5.x"
-      - "6.x"
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-thymeleaf
     maven: "http://search.maven.org/#browse%7C-1345016623"
@@ -255,8 +202,6 @@ other:
   - name: "SolRDF: Apache Solr meets RDF"
     category: other
     description: SolRDF (i.e. Solr + RDF) is a set of Solr extensions for managing (index and search) RDF data.
-    solr_versions:
-      - "4.10"
     installation: Solr Plugin (JAR)
     url: https://github.com/agazzarini/SolRDF/wiki
     source: https://github.com/agazzarini/SolRDF
@@ -268,8 +213,6 @@ other:
   - name: Mapping Update Processor
     category: other
     description: The MappingUpdateProcessor lets you map value of a field to some other value based on a dictionary
-    solr_versions:
-      - "6.x"
     installation: Build Your Own
     url: https://github.com/cominvent/solr-update-processors
     source: https://github.com/cominvent/solr-update-processors
@@ -281,10 +224,6 @@ other:
   - name: SearchSchemer
     category: other
     description: "SearchSchemer is a simple application which allows to convert index structure between the following search engines: Solr, ElasticSearch, SenseiDB"
-    solr_versions:
-      - "4.x"
-      - "5.x"
-      - "6.x"
     installation: Build Your Own
     url: https://github.com/sematext/SearchSchemer
     source: https://github.com/sematext/SearchSchemer
