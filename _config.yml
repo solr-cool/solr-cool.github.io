@@ -22,10 +22,10 @@ queryparsers:
   - name: Bmax Query Parser
     category: queryparsers
     description: A boosting dismax query parser for Apache Solr. The bmax query parser relies on field types  and tokenizer chains to parse the user query, discover synonyms, boost and penalize terms at  query time. Hence it is highly configurable. The lucene query composed is a boosted and  reranked dismax query with a minimum must match of 100%.
-    pros: 
+    pros:
       - For E-Commerce centric applications
       - Used in production
-    cons: 
+    cons:
       - Native Lucene query syntax not supported
     installation: Solr Plugin (JAR)
     url: https://github.com/shopping24/solr-bmax-queryparser
@@ -39,7 +39,7 @@ queryparsers:
   - name: Querqy
     category: queryparsers
     description: Querqy is a framework for query preprocessing in Java-based search engines. It comes with a powerful, rule-based preprocessor named 'Common Rules Preprocessor', which provides query-time synonyms, query-dependent boosting and down-ranking, and query-dependent filters.
-    pros: 
+    pros:
       - Used in production
     installation: Solr Plugin (JAR)
     url: https://github.com/renekrie/querqy
@@ -99,7 +99,7 @@ analyzers:
   - name: solr-analyzers
     category: analyzers
     description: A Solr analyzer collection of tokenizers and filters.
-    pros: 
+    pros:
       - AnalyzingSentenceTokenizer to remove bad sentences from text
       - Used in production
     installation: Solr Plugin (JAR)
@@ -114,7 +114,7 @@ analyzers:
   - name: solr-JDBC
     category: analyzers
     description: A Solr synonym and stopword filter for reading synonyms out of JDBC.
-    pros: 
+    pros:
       - Pull synonyms via JDBC out of databases
       - Highly configurable, use SQL to retrieve synonyms
       - Used in production
@@ -166,7 +166,7 @@ searchcomponents:
     source: https://github.com/sematext/solr-researcher
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
-  
+
   - name: Solr AutoComplete
     category: searchcomponents
     description: "Solr SearchComponent for altering and re-executing queries that product poor results. It contains two components: Relaxer &amp; DYM (aka Did You Mean ReSearcher). They can be used to improve user's search experience."
@@ -187,7 +187,7 @@ other:
   - name: Thymeleaf response writer
     category: other
     description: A Solr response writer to use the Thymeleaf templating engine for HTML templating.
-    pros: 
+    pros:
       - Easy templating in Thymeleaf
       - Used in production
     installation: Solr Plugin (JAR)
@@ -229,5 +229,20 @@ other:
     source: https://github.com/sematext/SearchSchemer
     build: https://travis-ci.org/sematext/SearchSchemer
     build_status: https://travis-ci.org/sematext/SearchSchemer.svg
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: solr-ids-export-plugin
+    category: other
+    description: "A plugin (to be more precise: set of plugins) for Solr allowing time-efficient export of Ids of all found documents (or any DocValues-enabled field values) in comma-separated format without sorting."
+    pros:
+      - faster than /export
+    cons:
+      - not tested with SolrCloud  
+    installation: Solr Plugin (JAR)
+    url: https://github.com/allegro/solr-ids-export-plugin
+    source: https://github.com/allegro/solr-ids-export-plugin
+    build:
+    build_status:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
