@@ -238,7 +238,7 @@ other:
     pros:
       - faster than /export
     cons:
-      - not tested with SolrCloud  
+      - not tested with SolrCloud
     installation: Solr Plugin (JAR)
     url: https://github.com/allegro/solr-ids-export-plugin
     source: https://github.com/allegro/solr-ids-export-plugin
@@ -246,3 +246,17 @@ other:
     build_status:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: solcolator
+    category: other
+    description: "Solcolator allows you to define a set of search queries and then monitor a stream of indexing documents for any that might match these queries."
+    pros:
+      - leverages existing Luwak project
+    cons:
+    installation: Solr Plugin (JAR)
+    url: https://github.com/SOLR4189/solcolator
+    source: https://github.com/SOLR4189/solcolator
+    build:
+    build_status:
+    license: ?
+    license_url: 
