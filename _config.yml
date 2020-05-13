@@ -42,10 +42,10 @@ queryparsers:
     pros:
       - Used in production
     installation: Solr Plugin (JAR)
-    url: https://github.com/renekrie/querqy
-    source: https://github.com/renekrie/querqy
-    build: https://travis-ci.org/renekrie/querqy
-    build_status: https://travis-ci.org/renekrie/querqy.svg
+    url: https://github.com/querqy/querqy
+    source: https://github.com/querqy/querqy
+    build: https://github.com/querqy/querqy/actions?query=workflow%3ABuild
+    build_status: https://github.com/querqy/querqy/workflows/Build/badge.svg
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
