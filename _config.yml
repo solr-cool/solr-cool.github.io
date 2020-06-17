@@ -197,6 +197,35 @@ searchcomponents:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
+  - name: Payload Component
+    category: searchcomponents
+    description: "Solr component that surfaces payloads for matching terms.  Works well with the Offset Highlighter Component"
+    pros:
+      - Used in production
+      - Complete demo available
+      - Enable any kind of payload, not just numerics
+    installation: Solr Plugin (JAR)
+    url: https://github.com/o19s/payload-component
+    build:
+    build_status:
+    source: https://github.com/o19s/payload-component
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
+  - name: Offset Highlighter
+    category: searchcomponents
+    description: "Solr component that adds offsets to a highlighter formatter.  Works well with the Payload Component"
+    pros:
+      - Used in production
+      - Complete demo available
+    installation: Solr Plugin (JAR)
+    url: https://github.com/o19s/offset-hl-formatter
+    build:
+    build_status:
+    source: https://github.com/o19s/offset-hl-formatter
+    license: Apache License v2
+    license_url: http://choosealicense.com/licenses/apache-2.0/
+
 other:
   - name: Thymeleaf response writer
     category: other
