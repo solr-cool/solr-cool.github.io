@@ -29,11 +29,11 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="http://lucene.apache.org/solr">
-          <img alt="Solr Logo" src="/images/solr-logo.png">
-        </a>
         <p class="navbar-text navbar-text-title">
-          Solr Extension Directory
+          <a class="navbar-brand" href="http://lucene.apache.org/solr">
+            <img alt="Solr Logo" src="/images/solr-logo.png">
+          </a>
+          Extension Directory
         </p>
       </div>
     </div>
@@ -42,7 +42,7 @@
 
 
     <div class="row">
-      <div class="col-md-8 text-center">
+      <div class="col-md-12 text-center">
 	    <div class="btn-group " role="group">
           <button type="button" class="btn btn-default">
             <i class="fa fa-scissors"></i>
@@ -51,6 +51,14 @@
           <button type="button" class="btn btn-default">
             <i class="fa fa-cogs"></i>
             <a href="#analyzers">Analyzers</a>
+          </button>
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-file-text"></i>
+            <a href="#responsewriters">Response Writers</a>
+          </button>
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-spinner"></i>
+            <a href="#updateprocessors">Update Processors</a>
           </button>
           <button type="button" class="btn btn-default">
             <i class="fa fa-ship"></i>
@@ -70,14 +78,28 @@
 <h2>
   <a name="queryparsers">Query Parsers</a>
 </h2>
-  {% for component in site.queryparsers %}
+  {% for component in site.data.queryparsers %}
     {% include component.html %}
   {% endfor %}
   
 <h2>
   <a name="analyzers">Analyzers</a>
 </h2>
-  {% for component in site.analyzers %}
+  {% for component in site.data.analyzers %}
+    {% include component.html %}
+  {% endfor %}
+
+<h2>
+  <a name="responsewriters">Response Writers</a>
+</h2>
+{% for component in site.data.responsewriters %}
+  {% include component.html %}
+{% endfor %}
+  
+<h2>
+  <a name="updateprocessors">Update Processors</a>
+</h2>
+  {% for component in site.data.updateprocessors %}
     {% include component.html %}
   {% endfor %}
 

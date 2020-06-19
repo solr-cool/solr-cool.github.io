@@ -18,129 +18,6 @@ timezone: Europe/Berlin
 # ---------------------------------------------------------------------
 # add components here
 # ---------------------------------------------------------------------
-queryparsers:
-  - name: Bmax Query Parser
-    category: queryparsers
-    description: A boosting dismax query parser for Apache Solr. The bmax query parser relies on field types  and tokenizer chains to parse the user query, discover synonyms, boost and penalize terms at  query time. Hence it is highly configurable. The lucene query composed is a boosted and  reranked dismax query with a minimum must match of 100%.
-    pros:
-      - For E-Commerce centric applications
-      - Used in production
-    cons:
-      - Native Lucene query syntax not supported
-    installation: Solr Plugin (JAR)
-    url: https://github.com/shopping24/solr-bmax-queryparser
-    maven: "http://search.maven.org/#browse%7C-1697835338"
-    source: https://github.com/shopping24/solr-bmax-queryparser
-    build: https://travis-ci.org/shopping24/solr-bmax-queryparser
-    build_status: https://travis-ci.org/shopping24/solr-bmax-queryparser.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
-  - name: Querqy
-    category: queryparsers
-    description: Querqy is a framework for query preprocessing in Java-based search engines. It comes with a powerful, rule-based preprocessor named 'Common Rules Preprocessor', which provides query-time synonyms, query-dependent boosting and down-ranking, and query-dependent filters.
-    pros:
-      - Used in production
-    installation: Solr Plugin (JAR)
-    url: https://github.com/querqy/querqy
-    source: https://github.com/querqy/querqy
-    build: https://github.com/querqy/querqy/actions?query=workflow%3ABuild
-    build_status: https://github.com/querqy/querqy/workflows/Build/badge.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
-  - name: Lucene/Solr Synonym-Expanding EDisMax Parser
-    category: queryparsers
-    description: Solr query parser plugin that performs proper query-time synonym expansion.
-    pros:
-      - Supports phrases in query-time synonyms
-      - Apply same synonyms across all fields
-      - Simple setup
-    cons:
-      - Cannot tune synonyms per field
-      - May generate huge queries
-    installation: Solr Plugin (JAR)
-    url: http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr
-    source: https://github.com/healthonnet/hon-lucene-synonyms
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-    build: https://travis-ci.org/healthonnet/hon-lucene-synonyms
-    build_status: https://travis-ci.org/healthonnet/hon-lucene-synonyms.svg
-
-  - name: Query Segmenter
-    category: queryparsers
-    description: The QuerySegmenter core library is used to find typed segments within a user query. For example, for the query “Pizza New York”, the segment “New York” can be extracted as a segment of type “city”. The typed segments are matched against a dictionary, which is usually a text file.
-    pros:
-      - Used in production
-      - Supported Text, Geo, Date Segmenter
-    installation: Solr Plugin (JAR)
-    url: https://github.com/sematext/query-segmenter
-    source: https://github.com/sematext/query-segmenter
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-    build: https://travis-ci.org/sematext/query-segmenter
-    build_status: https://travis-ci.org/sematext/query-segmenter.svg
-
-  - name: Query Redis
-    category: queryparsers
-    description: This extension is a ParserPlugin that provides a Solr query parser based on data stored in Redis. RedisQParserPlugin creates a connection with Redis and passes the connection object to RedisQParser responsible for fetching data and building a query.
-    pros:
-      - Used in production
-      - Highlight redis query
-    installation: Solr Plugin (JAR)
-    url: https://github.com/sematext/solr-redis
-    source: https://github.com/sematext/solr-redis
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-    build: https://travis-ci.org/sematext/solr-redis
-    build_status: https://travis-ci.org/sematext/solr-redis.svg
-
-  - name: "SolrSwan: Proximity and Boolean Parser"
-    category: queryparsers
-    description: <img src="https://raw.githubusercontent.com/o19s/SolrSwan/master/assets/SolrSwan-Color.jpg" width="64" align="right"/>SolrSwan is a query parser and highlighter for Solr that accepts proximity (SAME, WITH, ADJACENT, NEAR) and Boolean queries.
-    pros:
-      - SWAN syntax is commonly used in patent search.
-    cons:
-    installation: Solr Plugin (JAR)
-    url: https://github.com/o19s/SolrSwan
-    source: https://github.com/o19s/SolrSwan
-    build: https://app.circleci.com/pipelines/github/o19s/SolrSwan
-    build_status: https://circleci.com/gh/o19s/SolrSwan.svg?style=svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
-analyzers:
-  - name: solr-analyzers
-    category: analyzers
-    description: A Solr analyzer collection of tokenizers and filters.
-    pros:
-      - AnalyzingSentenceTokenizer to remove bad sentences from text
-      - Used in production
-    installation: Solr Plugin (JAR)
-    url: https://github.com/shopping24/solr-analyzers
-    maven: "http://search.maven.org/#browse%7C-1733826686"
-    source: https://github.com/shopping24/solr-analyzers
-    build: https://travis-ci.org/shopping24/solr-analyzers
-    build_status: https://travis-ci.org/shopping24/solr-analyzers.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
-  - name: solr-JDBC
-    category: analyzers
-    description: A Solr synonym and stopword filter for reading synonyms out of JDBC.
-    pros:
-      - Pull synonyms via JDBC out of databases
-      - Highly configurable, use SQL to retrieve synonyms
-      - Used in production
-    installation: Solr Plugin (JAR)
-    url: https://github.com/shopping24/solr-jdbc
-    maven: "http://search.maven.org/#browse%7C-1733826686"
-    source: https://github.com/shopping24/solr-jdbc
-    build: https://travis-ci.org/shopping24/solr-jdbc
-    build_status: https://travis-ci.org/shopping24/solr-jdbc.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
 searchcomponents:
   - name: Language Detection Component
     category: searchcomponents
@@ -227,21 +104,6 @@ searchcomponents:
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
 other:
-  - name: Thymeleaf response writer
-    category: other
-    description: A Solr response writer to use the Thymeleaf templating engine for HTML templating.
-    pros:
-      - Easy templating in Thymeleaf
-      - Used in production
-    installation: Solr Plugin (JAR)
-    url: https://github.com/shopping24/solr-thymeleaf
-    maven: "http://search.maven.org/#browse%7C-1345016623"
-    source: https://github.com/shopping24/solr-thymeleaf
-    build: https://travis-ci.org/shopping24/solr-thymeleaf
-    build_status: https://travis-ci.org/shopping24/solr-thymeleaf.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
   - name: "SolRDF: Apache Solr meets RDF"
     category: other
     description: SolRDF (i.e. Solr + RDF) is a set of Solr extensions for managing (index and search) RDF data.
@@ -253,17 +115,6 @@ other:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
-  - name: Mapping Update Processor
-    category: other
-    description: The MappingUpdateProcessor lets you map value of a field to some other value based on a dictionary
-    installation: Build Your Own
-    url: https://github.com/cominvent/solr-update-processors
-    source: https://github.com/cominvent/solr-update-processors
-    build: https://travis-ci.org/cominvent/solr-update-processors
-    build_status: https://travis-ci.org/cominvent/solr-update-processors.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
   - name: SearchSchemer
     category: other
     description: "SearchSchemer is a simple application which allows to convert index structure between the following search engines: Solr, ElasticSearch, SenseiDB"
@@ -272,21 +123,6 @@ other:
     source: https://github.com/sematext/SearchSchemer
     build: https://travis-ci.org/sematext/SearchSchemer
     build_status: https://travis-ci.org/sematext/SearchSchemer.svg
-    license: Apache License v2
-    license_url: http://choosealicense.com/licenses/apache-2.0/
-
-  - name: solr-ids-export-plugin
-    category: other
-    description: "A plugin (to be more precise: set of plugins) for Solr allowing time-efficient export of Ids of all found documents (or any DocValues-enabled field values) in comma-separated format without sorting."
-    pros:
-      - faster than /export
-    cons:
-      - not tested with SolrCloud
-    installation: Solr Plugin (JAR)
-    url: https://github.com/allegro/solr-ids-export-plugin
-    source: https://github.com/allegro/solr-ids-export-plugin
-    build:
-    build_status:
     license: Apache License v2
     license_url: http://choosealicense.com/licenses/apache-2.0/
 
