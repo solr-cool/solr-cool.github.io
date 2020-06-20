@@ -65,8 +65,8 @@
             <a href="#searchcomponents">SearchComponents</a>
           </button>
           <button type="button" class="btn btn-default">
-            <i class="fa fa-file-text-o"></i>
-            <a href="#other">Other</a>
+            <i class="fa fa-gear-o"></i>
+            <a href="#utilities">Utilitites</a>
           </button>
         </div>
         
@@ -104,16 +104,16 @@
   {% endfor %}
 
 <h2>
-  <a name="searchcomponents">SearchComponents</a>
+  <a name="searchcomponents">Search</a>
 </h2>
-  {% for component in site.searchcomponents %}
+  {% for component in site.data.searchcomponents %}
     {% include component.html %}
   {% endfor %}
 
 <h2>
-  <a name="other">Other</a>
+  <a name="utilities">utilities</a>
 </h2>
-  {% for component in site.other %}
+  {% for component in site.data.utilities %}
     {% include component.html %}
   {% endfor %}
 
