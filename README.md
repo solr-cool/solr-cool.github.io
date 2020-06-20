@@ -15,6 +15,9 @@ docker run --rm \
 and point your browser to `http://localhost:4000/`.
 
 ## Adding content
+
+Add your component to the appropriate file in the `_data` directory.
+
 We're using [jekyll](http://jekyllrb.com/docs/home/) for content
 
 * [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) for templating

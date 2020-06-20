@@ -1,0 +1,10 @@
+- name: SearchSchemer
+  category: other
+  description: "SearchSchemer is a simple application which allows to convert index structure between the following search engines: Solr, ElasticSearch, SenseiDB"
+  installation: Build Your Own
+  url: https://github.com/sematext/SearchSchemer
+  source: https://github.com/sematext/SearchSchemer
+  build: https://travis-ci.org/sematext/SearchSchemer
+  build_status: https://travis-ci.org/sematext/SearchSchemer.svg
+  license: Apache License v2
+  license_url: http://choosealicense.com/licenses/apache-2.0/
