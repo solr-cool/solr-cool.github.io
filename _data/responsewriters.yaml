@@ -27,3 +27,20 @@
   build_status:
   license: Apache License v2
   license_url: http://choosealicense.com/licenses/apache-2.0/
+
+- name: Solritas (Velocity) (Community Edition)
+  category: responsewriters
+  description: "A plugin that uses Velocity templates to render responses.  Historically used to power the sample /browse interface in Solr.
+  Useful for custom templating of your responses."
+  pros:
+    - only "native" templating solution
+    - only option post Solr 9 ;-)
+  cons:
+    -
+  installation: Solr Package
+  url: https://github.com/erikhatcher/solritas
+  source: https://github.com/erikhatcher/solritas
+  build:
+  build_status:
+  license: Apache License v2
+  license_url: http://choosealicense.com/licenses/apache-2.0/

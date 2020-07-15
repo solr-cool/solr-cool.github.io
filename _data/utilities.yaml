@@ -25,3 +25,21 @@
   build_status: https://github.com/yasa-org/yasa/workflows/Build/badge.svg?branch=master
   license: Apache License v2
   license_url: http://choosealicense.com/licenses/apache-2.0/
+
+- name: Data Import Handler (Community Edition)
+  category: other
+  description: "Data Import Handler (DIH) provides a mechanism for importing content
+  from a data store and indexing it.  In addition to relational databases, DIH can index
+  content from HTTP based data sources such as RSS and ATOM feeds, e-mail repositories,
+  and structured XML where an XPath processor is used to generate fields."
+  pros:
+    - Easily installed via Solr package manager
+  cons:
+    - Not yet a complete replacement for Solr DIH contrib module.
+  installation: Solr Package
+  url: https://github.com/rohitbemax/dataimporthandler
+  source: https://github.com/rohitbemax/dataimporthandler
+  build:
+  build_status:
+  license: Apache License v2
+  license_url: http://choosealicense.com/licenses/apache-2.0/
