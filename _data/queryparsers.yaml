@@ -7,11 +7,11 @@
   cons:
     - Native Lucene query syntax not supported
   installation: Solr Plugin (JAR)
-  url: https://github.com/shopping24/solr-bmax-queryparser
-  maven: "http://search.maven.org/#browse%7C-1697835338"
-  source: https://github.com/shopping24/solr-bmax-queryparser
-  build: https://travis-ci.org/shopping24/solr-bmax-queryparser
-  build_status: https://travis-ci.org/shopping24/solr-bmax-queryparser.svg
+  url: https://github.com/solr-cool/solr-bmax-queryparser
+  maven: https://search.maven.org/artifact/cool.solr/solr-bmax-queryparser
+  source: https://github.com/solr-cool/solr-bmax-queryparser
+  build: https://travis-ci.org/solr-cool/solr-bmax-queryparser
+  build_status: https://travis-ci.org/solr-cool/solr-bmax-queryparser.svg
   license: Apache License v2
   license_url: http://choosealicense.com/licenses/apache-2.0/
 

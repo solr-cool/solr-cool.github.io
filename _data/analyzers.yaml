@@ -5,26 +5,10 @@
     - AnalyzingSentenceTokenizer to remove bad sentences from text
     - Used in production
   installation: Solr Plugin (JAR)
-  url: https://github.com/shopping24/solr-analyzers
-  maven: "http://search.maven.org/#browse%7C-1733826686"
-  source: https://github.com/shopping24/solr-analyzers
-  build: https://travis-ci.org/shopping24/solr-analyzers
-  build_status: https://travis-ci.org/shopping24/solr-analyzers.svg
-  license: Apache License v2
-  license_url: http://choosealicense.com/licenses/apache-2.0/
-
-- name: solr-JDBC
-  category: analyzers
-  description: A Solr synonym and stopword filter for reading synonyms out of JDBC.
-  pros:
-    - Pull synonyms via JDBC out of databases
-    - Highly configurable, use SQL to retrieve synonyms
-    - Used in production
-  installation: Solr Plugin (JAR)
-  url: https://github.com/shopping24/solr-jdbc
-  maven: "http://search.maven.org/#browse%7C-1733826686"
-  source: https://github.com/shopping24/solr-jdbc
-  build: https://travis-ci.org/shopping24/solr-jdbc
-  build_status: https://travis-ci.org/shopping24/solr-jdbc.svg
+  url: https://github.com/solr-cool/solr-analyzers
+  maven: https://search.maven.org/artifact/cool.solr/solr-util
+  source: https://github.com/solr-cool/solr-analyzers
+  build: https://travis-ci.org/solr-cool/solr-analyzers
+  build_status: https://travis-ci.org/solr-cool/solr-analyzers.svg
   license: Apache License v2
   license_url: http://choosealicense.com/licenses/apache-2.0/

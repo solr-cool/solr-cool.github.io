@@ -43,3 +43,15 @@
   build_status:
   license: Apache License v2
   license_url: http://choosealicense.com/licenses/apache-2.0/
+
+- name: Solr Utils
+  category: other
+  description: A set of utility classes building and testing Solr plugins
+  installation: Solr Plugin (JAR)
+  url: https://github.com/solr-cool/solr-util
+  maven: https://search.maven.org/artifact/cool.solr/solr-util
+  source: https://github.com/solr-cool/solr-util
+  build: https://travis-ci.org/solr-cool/solr-util
+  build_status: https://travis-ci.org/solr-cool/solr-util.svg
+  license: Apache License v2
+  license_url: http://choosealicense.com/licenses/apache-2.0/

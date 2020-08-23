@@ -5,11 +5,11 @@
     - Easy templating in Thymeleaf
     - Used in production
   installation: Solr Plugin (JAR)
-  url: https://github.com/shopping24/solr-thymeleaf
-  maven: "http://search.maven.org/#browse%7C-1345016623"
-  source: https://github.com/shopping24/solr-thymeleaf
-  build: https://travis-ci.org/shopping24/solr-thymeleaf
-  build_status: https://travis-ci.org/shopping24/solr-thymeleaf.svg
+  url: https://github.com/solr-cool/solr-thymeleaf
+  maven: https://search.maven.org/artifact/cool.solr/solr-thymeleaf
+  source: https://github.com/solr-cool/solr-thymeleaf
+  build: https://travis-ci.org/solr-cool/solr-thymeleaf
+  build_status: https://travis-ci.org/solr-cool/solr-thymeleaf.svg
   license: Apache License v2
   license_url: http://choosealicense.com/licenses/apache-2.0/
 
