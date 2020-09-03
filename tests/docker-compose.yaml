@@ -1,7 +1,7 @@
 version: '2.4'
 services:
   solr:
-    image: solr:8.6.2
+    image: solr:8.6.1
     container_name: solr
     ports:
       - 8983:8983
@@ -16,4 +16,4 @@ services:
     environment:
       - "FOLDER=/www"
     volumes:
-      - "../docs:/www"
+      - "../_site:/www"
