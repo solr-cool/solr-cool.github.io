@@ -6,9 +6,11 @@ set -e
 
 # clean build
 rm -rf target
+rm -rf _data/versions/*.json
+rm -rf _data/repos/*.json
 mkdir -p target
 mkdir -p _data/versions
-mkdir -p _data/repo
+mkdir -p _data/repos
 
 # iterate package definitions
 for plugin in ./_data/packages/*.yaml; do
@@ -17,6 +19,13 @@ for plugin in ./_data/packages/*.yaml; do
   file=$(basename $plugin)
   name=${file%.yaml}
   descriptor=target/${name}.json
+
+  # check for a manifest section
+  manifest=$(yq read $plugin manifest)
+  if [ -z "$manifest" ]; then
+    echo "No package manifest given."
+    continue;
+  fi
 
   # -------------------------------------------------------------------
   # (1) Compile package descriptor
@@ -38,7 +47,7 @@ for plugin in ./_data/packages/*.yaml; do
   versions=$(echo ${gh_repo_releases} | jq '[{"version": .[].name , "date": .[].published_at|fromdate|strftime("%Y-%m-%d"), "artifacts": [{ "url": .[].assets[0].browser_download_url }]}]')
 
   # append manifest to each version
-  versions_with_manifest=$(echo ${versions} | jq --argjson manifest "$(yq read $plugin manifest)" '.[] += {"manifest": $manifest}')
+  versions_with_manifest=$(echo ${versions} | jq --argjson manifest "${manifest}" '.[] += {"manifest": $manifest}')
 
   # add versions to plugin descriptor
   full_descriptor=$(cat ${descriptor} | jq --argjson versions "${versions_with_manifest}" '. += {"versions": $versions}')
@@ -57,11 +66,6 @@ for plugin in ./_data/packages/*.yaml; do
     echo "Downloading ${jar}"
     curl -sfLo target/${name}.jar ${jar}
 
-    # verify download
-    echo "Verifying ${jar}.asc"
-    curl -sfLo target/${name}.jar.asc ${jar}.asc
-    gpg --verify target/${name}.jar.asc target/${name}.jar
-
     # sign jars
     echo -n "Signing ... "
     signature=$(openssl dgst -sha1 -sign solr.cool.pem target/${name}.jar | openssl enc -base64 | tr -d \\n)
@@ -71,9 +75,12 @@ for plugin in ./_data/packages/*.yaml; do
     jq "(.versions[].artifacts[]|select(.url==\"${jar}\")) += {sig: \"${signature}\"}" ${descriptor} | sponge ${descriptor}
   done
   
-  # update website definition
+  # -------------------------------------------------------------------
+  # (3) Update package website description
+  # -------------------------------------------------------------------
   cp ${descriptor} _data/versions/${name}.json
-  echo ${gh_repo_details} > _data/repos/${name}.json
+  
+  echo ${gh_repo_details} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}' > _data/repos/${name}.json
 
 done
 

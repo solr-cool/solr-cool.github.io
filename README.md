@@ -3,7 +3,7 @@ and Solr Package repository.
 
 ## Building
 
-
+The website is built using Jekyll.
 Use the official Docker image to fire up a local Jekyll instance:
 
 ```
@@ -16,15 +16,29 @@ docker run --rm \
 
 and point your browser to `http://localhost:4000/`.
 
+### Updating package releases
+
+> ☝️ In the future (tm), the update process is triggered by Travis CI on a daily basis.
+
+The website is built from the release and version information that
+is checked into the repository. To update release information of the
+listed packages, run the `build.sh` script.
+
+For each package it will 
+
+* collect release and repository information, 
+* download and sign the JARs
+* build a Solr package manager inventory file
+
 ## Adding content
 
-Add your component to the appropriate file in the `_data` directory.
+1. _Add your package in a single file_ in the `_data/packages` directory.
+   Fill in details and point to the repository used. To add the package
+   to the package repository, add a `manifest` block with install commands. Use the `thymeleaf.json` as a starting point.
+1. _Add a bats test_ in the `tests` directory. This will test your
+   package Again, use the `thymeleaf.bats` as a starting point
+1. Run the `build.sh
 
-We're using [jekyll](http://jekyllrb.com/docs/home/) for content
-
-* [Liquid](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers) for templating
-* [Kramdown](http://kramdown.gettalong.org/syntax.html) for content
-* [Pygments](http://pygments.org/) for code highlighting
 
 Preview your changes using the Docker command above.
 
