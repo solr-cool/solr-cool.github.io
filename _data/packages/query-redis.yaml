@@ -1,0 +1,7 @@
+name: Query Redis
+category: queryparsers
+description: This extension is a ParserPlugin that provides a Solr query parser based on data stored in Redis. RedisQParserPlugin creates a connection with Redis and passes the connection object to RedisQParser responsible for fetching data and building a query.
+installation: Solr Plugin (JAR)
+url: https://github.com/sematext/solr-redis
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

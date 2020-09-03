@@ -2,8 +2,6 @@ name: Thymeleaf response writer
 category: responsewriters
 description: A Solr response writer to use the Thymeleaf templating engine for HTML templating.
 url: https://github.com/solr-cool/solr-thymeleaf
-build: https://travis-ci.org/solr-cool/solr-thymeleaf
-build_status: https://travis-ci.org/solr-cool/solr-thymeleaf.svg
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
 manifest: |
