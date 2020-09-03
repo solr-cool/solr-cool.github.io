@@ -1,0 +1,44 @@
+{
+  "name": "thymeleaf",
+  "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
+  "versions": [
+    {
+      "version": "1.1.0",
+      "date": "2020-08-21",
+      "artifacts": [
+        {
+          "url": "https://github.com/solr-cool/solr-thymeleaf/releases/download/1.1.0/solr-thymeleaf-1.1.0-jar-with-dependencies.jar",
+          "sig": "HqtZXy9FPjupAE9eETFuUuPW/A7goO1La0EONjjLs2tsQCzuFp9iXl4H4caOnxZQEivoWdwN6NSm5N2WSgSPgw=="
+        }
+      ],
+      "manifest": {
+        "version-constraint": "6 - 9",
+        "plugins": [
+          {
+            "name": "queryresponsewriter",
+            "setup-command": {
+              "path": "/api/collections/${collection}/config",
+              "payload": {
+                "add-queryresponsewriter": {
+                  "name": "${THYMELEAF_QRW_NAME}",
+                  "class": "thymeleaf:com.s24.search.solr.response.ThymeleafResponseWriter"
+                }
+              },
+              "method": "POST"
+            },
+            "uninstall-command": {
+              "path": "/api/collections/${collection}/config",
+              "payload": {
+                "delete-queryresponsewriter": "${THYMELEAF_QRW_NAME}"
+              },
+              "method": "POST"
+            }
+          }
+        ],
+        "parameter-defaults": {
+          "THYMELEAF_QRW_NAME": "html"
+        }
+      }
+    }
+  ]
+}

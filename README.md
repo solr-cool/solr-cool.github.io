@@ -1,6 +1,8 @@
-This repo holds the content for the [http://solr.cool](http://solr.cool) website. It's built using Jekyll.
+This repo holds the content for the [http://solr.cool](http://solr.cool) website
+and Solr Package repository.
 
-## Setup
+## Building
+
 
 Use the official Docker image to fire up a local Jekyll instance:
 
