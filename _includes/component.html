@@ -14,15 +14,11 @@
 		    <h4 class="media-heading">
 		      <a href="{{ component.url }}"><code>{{ component.name }}</code></a>
 		      
-		      
+			  {% if repo.updated_at %}
 		      <small class="pull-right">
-                {% if component.build %}
-		          <img src="{{ component.build_status }}" class="build-status"/>
-		        {% endif %}
-		        {% for v in component.solr_versions %}
-		          <span class="label label-solr">{{ v }}</span>
-		        {% endfor %}
-		      </small>
+                last updated {{ repo.updated_at | date: "%B %-d, %Y" }}
+			  </small>
+			  {% endif %}
 		    </h4>
 	        <p>
               {{ component.description }}
@@ -34,41 +30,55 @@
 		          {{ component.license }}
 		        </a>
 			  </li>
+			  {% if repo.stargazers_count %}
 			  <li>
-				<i class="fa fa-calendar"></i>
-				 Last updated {{ repo.updated_at | date: "%B %-d, %Y" }}
+				<i class="fa fa-star-o"></i>
+				{{ repo.stargazers_count }}
 			  </li>
+			  {% endif %}
+			  {% if repo.total_download_count %}
 			  <li>
-				<i class="fa fa-star"></i>{{ repo.stargazers_count }}
+				<i class="fa fa-arrow-circle-o-down"></i>
+				{{ repo.total_download_count }}
 			  </li>
+			  {% endif %}
+			  {% if repo.statuses %}
+			  {% for status in repo.statuses limit:1 %}
+			  <li class="text-{{ status.state }}">
+				<i class="fa fa-comment-o"></i>
+				<a href="{{ status.target_url }}" class="text-{{ status.state }}">{{ status.description }}</a>
+			  </li>
+			  {% endfor %}
+			  {% endif %}
 		    </ul>
 		  </div>
 		</div>
       </div>
       <div class="col-md-4 summary">
 		<ul class="list-unstyled fa-ul">
-		{% for version in descriptor.versions %}
+			{% if component.manifest %}		
+			<li class="text-success"><i class="fa-li fa fa-cloud-download"></i>Package Manager Installation</li>
+			{% elsif descriptor.versions[0] %}
+			<li class="text-info"><i class="fa-li fa fa-floppy-o"></i>Manual installation (JAR)</li>
+			{% else %}		
+			<li class="text-warning"><i class="fa-li fa fa-cogs"></i>Compile your own</li>
+			{% endif %}
+		</ul>
+
+		{% if descriptor.versions[0] %}
+		<ul class="list-unstyled fa-ul">
+			<li>
+				<strong>Recent Releases</strong>
+			</li>
+			{% for version in descriptor.versions limit: 3 %}
 			<li>
 				<i class="fa-li fa fa-tag"></i>
-				{{ version.version }}<br />
-				{{ version.date | date: "%B %-d, %Y" }}
+				{{ version.version }} 
+				<small class="text-muted">{{ version.date | date: "%B %-d, %Y" }}</small>
 			</li>
-		{% endfor %}
+			{% endfor %}
 		</ul>
-		
-        {% if component.pros or component.cons or component.installation %}
-        <ul class="list-unstyled fa-ul">
-          {% for e in component.pros %}
-          <li class="text-success"><i class="fa-li fa fa-star-o"></i>{{ e }}</li>
-          {% endfor %}
-          {% for e in component.cons %}
-          <li class="text-warning"><i class="fa-li fa fa-bomb"></i>{{ e }}</li>
-          {% endfor %}
-          {% if component.installation %}
-          <li class="text-info"><i class="fa-li fa fa-floppy-o"></i>{{ component.installation }}</li>
-          {% endif %}
-        </ul>
-        {% endif %}
+		{% endif %}
       </div>
     </div>
   

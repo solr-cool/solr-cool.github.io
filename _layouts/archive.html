@@ -61,7 +61,8 @@
 <h2>
   <a name="{{ category.name }}">{{ category.description }}</a>
 </h2>
-{% for package_hash in site.data.packages %}
+{% assign packages_by_name = site.data.packages | sort %}
+{% for package_hash in packages_by_name %}
 {% assign component_name = package_hash[0] %}
 {% assign component = package_hash[1] %}
 {% assign descriptor = site.data.versions[component_name] %}
