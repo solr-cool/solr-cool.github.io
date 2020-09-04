@@ -2,7 +2,7 @@
 #
 # This script will iterate the packages configured and gather
 # recent versions and build the repo plugin descriptor.
-set -ex
+set -e
 
 if ! [ -x "$(command -v jq)" ]; then
   echo 'Error: jq is not installed.' >&2
