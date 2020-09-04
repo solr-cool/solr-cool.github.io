@@ -11,8 +11,10 @@ before_install:
   -in solr.cool.pem.enc -out solr.cool.pem -d
 - sudo apt-get -y install jq moreutils
 - sudo snap install yq
-- sudo add-apt-repository -y ppa:duggan/bats
-- sudo apt-get -q update
-- sudo apt-get -y install bats
+
+- git clone https://github.com/bats-core/bats-core.git
+- cd bats-core
+- git checkout v1.2.1
+- sudo ./install.sh /usr/local
 script:
 - "./build.sh"
