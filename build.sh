@@ -122,3 +122,6 @@ docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/builder:3.8 jekyll build
 echo "Testing package manifest"
 bats -o target --formatter junit test
 
+# extract test results for jekyll
+xq -r '{"count": .testsuite."@tests", "failures": .testsuite."@failures", "errors": .testsuite."@errors"}' target/TestReport-thymeleaf.bats.xml > _data/tests/${name}.json
+
