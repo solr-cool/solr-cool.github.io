@@ -5,12 +5,16 @@
 set -e
 
 # clean build
+rm -f repository.json
 rm -rf target
+rm -rf _site
 rm -rf _data/versions/*.json
 rm -rf _data/repos/*.json
+rm -rf _data/tests/*.json
 mkdir -p target
 mkdir -p _data/versions
 mkdir -p _data/repos
+mkdir -p _data/tests
 
 # iterate package definitions
 for plugin in ./_data/packages/*.yaml; do
@@ -21,8 +25,8 @@ for plugin in ./_data/packages/*.yaml; do
   descriptor=target/${name}.json
 
   # check for a manifest section
-  manifest=$(yq read $plugin manifest)
-  if [ -z "$manifest" ]; then
+  manifest=$(yq -r .manifest $plugin)
+  if [ "$manifest" = "null" ]; then
     echo "No package manifest given."
     continue;
   fi
@@ -34,11 +38,11 @@ for plugin in ./_data/packages/*.yaml; do
   # prepare descriptor
   jq -n \
     --arg name $name \
-    --arg description "$(yq read $plugin description)" \
+    --arg description "$(yq -r .description $plugin)" \
     '{"name":$name, "description": $description}' > ${descriptor}
   
   # read recent versions from Github
-  gh_repo_url=$(yq read $plugin url)
+  gh_repo_url=$(yq -r .url $plugin)
   gh_repo_name=${gh_repo_url#https://github.com/}
   gh_repo_details=$(curl -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}")
   gh_repo_releases=$(curl -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/releases?per_page=10")
@@ -82,7 +86,39 @@ for plugin in ./_data/packages/*.yaml; do
   
   echo ${gh_repo_details} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}' > _data/repos/${name}.json
 
-done
+  # -------------------------------------------------------------------
+  # (4) Generate bats test
+  # -------------------------------------------------------------------
+  cat << EOT > ./test/${name}.bats
+load 'helper/bats-support/load'
+load 'helper/bats-assert/load'
+load 'helper/docker-support'
 
-# update repository definition
+@test "solr package [${name}] install" {
+  run docker exec -it solr solr package install ${name}
+  assert_success
+  assert_output --partial '${name} installed'
+}
+
+@test "solr package [${name}] deploy" {
+  run docker exec -it solr solr package deploy ${name} -collections films -y
+  assert_success
+  assert_output --partial 'Deployment successful'
+}
+EOT
+  
+done
+# -------------------------------------------------------------------
+# (5) Assemble descriptor
+# -------------------------------------------------------------------
 jq -s '.' target/*.json > repository.json
+
+echo "Building Jekyll site"
+docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/builder:3.8 jekyll build
+
+# -------------------------------------------------------------------
+# (6) Execute bats tests
+# -------------------------------------------------------------------
+echo "Testing package manifest"
+bats -o target --formatter junit test
+

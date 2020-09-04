@@ -13,4 +13,3 @@ load 'helper/docker-support'
   assert_success
   assert_output --partial 'Deployment successful'
 }
-
