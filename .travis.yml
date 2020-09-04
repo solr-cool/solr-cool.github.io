@@ -10,7 +10,7 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_1379b4163917_key -iv $encrypted_1379b4163917_iv
   -in solr.cool.pem.enc -out solr.cool.pem -d
 - sudo apt-get -y install jq moreutils
-- snap install yq
+- sudo snap install yq
 - sudo add-apt-repository -y ppa:duggan/bats
 - sudo apt-get -q update
 - sudo apt-get -y install bats
