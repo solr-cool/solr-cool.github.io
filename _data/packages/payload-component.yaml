@@ -1,0 +1,11 @@
+name: Payload Component
+category: searchcomponents
+description: "Solr component that surfaces payloads for matching terms.  Works well with the Offset Highlighter Component"
+pros:
+  - Used in production
+  - Complete demo available
+  - Enable any kind of payload, not just numerics
+installation: Solr Plugin (JAR)
+url: https://github.com/o19s/payload-component
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

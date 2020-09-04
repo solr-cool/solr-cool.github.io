@@ -1,0 +1,7 @@
+name: Mapping Update Processor
+category: updateprocessors
+description: The MappingUpdateProcessor lets you map value of a field to some other value based on a dictionary
+installation: Build Your Own
+url: https://github.com/cominvent/solr-update-processors
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

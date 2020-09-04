@@ -1,0 +1,13 @@
+name: YASA
+category: utilities
+description: "Yet Another Solr Admin - An alternative approach to managing your Solr cluster."
+pros:
+  - Easily installed via Solr package manager
+  - Much better query interface (inspired by Kibana)
+  - Written in VueJS
+cons:
+  - Not yet a complete replacement for Solr Admin
+installation: Solr Package
+url: https://github.com/yasa-org/yasa
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
