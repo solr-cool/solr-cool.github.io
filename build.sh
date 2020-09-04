@@ -152,6 +152,8 @@ done
 jq -s '.' target/*.json > repository.json
 
 echo "Building Jekyll site"
+touch Gemfile.lock
+chmod a+w Gemfile.lock
 docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/builder:3.8 jekyll build
 
 # -------------------------------------------------------------------
