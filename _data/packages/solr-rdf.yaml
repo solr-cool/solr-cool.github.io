@@ -2,6 +2,6 @@ name: "SolRDF: Apache Solr meets RDF"
 category: searchcomponents
 description: SolRDF (i.e. Solr + RDF) is a set of Solr extensions for managing (index and search) RDF data.
 installation: Solr Plugin (JAR)
-url: https://github.com/agazzarini/SolRDF/wiki
+url: https://github.com/SeaseLtd/SolRDF
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
