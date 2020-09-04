@@ -1,0 +1,18 @@
+dist: bionic
+language: minimal
+services:
+- docker
+env:
+  global:
+  - secure: V23FVo475LKvmxSHSY1uie1mTPuCIxRQQ6m3FJpPVLxpxpMvDnFORtF6RpxBlGMDyN2iH30i8trDaq5YQVXu4OlNjjoAF2VVGHlxJY6v4QFOT8/SjQfkmsqdE86NPu4G6RddoG5J9bnZqXqLQ6koZ7QDQ8kfMlZaOjx/TyUK2/J7znl3+wa/3uz2EQLJnQfRmxRNZccIRMoWXQzUBOnTWX4OYmymLWT0gnE0xSQ7hLgQVsCBGNChX4AoyC06eC+5yTBkCvAWoE1rZwh2pvKIxSFbQ1ocRXsqBHMSCkPBW5BxBL2IBwR+ywb7t8o6tI0DsY/K9tCCeCurZYQBwM0ZvUlh0l9sYtwiE2unQCl1Is6T6iUbR6gZIa/Ivpl29YOIBGB7LewpNPYQSr5ePjmpHrWCIHq50lZFL//2pJPOCS4fr0Qyoh4o9OdtLiFBZwpy2yd7V6s3c60TbTNxNhdLg2Et1+FUUnUeKhx5AnZoCIRO/HB43LbVLaOLCXoEBxUMcIEoCEEuXIQL6qQXYEA5QycVcEw/cg0TvW5xTfcHeZg8rcogbGZY/CLNYeHlzcZH9neyYWSPn2fEV+sBwCVNhldNXcLMm6Nwe4KIRMXGJORM3XM+NI7If2orQghHIULl41bGqp4weKx4Z4lvgkE9c9NW2G2n2/rW+woicIf/3Ss=
+  - secure: nT60V6AiNy8HNkcdNQYdSQJycoTs+T86fyFW9wxCTFGuEb2ktOQiBVp1Fk9VCYZXNmZJlvVl6MdDeXbG1Fa/CCsjdf7ruHf8q43FYYZOxyCnUsgoZjOCAzkTg3DeLRzf4aY/KGKdX6eRRth92hg0VpyxRKzVz0t3O9A3xRkkrOgeW+BRdi3+7alEGHy/ScDtHNgGX/2fC6+3RchkXN0SNB/PFx1GvFV+lTUqsqfgwrmJZ+dMniRpurR/dkgRnOVTgGq+Y4kuNyA4OX6Xh+yZVMgPlnkbGJFl7OT7kF+GzS6Jp+roHExG1ljPTd9Jv+CjhiIPOtX4mDjDMn9fuTZrFoP/kdhCvomjxr0AbPBN5yR1vfxBQYXw4AW46Mz/zxX0Wv9n4NBvvRsri6lMQKHRhkPSOx6prLIaH//5nwj5ypkIUWf8m/70M/1WjoE8fZsta4C45ryXV163eRxywqQ7mR74jukc+b9dFDZmp523J8aM7kQl+4K3bkYCGzAvNhrJV+3ZMZ7wwRhMH5c2hcRwWLVhQCjPMNqZ99WahpdT84IxR7YTFGehl+ZrILTL4M1pk95wg/my3tBfv7V7jROcnkOAAr6wndw2Pyy79gIF8afcv/tfjnxLEvDwuvSSLP3dO+nmrb+N79gc9IoY/E978DpqwXj7z11bPb6PV2Y+Syk=
+before_install:
+- openssl aes-256-cbc -K $encrypted_1379b4163917_key -iv $encrypted_1379b4163917_iv
+  -in solr.cool.pem.enc -out solr.cool.pem -d
+- sudo apt-get -y install jq moreutils
+- snap install yq
+- sudo add-apt-repository -y ppa:duggan/bats
+- sudo apt-get -q update
+- sudo apt-get -y install bats
+script:
+- "./build.sh"

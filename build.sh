@@ -4,6 +4,27 @@
 # recent versions and build the repo plugin descriptor.
 set -ex
 
+if ! [ -x "$(command -v jq)" ]; then
+  echo 'Error: jq is not installed.' >&2
+  exit 1
+fi
+if ! [ -x "$(command -v yq)" ]; then
+  echo 'Error: yq is not installed.' >&2
+  exit 1
+fi
+if ! [ -x "$(command -v openssl)" ]; then
+  echo 'Error: openssl is not installed.' >&2
+  exit 1
+fi
+if ! [ -x "$(command -v docker)" ]; then
+  echo 'Error: docker is not installed.' >&2
+  exit 1
+fi
+if ! [ -x "$(command -v bats)" ]; then
+  echo 'Error: bats is not installed.' >&2
+  exit 1
+fi
+
 # clean build
 rm -f repository.json
 rm -rf target
@@ -28,7 +49,7 @@ for plugin in ./_data/packages/*.yaml; do
   # (1) Update package website description
   # -------------------------------------------------------------------
   # 
-  package_url=$(yq -r .url $plugin)
+  package_url=$(yq read $plugin url)
   
   if [[ ! $package_url == *"https://github.com"* ]]; then
     echo "Not hosted on Github."
@@ -36,7 +57,7 @@ for plugin in ./_data/packages/*.yaml; do
   fi
 
   # prepare descriptor
-  descriptor_head=$(jq -n --arg name $name --arg description "$(yq -r .description $plugin)" '{"name":$name, "description": $description}')
+  descriptor_head=$(jq -n --arg name $name --arg description "$(yq read $plugin description)" '{"name":$name, "description": $description}')
   
   # read recent versions from Github
   gh_repo_name=${package_url#https://github.com/}
@@ -66,8 +87,8 @@ for plugin in ./_data/packages/*.yaml; do
   # -------------------------------------------------------------------
   #
   # check for a manifest section
-  manifest=$(yq -r .manifest $plugin)
-  if [ "$manifest" = "null" ]; then
+  manifest=$(yq read $plugin manifest)
+  if [ -z "$manifest" ]; then
     echo "No package manifest given."
     continue;
   fi
