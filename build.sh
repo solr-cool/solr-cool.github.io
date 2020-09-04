@@ -45,9 +45,17 @@ for plugin in ./_data/packages/*.yaml; do
   gh_repo_name=${package_url#https://github.com/}
   gh_repo_details=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}")
   gh_repo_releases=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/releases?per_page=10")
+  gh_repo_status=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/commits/master/status")
 
-  # extract repo data
-  echo ${gh_repo_details} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}' > _data/repos/${name}.json
+  # combine repo data
+  gh_repo_combined=$(echo ${gh_repo_details} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}')
+  gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson status "${gh_repo_status}" '. += {"statuses": $status.statuses }')
+
+  if [ ${#gh_repo_releases} -ge 50 ]; then
+    gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
+    gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
+  fi
+  echo ${gh_repo_combined} > _data/repos/${name}.json
 
   # compile versions
   versions=$(echo ${gh_repo_releases} | jq '[{"version": .[].name , "date": .[].published_at|fromdate|strftime("%Y-%m-%d"), "artifacts": [{ "url": .[].assets[0].browser_download_url }]}]')
