@@ -1,7 +1,6 @@
-load 'helper/bats-support/load'
-load 'helper/bats-assert/load'
-load 'helper/docker-support'
-
+load '$BATS_TEST_DIRNAME/helper/bats-support/load'
+load '$BATS_TEST_DIRNAME/helper/bats-assert/load'
+load '$BATS_TEST_DIRNAME/helper/docker-support'
 
 # Test repo connection
 @test "solr package add-repo" {
