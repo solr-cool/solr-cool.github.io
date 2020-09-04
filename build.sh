@@ -2,7 +2,7 @@
 #
 # This script will iterate the packages configured and gather
 # recent versions and build the repo plugin descriptor.
-set -e
+set -ex
 
 # clean build
 rm -f repository.json
@@ -36,10 +36,7 @@ for plugin in ./_data/packages/*.yaml; do
   fi
 
   # prepare descriptor
-  jq -n \
-    --arg name $name \
-    --arg description "$(yq -r .description $plugin)" \
-    '{"name":$name, "description": $description}' > ${descriptor}
+  descriptor_head=$(jq -n --arg name $name --arg description "$(yq -r .description $plugin)" '{"name":$name, "description": $description}')
   
   # read recent versions from Github
   gh_repo_name=${package_url#https://github.com/}
@@ -51,7 +48,7 @@ for plugin in ./_data/packages/*.yaml; do
   gh_repo_combined=$(echo ${gh_repo_details} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}')
   gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson status "${gh_repo_status}" '. += {"statuses": $status.statuses }')
 
-  if [ ${#gh_repo_releases} -ge 50 ]; then
+  if [ ${#gh_repo_releases} -gt 8 ]; then
     gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
     gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
   fi
@@ -61,9 +58,8 @@ for plugin in ./_data/packages/*.yaml; do
   versions=$(echo ${gh_repo_releases} | jq '[{"version": .[].name , "date": .[].published_at|fromdate|strftime("%Y-%m-%d"), "artifacts": [{ "url": .[].assets[0].browser_download_url }]}]')
 
   # add versions to plugin descriptor
-  full_descriptor=$(cat ${descriptor} | jq --argjson versions "${versions}" '. += {"versions": $versions}')
-  echo ${full_descriptor} > ${descriptor}
-  cp ${descriptor} _data/versions/${name}.json
+  temp_descriptor=$(echo ${descriptor_head} | jq --argjson versions "${versions}" '. += {"versions": $versions}')
+  echo ${temp_descriptor} > _data/versions/${name}.json
 
   # -------------------------------------------------------------------
   # (2) Compile package descriptor
@@ -78,6 +74,12 @@ for plugin in ./_data/packages/*.yaml; do
 
   # append manifest to each version
   versions_with_manifest=$(echo ${versions} | jq --argjson manifest "${manifest}" '.[] += {"manifest": $manifest}')
+
+  # add versions to plugin descriptor
+  full_descriptor=$(echo ${descriptor_head} | jq --argjson versions "${versions_with_manifest}" '. += {"versions": $versions}')
+
+  # save descriptor part
+  echo ${full_descriptor} > ${descriptor}
 
   # -------------------------------------------------------------------
   # (3) Download & sign JARs
@@ -138,5 +140,5 @@ echo "Testing package manifest"
 bats -o target --formatter junit test
 
 # extract test results for jekyll
-xq -r '{"count": .testsuite."@tests", "failures": .testsuite."@failures", "errors": .testsuite."@errors"}' target/TestReport-thymeleaf.bats.xml > _data/tests/${name}.json
+#xq -r '{"count": .testsuite."@tests", "failures": .testsuite."@failures", "errors": .testsuite."@errors"}' target/TestReport-thymeleaf.bats.xml > _data/tests/${name}.json
 
