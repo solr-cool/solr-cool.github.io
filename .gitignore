@@ -5,4 +5,6 @@ Thumbs.db
 .DS_Store
 Gemfile.lock
 
+# sensitive data
 solr.cool.pem
+*-env.sh
