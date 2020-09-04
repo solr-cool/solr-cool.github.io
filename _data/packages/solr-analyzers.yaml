@@ -1,0 +1,6 @@
+name: solr-analyzers
+category: analyzers
+description: A Solr analyzer collection of tokenizers and filters.
+url: https://github.com/solr-cool/solr-analyzers
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

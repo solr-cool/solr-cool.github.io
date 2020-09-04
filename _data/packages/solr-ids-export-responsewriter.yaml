@@ -1,0 +1,7 @@
+name: solr-ids-export-plugin
+category: responsewriters
+description: "A plugin (to be more precise: set of plugins) for Solr allowing time-efficient export of Ids of all found documents (or any DocValues-enabled field values) in comma-separated format without sorting."
+installation: Solr Plugin (JAR)
+url: https://github.com/allegro/solr-ids-export-plugin
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

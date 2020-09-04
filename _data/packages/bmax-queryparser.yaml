@@ -4,7 +4,7 @@ description: A boosting dismax query parser for Apache Solr. The bmax query pars
 url: https://github.com/solr-cool/solr-bmax-queryparser
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
-manifest: |
+manifest_deactivated: |
   {
     "version-constraint": "6 - 9",
     "plugins": [
