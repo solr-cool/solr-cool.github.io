@@ -18,6 +18,6 @@ before_install:
 - sudo ./install.sh /usr/local
 - cd ..
 
-- git submodule update --init
 script:
+- git submodule update --init
 - "./build.sh"
