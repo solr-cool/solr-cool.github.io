@@ -1,8 +1,8 @@
 {
-  "name": "solr-thymeleaf",
-  "full_name": "solr-cool/solr-thymeleaf",
-  "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
-  "updated_at": "2020-08-31T16:26:27Z",
+  "name": "solr-bmax-queryparser",
+  "full_name": "solr-cool/solr-bmax-queryparser",
+  "description": "A synonym aware edismax query parser for Apache Solr",
+  "updated_at": "2020-08-27T07:56:33Z",
   "stargazers_count": 0,
   "watchers_count": 0,
   "license": {

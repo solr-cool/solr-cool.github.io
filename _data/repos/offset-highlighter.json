@@ -1,8 +1,8 @@
 {
-  "name": "solr-thymeleaf",
-  "full_name": "solr-cool/solr-thymeleaf",
-  "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
-  "updated_at": "2020-08-31T16:26:27Z",
+  "name": "offset-hl-formatter",
+  "full_name": "o19s/offset-hl-formatter",
+  "description": "Demonstration of using offsets in a Solr Highlighter Formatter",
+  "updated_at": "2020-06-17T12:31:48Z",
   "stargazers_count": 0,
   "watchers_count": 0,
   "license": {

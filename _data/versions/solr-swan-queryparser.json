@@ -1,0 +1,1 @@
+{ "name": "solr-swan-queryparser", "description": "<img src=\"https://raw.githubusercontent.com/o19s/SolrSwan/master/assets/SolrSwan-Color.jpg\" width=\"64\" align=\"right\"/>SolrSwan is a query parser and highlighter for Solr that accepts proximity (SAME, WITH, ADJACENT, NEAR) and Boolean queries.", "versions": [] }

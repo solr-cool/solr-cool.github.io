@@ -1,0 +1,15 @@
+{
+  "name": "solr-researcher",
+  "full_name": "sematext/solr-researcher",
+  "description": "Solr SearchComponent for altering and re-executing queries that product poor results",
+  "updated_at": "2020-05-04T14:25:27Z",
+  "stargazers_count": 14,
+  "watchers_count": 14,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "SolrSwan",
+  "full_name": "o19s/SolrSwan",
+  "description": "SolrSwan is a query parser and highlighter for Solr that accepts proximity and Boolean queries.",
+  "updated_at": "2020-06-27T15:47:20Z",
+  "stargazers_count": 4,
+  "watchers_count": 4,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  }
+}

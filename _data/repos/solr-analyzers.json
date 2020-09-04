@@ -1,8 +1,8 @@
 {
-  "name": "solr-thymeleaf",
-  "full_name": "solr-cool/solr-thymeleaf",
-  "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
-  "updated_at": "2020-08-31T16:26:27Z",
+  "name": "solr-analyzers",
+  "full_name": "solr-cool/solr-analyzers",
+  "description": "A repository for all open source tokenizers and filters",
+  "updated_at": "2020-08-31T16:26:02Z",
   "stargazers_count": 0,
   "watchers_count": 0,
   "license": {

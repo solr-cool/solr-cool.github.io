@@ -1,0 +1,9 @@
+{
+  "name": "SearchSchemer",
+  "full_name": "sematext/SearchSchemer",
+  "description": "Multi-directional schema converter for Solr, Elasticsearch, and Sensei",
+  "updated_at": "2019-05-22T14:32:26Z",
+  "stargazers_count": 44,
+  "watchers_count": 44,
+  "license": null
+}

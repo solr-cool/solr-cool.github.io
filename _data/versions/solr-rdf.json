@@ -1,0 +1,1 @@
+{ "name": "solr-rdf", "description": "SolRDF (i.e. Solr + RDF) is a set of Solr extensions for managing (index and search) RDF data.", "versions": [ { "version": "SolRDF 1.0", "date": "2015-10-17", "artifacts": [ { "url": null } ] } ] }
