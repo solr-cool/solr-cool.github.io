@@ -23,6 +23,7 @@ before_install:
 - cd bats-core
 - git checkout v1.2.1
 - sudo ./install.sh /usr/local
+- cd ..
 - bats --version
 
 # Check submodules
