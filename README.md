@@ -1,10 +1,13 @@
-This repo holds the content for the [http://solr.cool](http://solr.cool) website
+[![Travis Build Status](https://travis-ci.org/solr-cool/solr-cool.github.io.svg?branch=master)](https://travis-ci.org/github/solr-cool/solr-cool.github.io)
+
+This repo holds the content for the [solr.cool](https://solr.cool) website
 and Solr Package repository.
 
 ## Building
 
-The website is built using Jekyll.
-Use the official Docker image to fire up a local Jekyll instance:
+The website is built using [Jekyll](https://jekyllrb.com/) and
+hosted on Github Pages. Use the official Docker image to fire 
+up a local Jekyll instance and point your browser to [localhost:4000](http://localhost:4000/).
 
 ```
 docker run --rm \
@@ -14,34 +17,51 @@ docker run --rm \
      jekyll serve --watch [--drafts]
 ```
 
-and point your browser to `http://localhost:4000/`.
+### Structure of package meta data
 
-### Updating package releases
+Solr package information and scraped meta data is checked in into
+the [Jekyll `_data` folder](https://jekyllrb.com/docs/datafiles/)
+in this repo:
 
-> ☝️ In the future (tm), the update process is triggered by Travis CI on a daily basis.
+* `_data/packages` – basic package information (manually curated)
+* `_data/repos` (_generated_) – scraped repository information of each package
+* `_data/versions` (_generated_) – scraped release version information of each package
 
-The website is built from the release and version information that
-is checked into the repository. To update release information of the
-listed packages, run the `build.sh` script.
+### Updating scraped package meta data
 
-For each package it will 
+> ☝️ The update process is triggered by Travis CI on a daily basis.
 
-* collect release and repository information, 
-* download and sign the JARs
-* build a Solr package manager inventory file
+To update package repository, release and version information, run
+the `build.sh` script. For each package it will:
+
+1. collect repository meta data from Github
+1. collect release information from Github
+1. collect build status information from Github (if applicable)
+1. compile a Solr package manager inventory file
+1. download and sign the release JARs
+1. test installation and deinstallation of the package in a vanilla Solr installation
+
+To run the `build.sh` locally, you need a [personal Github access token](https://github.com/settings/tokens)
+and a public/private key pair:
+
+```bash
+export GH_USER=<your-github-username>
+export GH_ACCESS_TOKEN=<your-github-access-token>
+openssl genrsa -out solr.cool.pem 4096
+openssl rsa -in solr.cool.pem -pubout -outform DER -out publickey.der
+```
 
 ## Adding content
 
-1. _Add your package in a single file_ in the `_data/packages` directory.
-   Fill in details and point to the repository used. To add the package
-   to the package repository, add a `manifest` block with install commands. Use the `thymeleaf.json` as a starting point.
-1. _Add a bats test_ in the `tests` directory. This will test your
-   package Again, use the `thymeleaf.bats` as a starting point
-1. Run the `build.sh
+> 💡 You are very welcome to add your Solr package to solr.cool. We
+> are open to both FOSS and commercially licensed packages.
 
-
-Preview your changes using the Docker command above.
+TBD.
 
 ## Deployment
 
 Push to `master` on Github. Done.
+
+## License
+
+This project is licensed under the [Apache License, Version 2](http://www.apache.org/licenses/LICENSE-2.0.html).
