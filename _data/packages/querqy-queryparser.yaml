@@ -1,0 +1,8 @@
+name: Querqy
+category: queryparsers
+description: Querqy is a framework for query preprocessing in Java-based search engines. It comes with a powerful, rule-based preprocessor named 'Common Rules Preprocessor', which provides query-time synonyms, query-dependent boosting and down-ranking, and query-dependent filters.
+url: https://github.com/querqy/querqy
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - Used in production

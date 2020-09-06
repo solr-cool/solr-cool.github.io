@@ -1,0 +1,1 @@
+{ "name": "solr-autocomplete", "description": "Solr SearchComponent for altering and re-executing queries that product poor results. It contains two components: Relaxer &amp; DYM (aka Did You Mean ReSearcher). They can be used to improve user's search experience.", "versions": [] }

@@ -1,0 +1,1 @@
+{ "name": "solr-ids-export-responsewriter", "description": "A plugin (to be more precise: set of plugins) for Solr allowing time-efficient export of Ids of all found documents (or any DocValues-enabled field values) in comma-separated format without sorting.", "versions": [] }

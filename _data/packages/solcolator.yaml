@@ -1,0 +1,7 @@
+name: solcolator
+category: utilities
+description: "Implementation Saved Searches a la ElasticSearch Percolator"
+pros:
+  - leverages existing Luwak project
+installation: Solr Plugin (JAR)
+url: https://github.com/SOLR4189/solcolator

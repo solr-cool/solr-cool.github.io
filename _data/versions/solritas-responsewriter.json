@@ -1,0 +1,1 @@
+{ "name": "solritas-responsewriter", "description": "A plugin that uses Velocity templates to render responses. Historically used to power the sample /browse interface in Solr. Useful for custom templating of your responses.", "versions": [] }

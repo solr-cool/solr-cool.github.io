@@ -1,0 +1,8 @@
+name: "SolrSwan: Proximity and Boolean Parser"
+category: queryparsers
+description: SolrSwan is a query parser and highlighter for Solr that accepts proximity (SAME, WITH, ADJACENT, NEAR) and Boolean queries.
+url: https://github.com/o19s/SolrSwan
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - SWAN syntax is commonly used in patent search.

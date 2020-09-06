@@ -3,84 +3,82 @@
 	    <div class="media">
 	      <div class="media-left">
 	        <a href="{{ component.url }}">
-	          {% if component.category == 'queryparsers' %}
-	            <i class="fa fa-scissors fa-2x media-object text-muted"></i>
-	          {% elsif component.category == 'analyzers' %}
-	            <i class="fa fa-cogs fa-2x media-object text-muted"></i>
-	          {% elsif component.category == 'searchcomponents' %}
-	            <i class="fa fa-ship fa-2x media-object text-muted"></i>
-	          {% elsif component.category == 'responsewriters' %}
-	            <i class="fa fa-file-text fa-2x media-object text-muted"></i>
-	          {% elsif component.category == 'updateprocessors' %}
-	            <i class="fa fa-spinner fa-2x media-object text-muted"></i>
-	          {% elsif component.category == 'other' %}
-	            <i class="fa fa-file-text-o fa-2x media-object text-muted"></i>
-	          {% endif %}
+				{% for category in site.data.categories %}
+				{% if category.name == component.category %}
+				<i class="fa {{ category.image }} fa-2x media-object text-muted"></i>
+				{% endif %}
+				{% endfor %}
 	        </a>
 	      </div>
 		  <div class="media-body">
 		    <h4 class="media-heading">
 		      <a href="{{ component.url }}"><code>{{ component.name }}</code></a>
 		      
-		      
+			  {% if repo.updated_at %}
 		      <small class="pull-right">
-                {% if component.build %}
-		          <img src="{{ component.build_status }}" class="build-status"/>
-		        {% endif %}
-		        {% for v in component.solr_versions %}
-		          <span class="label label-solr">{{ v }}</span>
-		        {% endfor %}
-		      </small>
+                last updated {{ repo.updated_at | date: "%B %-d, %Y" }}
+			  </small>
+			  {% endif %}
 		    </h4>
 	        <p>
               {{ component.description }}
 		    </p>
 		    <ul class="list-inline">
 		      <li>
-		        <i class="fa fa-university"></i>
-                <a href="{{ component.url }}">Docs</a>
-		      </li>
-		      {% if component.maven %}
-		      <li>
-		        <i class="fa fa-cloud-download"></i>
-		        <a href="{{ component.maven }}">Maven</a>
-		      </li>
-		      {% endif %}
-		      <li>
-		        <i class="fa fa-github"></i>
-		        <a href="{{ component.source }}">Source</a>
-		      </li>
-		      {% if component.build %}
-              <li>
-                <i class="fa fa-tachometer"></i>
-                <a href="{{ component.build }}">Build</a>
-              </li>
-              {% endif %}
-		      <li>
 		        <i class="fa fa-file-text-o"></i>
 		        <a href="http://choosealicense.com/licenses/apache-2.0/">
 		          {{ component.license }}
 		        </a>
-		      </li>
+			  </li>
+			  {% if repo.stargazers_count %}
+			  <li>
+				<i class="fa fa-star-o"></i>
+				{{ repo.stargazers_count }}
+			  </li>
+			  {% endif %}
+			  {% if repo.total_download_count %}
+			  <li>
+				<i class="fa fa-arrow-circle-o-down"></i>
+				{{ repo.total_download_count }}
+			  </li>
+			  {% endif %}
+			  {% if repo.statuses %}
+			  {% for status in repo.statuses limit:1 %}
+			  <li class="text-{{ status.state }}">
+				<i class="fa fa-comment-o"></i>
+				<a href="{{ status.target_url }}" class="text-{{ status.state }}">{{ status.description }}</a>
+			  </li>
+			  {% endfor %}
+			  {% endif %}
 		    </ul>
 		  </div>
 		</div>
       </div>
       <div class="col-md-4 summary">
-      
-        {% if component.pros or component.cons or component.installation %}
-        <ul class="list-unstyled fa-ul">
-          {% for e in component.pros %}
-          <li class="text-success"><i class="fa-li fa fa-star-o"></i>{{ e }}</li>
-          {% endfor %}
-          {% for e in component.cons %}
-          <li class="text-warning"><i class="fa-li fa fa-bomb"></i>{{ e }}</li>
-          {% endfor %}
-          {% if component.installation %}
-          <li class="text-info"><i class="fa-li fa fa-floppy-o"></i>{{ component.installation }}</li>
-          {% endif %}
-        </ul>
-        {% endif %}
+		<ul class="list-unstyled fa-ul">
+			{% if component.manifest %}		
+			<li class="text-success"><i class="fa-li fa fa-cloud-download"></i>Package Manager Installation</li>
+			{% elsif descriptor.versions[0] %}
+			<li class="text-info"><i class="fa-li fa fa-floppy-o"></i>Manual installation (JAR)</li>
+			{% else %}		
+			<li class="text-warning"><i class="fa-li fa fa-cogs"></i>Compile your own</li>
+			{% endif %}
+		</ul>
+
+		{% if descriptor.versions[0] %}
+		<ul class="list-unstyled fa-ul">
+			<li>
+				<strong>Recent Releases</strong>
+			</li>
+			{% for version in descriptor.versions limit: 3 %}
+			<li>
+				<i class="fa-li fa fa-tag"></i>
+				{{ version.version }} 
+				<small class="text-muted">{{ version.date | date: "%B %-d, %Y" }}</small>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
       </div>
     </div>
   

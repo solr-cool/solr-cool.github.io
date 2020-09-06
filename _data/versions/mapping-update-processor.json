@@ -1,0 +1,1 @@
+{ "name": "mapping-update-processor", "description": "The MappingUpdateProcessor lets you map value of a field to some other value based on a dictionary", "versions": [ { "version": "Version 1.1", "date": "2017-07-19", "artifacts": [ { "url": "https://github.com/cominvent/solr-mapping-processor/releases/download/v1.1/mapping-processor-1.1.0.jar" } ] } ] }

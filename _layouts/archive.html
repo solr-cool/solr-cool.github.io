@@ -44,30 +44,12 @@
     <div class="row">
       <div class="col-md-12 text-center">
 	    <div class="btn-group " role="group">
+        {% for category in site.data.categories %}
           <button type="button" class="btn btn-default">
-            <i class="fa fa-scissors"></i>
-            <a href="#queryparsers">Query Parsers</a>
+            <i class="fa {{ category.image }}"></i>
+            <a href="#{{ category.name }}">{{ category.description }}</a>
           </button>
-          <button type="button" class="btn btn-default">
-            <i class="fa fa-cogs"></i>
-            <a href="#analyzers">Analyzers</a>
-          </button>
-          <button type="button" class="btn btn-default">
-            <i class="fa fa-file-text"></i>
-            <a href="#responsewriters">Response Writers</a>
-          </button>
-          <button type="button" class="btn btn-default">
-            <i class="fa fa-spinner"></i>
-            <a href="#updateprocessors">Update Processors</a>
-          </button>
-          <button type="button" class="btn btn-default">
-            <i class="fa fa-ship"></i>
-            <a href="#searchcomponents">SearchComponents</a>
-          </button>
-          <button type="button" class="btn btn-default">
-            <i class="fa fa-gear-o"></i>
-            <a href="#utilities">Utilities</a>
-          </button>
+        {% endfor %}
         </div>
 
         <hr />
@@ -75,47 +57,24 @@
     </div>
 
 
+{% for category in site.data.categories %}
 <h2>
-  <a name="queryparsers">Query Parsers</a>
+  <a name="{{ category.name }}">{{ category.description }}</a>
 </h2>
-  {% for component in site.data.queryparsers %}
-    {% include component.html %}
-  {% endfor %}
+{% assign packages_by_name = site.data.packages | sort %}
+{% for package_hash in packages_by_name %}
+{% assign component_name = package_hash[0] %}
+{% assign component = package_hash[1] %}
+{% assign descriptor = site.data.versions[component_name] %}
+{% assign repo = site.data.repos[component_name] %}
 
-<h2>
-  <a name="analyzers">Analyzers</a>
-</h2>
-  {% for component in site.data.analyzers %}
-    {% include component.html %}
-  {% endfor %}
-
-<h2>
-  <a name="responsewriters">Response Writers</a>
-</h2>
-{% for component in site.data.responsewriters %}
-  {% include component.html %}
+{% if component.category == category.name %}
+{% include component.html %}
+{% endif %}
 {% endfor %}
 
-<h2>
-  <a name="updateprocessors">Update Processors</a>
-</h2>
-  {% for component in site.data.updateprocessors %}
-    {% include component.html %}
-  {% endfor %}
+{% endfor %}
 
-<h2>
-  <a name="searchcomponents">Search Components</a>
-</h2>
-  {% for component in site.data.searchcomponents %}
-    {% include component.html %}
-  {% endfor %}
-
-<h2>
-  <a name="utilities">utilities</a>
-</h2>
-  {% for component in site.data.utilities %}
-    {% include component.html %}
-  {% endfor %}
 
   <div class="row">
     <div class="col-md-8">

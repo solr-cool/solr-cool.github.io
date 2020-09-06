@@ -1,16 +1,10 @@
 _site/*
-_theme_packages/*
+target
 
 Thumbs.db
 .DS_Store
-
-!.gitkeep
-
-.project
-.rbenv-version
-.rvmrc
-.rbenv-gemsets
 Gemfile.lock
-.idea
-*.iml
-.bundle/
+
+# sensitive data
+solr.cool.pem
+*-env.sh

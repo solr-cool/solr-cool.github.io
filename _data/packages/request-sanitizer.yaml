@@ -1,0 +1,9 @@
+name: Request Sanitizer Component
+category: searchcomponents
+description: Solr search component for avoiding insane request params such as too large rows or offset params
+pros:
+  - Override client request params in config
+  - Harden RequestHandler endpoints without code
+url: https://github.com/cominvent/request-sanitizer-component
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

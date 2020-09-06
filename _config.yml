@@ -3,10 +3,13 @@ safe: true
 lsi: false
 
 # exclude meta files
-exclude: ['.project', 'README.md', 'Gemfile', 'Gemfile.lock', 'deploy.sh', 'Rakefile', 'images/team/_original', 'ansible.cfg']
-
-# url
-#url: https://developer.s24.com
+exclude:
+  - README.md
+  - tests
+  - target
+  - "*.sh"
+  - solr.cool.pem
+  - Gemfile*
 
 # put permalinks into subdirectory
 permalink: /blog/:title.html
