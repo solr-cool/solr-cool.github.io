@@ -2,7 +2,6 @@ dist: focal
 addons:
      snaps:
        - yq
-       - bats
 language: minimal
 services:
 - docker
