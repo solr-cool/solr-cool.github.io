@@ -1,4 +1,8 @@
-dist: bionic
+dist: focal
+addons:
+     snaps:
+       - yq
+       - bats
 language: minimal
 services:
 - docker
@@ -9,13 +13,15 @@ env:
 before_install:
 - openssl aes-256-cbc -K $encrypted_1379b4163917_key -iv $encrypted_1379b4163917_iv
   -in solr.cool.pem.enc -out solr.cool.pem -d
-- sudo apt-get -y install jq moreutils
-- sudo snap install yq
 
+- which bats
 - git clone https://github.com/bats-core/bats-core.git
 - cd bats-core
 - git checkout v1.2.1
 - sudo ./install.sh /usr/local
+- which bats
+- bats --version
+- yq --version
 - cd ..
 
 script:
