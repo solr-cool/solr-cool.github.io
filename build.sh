@@ -33,6 +33,7 @@ rm -rf _data/versions/*.json
 rm -rf _data/repos/*.json
 rm -rf _data/tests/*.json
 mkdir -p target
+mkdir -p target/package-tests
 mkdir -p _data/versions
 mkdir -p _data/repos
 mkdir -p _data/tests
@@ -127,10 +128,10 @@ for plugin in ./_data/packages/*.yaml; do
   # -------------------------------------------------------------------
   # (4) Generate bats test
   # -------------------------------------------------------------------
-  cat << EOT > ./test/${name}.bats
-load 'helper/bats-support/load'
-load 'helper/bats-assert/load'
-load 'helper/docker-support'
+  cat << EOT > ./target/package-tests/${name}.bats
+load '../../test/helper/bats-support/load'
+load '../../test/helper/bats-assert/load'
+load '../../test/helper/docker-support'
 
 @test "solr package [${name}] install" {
   run docker exec -it solr solr package install ${name}
@@ -162,7 +163,9 @@ docker run --rm --volume="$PWD:/srv/jekyll" -it jekyll/builder:3.8 jekyll build
 # (6) Execute bats tests
 # -------------------------------------------------------------------
 echo "Testing package manifest"
-bats -o target --formatter junit test
+bats -o target --formatter junit test/setup
+bats -o target --formatter junit target/package-tests
+bats -o target --formatter junit test/teardown
 
 # extract test results for jekyll
 #xq -r '{"count": .testsuite."@tests", "failures": .testsuite."@failures", "errors": .testsuite."@errors"}' target/TestReport-thymeleaf.bats.xml > _data/tests/${name}.json

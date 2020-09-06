@@ -1,10 +1,10 @@
-load 'helper/bats-support/load'
-load 'helper/bats-assert/load'
-load 'helper/docker-support'
+load '../helper/bats-support/load'
+load '../helper/bats-assert/load'
+load '../helper/docker-support'
 
 # Launch and prepare solr
 @test "Launch Solr" {
-  run docker-compose -f $BATS_TEST_DIRNAME/helper/docker-compose.yaml up -d
+  run docker-compose -f $BATS_TEST_DIRNAME/../helper/docker-compose.yaml up -d
   docker_wait_for_log solr 120 "o.e.j.s.Server Started"
 }
 
