@@ -5,3 +5,7 @@ installation: Solr Plugin (JAR)
 url: https://github.com/allegro/solr-ids-export-plugin
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - faster than /export
+cons:
+    - not tested with SolrCloud

@@ -4,6 +4,9 @@ description: A Solr response writer to use the Thymeleaf templating engine for H
 url: https://github.com/solr-cool/solr-thymeleaf
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - Easy templating in Thymeleaf
+    - Used in production
 manifest: |
   {
     "version-constraint": "6 - 9",

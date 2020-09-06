@@ -5,3 +5,6 @@ installation: Solr Plugin (JAR)
 url: https://github.com/sematext/solr-redis
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - Used in production
+    - Highlight redis query

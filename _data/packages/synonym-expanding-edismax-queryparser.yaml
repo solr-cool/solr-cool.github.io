@@ -4,3 +4,10 @@ description: Solr query parser plugin that performs proper query-time synonym ex
 url: http://nolanlawson.com/2012/10/31/better-synonym-handling-in-solr
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - Supports phrases in query-time synonyms
+    - Apply same synonyms across all fields
+    - Simple setup
+cons:
+  - Cannot tune synonyms per field
+  - May generate huge queries

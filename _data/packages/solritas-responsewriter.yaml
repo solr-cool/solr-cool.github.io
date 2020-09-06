@@ -4,3 +4,6 @@ description: "A plugin that uses Velocity templates to render responses.  Histor
 url: https://github.com/erikhatcher/solritas
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+    - native templating solution
+    - only option post Solr 9 ;-)
