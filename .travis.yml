@@ -2,6 +2,7 @@ dist: focal
 addons:
   snaps:
     - yq
+    - tree
   apt:
     packages:
       - moreutils
