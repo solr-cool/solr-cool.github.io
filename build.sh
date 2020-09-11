@@ -45,8 +45,10 @@ mkdir -p ${target_releases_dir}
 
 # iterate package definitions
 for plugin in ${source_package_dir}/*.yaml; do
-  echo "---"
-  echo "Processing ${plugin}"
+  echo ""
+  echo "---------------------------------------------------------------"
+  echo " -> Building ${plugin}"
+  echo "---------------------------------------------------------------"
   file=$(basename $plugin)
   name=${file%.yaml}
   descriptor=target/${name}.json
@@ -58,9 +60,11 @@ for plugin in ${source_package_dir}/*.yaml; do
   package_url=$(yq read $plugin url)
   
   if [[ ! $package_url == *"https://github.com"* ]]; then
-    echo "Not hosted on Github."
+    echo " Not hosted on Github."
     continue;
   fi
+
+  echo " Fetching GitHub repository & release information from ${package_url}"
 
   # prepare descriptor
   solr_package_descriptor_head=$(jq -n --arg name $name --arg description "$(yq read $plugin description)" '{"name":$name, "description": $description}')
@@ -87,10 +91,13 @@ for plugin in ${source_package_dir}/*.yaml; do
   # -------------------------------------------------------------------
 
   # condense gh releases
-  gh_repo_releases_condensed=$(echo ${gh_repo_releases} | jq '[.[] | select(.prerelease == false) | {name: .name, body: .body, html_url: .html_url, created_at: .created_at, published_at: .published_at, assets: [.assets[] | select(.name | endswith("dependencies.jar")) | del(.uploader) ]}]')
+  gh_repo_releases_condensed=$(echo "${gh_repo_releases}" | tr '\r\n' ' ' | jq '[.[] | select(.prerelease == false) | {name: .name, body: .body, html_url: .html_url, created_at: .created_at, published_at: .published_at, assets: [.assets[] | del(.uploader) | select(.name|endswith(".jar")) | select(.name|contains("source")|not) | select(.name|contains("javadoc")|not) ]}]')
+
+  # remove releases without (.jar) artifacts
+  gh_repo_releases_condensed=$(echo ${gh_repo_releases_condensed} | jq '[.[] | select(.assets | length > 0)]')
 
   # compile solr package versions
-  solr_package_versions=$(echo ${gh_repo_releases_condensed} | echo ${gh_repo_releases_condensed} | jq '[.[] | {version: .name , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
+  solr_package_versions=$(echo ${gh_repo_releases_condensed} | jq '[.[] | {version: .name|gsub("[a-zA-Z-_]";"") , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
 
   # add versions to solr package descriptor
   solr_package_descriptor=$(echo ${solr_package_descriptor_head} | jq --argjson versions "${solr_package_versions}" '. += {"versions": $versions}')
@@ -100,9 +107,12 @@ for plugin in ${source_package_dir}/*.yaml; do
   # -------------------------------------------------------------------
   #
   # check for a manifest section
+  package=$(yq read $plugin package)
+  package_install=$(yq read $plugin package.install)
   package_manifest=$(yq read $plugin package.manifest)
-  if [ -z "$package_manifest" ]; then
-    echo "No package manifest given."
+  
+  if [ -z "$package" ]; then
+    echo " No Solr package information given."
 
     # write shortended release information for website
     echo ${gh_repo_releases_condensed} | jq '{releases: .}' > ${target_releases_dir}/${name}.json
@@ -112,8 +122,11 @@ for plugin in ${source_package_dir}/*.yaml; do
   # write full release information for website
   echo ${gh_repo_releases_condensed} | jq --argjson desc "${solr_package_descriptor}" '{releases: .,solr_package: $desc}' > ${target_releases_dir}/${name}.json
 
-  # append manifest to each version
-  solr_package_descriptor=$(echo ${solr_package_descriptor} | jq --argjson manifest "${package_manifest}" '.versions[] += {"manifest": $manifest}')
+  # append manifest to each version if given
+  if [ -n "$package_manifest" ]; then
+    echo " Appending install manifest"
+    solr_package_descriptor=$(echo ${solr_package_descriptor} | jq --argjson manifest "${package_manifest}" '.versions[] += {"manifest": $manifest}')
+  fi
 
   # save descriptor
   echo ${solr_package_descriptor} > ${descriptor}
@@ -154,12 +167,29 @@ load '../../test/helper/docker-support'
   assert_output --partial '${name} installed'
 }
 
-@test "solr package [${name}] deploy" {
+EOT
+
+  # collection installation
+  if [ "${package_install}" = "collection" ]; then
+    cat << EOT >> ./target/package-tests/${name}.bats
+@test "solr package [${name}] deploy to collection" {
   run docker exec -it solr solr package deploy ${name} -collections films -y
   assert_success
   assert_output --partial 'Deployment successful'
 }
 EOT
+  fi
+
+  # cluster installation
+  if [ "${package_install}" = "cluster" ]; then
+    cat << EOT >> ./target/package-tests/${name}.bats
+@test "solr package [${name}] deploy to cluster" {
+  run docker exec -it solr solr package deploy ${name} -cluster -y
+  assert_success
+  assert_output --partial 'Deployment successful'
+}
+EOT
+  fi
   
 done
 # -------------------------------------------------------------------

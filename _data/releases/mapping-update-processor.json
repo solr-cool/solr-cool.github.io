@@ -6,7 +6,22 @@
       "html_url": "https://github.com/cominvent/solr-mapping-processor/releases/tag/v1.1",
       "created_at": "2017-07-19T21:15:56Z",
       "published_at": "2017-07-19T21:18:09Z",
-      "assets": []
+      "assets": [
+        {
+          "url": "https://api.github.com/repos/cominvent/solr-mapping-processor/releases/assets/4367895",
+          "id": 4367895,
+          "node_id": "MDEyOlJlbGVhc2VBc3NldDQzNjc4OTU=",
+          "name": "mapping-processor-1.1.0.jar",
+          "label": null,
+          "content_type": "application/java-archive",
+          "state": "uploaded",
+          "size": 6708,
+          "download_count": 5,
+          "created_at": "2017-07-19T21:17:11Z",
+          "updated_at": "2017-07-19T21:17:12Z",
+          "browser_download_url": "https://github.com/cominvent/solr-mapping-processor/releases/download/v1.1/mapping-processor-1.1.0.jar"
+        }
+      ]
     }
   ]
 }
