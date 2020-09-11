@@ -26,8 +26,9 @@ if ! [ -x "$(command -v bats)" ]; then
 fi
 
 # target definitions
+target_details_dir=./packages
 source_package_dir=./_data/packages
-target_details_dir=./_data/details
+target_repo_details_dir=./_data/details
 target_releases_dir=./_data/releases
 target_dir=./target
 target_test_dir=./target/package-tests
@@ -36,11 +37,13 @@ target_test_dir=./target/package-tests
 rm -f repository.json
 rm -rf ${target_dir}
 rm -rf _site
-rm -rf ${target_details_dir}/*.json
+rm -rf ${target_details_dir}/*.md
+rm -rf ${target_repo_details_dir}/*.json
 rm -rf ${target_releases_dir}/*.json
+mkdir -p ${target_details_dir}
 mkdir -p ${target_dir}
 mkdir -p ${target_test_dir}
-mkdir -p ${target_details_dir}
+mkdir -p ${target_repo_details_dir}
 mkdir -p ${target_releases_dir}
 
 # iterate package definitions
@@ -84,7 +87,7 @@ for plugin in ${source_package_dir}/*.yaml; do
     gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
     gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
   fi
-  echo "${gh_repo_details}" > ${target_details_dir}/${name}.json
+  echo "${gh_repo_details}" > ${target_repo_details_dir}/${name}.json
 
   # -------------------------------------------------------------------
   # (1b) Check Github releases
@@ -101,6 +104,17 @@ for plugin in ${source_package_dir}/*.yaml; do
 
   # add versions to solr package descriptor
   solr_package_descriptor=$(echo ${solr_package_descriptor_head} | jq --argjson versions "${solr_package_versions}" '. += {"versions": $versions}')
+
+  # write details markdown
+  cat << EOM > ${target_details_dir}/${name}.md
+---
+layout: package
+package_name: ${name}
+component: site.data.packages['${name}']
+releases: site.data.releases['${name}']
+details: site.data.details['${name}']
+---
+EOM
 
   # -------------------------------------------------------------------
   # (2) Compile package descriptor
