@@ -5,11 +5,10 @@
 
       <div class="media-body">
         <h2 class="name font-weight-bold mb-1">Welcome to solr.cool</h2>
-        <div class="tagline mb-3">Your plugin repository for solr</div>
-        <div class="bio mb-4">This is an overview of all available solr plugins which are simply installable since <a
+        <div class="tagline mb-3">Your package repository for solr</div>
+        <div class="bio mb-4">This is an overview of all available solr packages which are simply installable since <a
             href="https://lucene.apache.org/solr/guide/package-manager.html#package-manager">Solr 8.4</a>. Simply use
-          this url as the repository url in solr installation and you can access all these plugins. If you need any
-          help, please look first <a href="help.html">here</a>.
+          this url as the repository url in solr installation and you can access all these packages.
         </div>
         <!--//bio-->
         <div class="mb-4">
@@ -21,7 +20,6 @@
         </div>
       </div>
       <!--//media-body-->
-      <i class="fas fa-plug mr-2"></i>
     </div>
   </div>
 </section>
@@ -44,11 +42,11 @@
     <div class="project-cards row isotope">
       {% assign packages_by_name = site.data.packages | sort %}
       {% for package_hash in packages_by_name %}
-      {% assign component_name = package_hash[0] %}
-      {% assign component = package_hash[1] %}
-      {% assign releases = site.data.releases[component_name] %}
-      {% assign details = site.data.details[component_name] %}
-      {% include component.html %}
+      {% assign package_name = package_hash[0] %}
+      {% assign package = package_hash[1] %}
+      {% assign descriptor = site.data.releases[package_name] %}
+      {% assign details = site.data.details[package_name] %}
+      {% include package_small.html %}
       {% endfor %}
     </div>
     <!--//row-->
