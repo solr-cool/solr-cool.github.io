@@ -6,7 +6,22 @@
       "html_url": "https://github.com/yasa-org/yasa/releases/tag/v0.5.2",
       "created_at": "2020-07-07T14:46:47Z",
       "published_at": "2020-07-07T14:50:13Z",
-      "assets": []
+      "assets": [
+        {
+          "url": "https://api.github.com/repos/yasa-org/yasa/releases/assets/22643554",
+          "id": 22643554,
+          "node_id": "MDEyOlJlbGVhc2VBc3NldDIyNjQzNTU0",
+          "name": "yasa-solr-plugin-0.5.2.jar",
+          "label": null,
+          "content_type": "application/java-archive",
+          "state": "uploaded",
+          "size": 6962701,
+          "download_count": 65,
+          "created_at": "2020-07-07T14:50:08Z",
+          "updated_at": "2020-07-07T14:50:12Z",
+          "browser_download_url": "https://github.com/yasa-org/yasa/releases/download/v0.5.2/yasa-solr-plugin-0.5.2.jar"
+        }
+      ]
     },
     {
       "name": "YASA-v0.5.1",
@@ -14,15 +29,46 @@
       "html_url": "https://github.com/yasa-org/yasa/releases/tag/v0.5.1",
       "created_at": "2020-06-27T06:51:50Z",
       "published_at": "2020-06-27T06:54:08Z",
-      "assets": []
-    },
-    {
-      "name": "YASA-v0.5",
-      "body": "",
-      "html_url": "https://github.com/yasa-org/yasa/releases/tag/v0.5",
-      "created_at": "2018-09-13T14:57:14Z",
-      "published_at": "2018-09-13T14:59:37Z",
-      "assets": []
+      "assets": [
+        {
+          "url": "https://api.github.com/repos/yasa-org/yasa/releases/assets/22139221",
+          "id": 22139221,
+          "node_id": "MDEyOlJlbGVhc2VBc3NldDIyMTM5MjIx",
+          "name": "yasa-solr-plugin-0.5.1.jar",
+          "label": null,
+          "content_type": "application/java-archive",
+          "state": "uploaded",
+          "size": 5396875,
+          "download_count": 20,
+          "created_at": "2020-06-27T06:53:35Z",
+          "updated_at": "2020-06-27T06:53:49Z",
+          "browser_download_url": "https://github.com/yasa-org/yasa/releases/download/v0.5.1/yasa-solr-plugin-0.5.1.jar"
+        }
+      ]
     }
-  ]
+  ],
+  "solr_package": {
+    "name": "yasa",
+    "description": "Yet Another Solr Admin - An alternative approach to managing your Solr cluster.",
+    "versions": [
+      {
+        "version": "0.5.2",
+        "date": "2020-07-07",
+        "artifacts": [
+          {
+            "url": "https://github.com/yasa-org/yasa/releases/download/v0.5.2/yasa-solr-plugin-0.5.2.jar"
+          }
+        ]
+      },
+      {
+        "version": "0.5.1",
+        "date": "2020-06-27",
+        "artifacts": [
+          {
+            "url": "https://github.com/yasa-org/yasa/releases/download/v0.5.1/yasa-solr-plugin-0.5.1.jar"
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -80,5 +80,31 @@
         }
       }
     ]
+  },
+  {
+    "name": "yasa",
+    "description": "Yet Another Solr Admin - An alternative approach to managing your Solr cluster.",
+    "versions": [
+      {
+        "version": "0.5.2",
+        "date": "2020-07-07",
+        "artifacts": [
+          {
+            "url": "https://github.com/yasa-org/yasa/releases/download/v0.5.2/yasa-solr-plugin-0.5.2.jar",
+            "sig": "dmulaGOhIoGbBB7gYN+JvcKom90BfJqNYydufsHrA7NTnup2riVi7RdgE5fAngKozodx9dD4yTkAM3jfpWRi4Q=="
+          }
+        ]
+      },
+      {
+        "version": "0.5.1",
+        "date": "2020-06-27",
+        "artifacts": [
+          {
+            "url": "https://github.com/yasa-org/yasa/releases/download/v0.5.1/yasa-solr-plugin-0.5.1.jar",
+            "sig": "uir6kU1pB82uxz1bo96yxnTV03Ei9p0yI2bFKjQwaW7EmnN1GQWlT3AFeC5pECWTAO9r/nmLdaJ4P2DAUCw9kg=="
+          }
+        ]
+      }
+    ]
   }
 ]

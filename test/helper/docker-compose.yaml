@@ -8,6 +8,9 @@ services:
     environment:
       - "SOLR_OPTS=-Denable.packages=true"
       - "ZK_HOST=zookeeper"
+    depends_on:
+      - repo
+      - zookeeper
   zookeeper:
     image: zookeeper:3.5
     container_name: zookeeper
