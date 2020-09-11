@@ -1,0 +1,37 @@
+{
+  "name": "solr-util",
+  "full_name": "solr-cool/solr-util",
+  "description": "Utility classes for working with Apache Solr.",
+  "updated_at": "2020-08-24T07:01:12Z",
+  "stargazers_count": 0,
+  "watchers_count": 0,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "solr-cool",
+    "type": "Organization",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/12710677?v=4",
+    "html_url": "https://github.com/solr-cool"
+  },
+  "statuses": [
+    {
+      "url": "https://api.github.com/repos/solr-cool/solr-util/statuses/d25cad883cc7d85dba92b6707d76e5933d2dd902",
+      "avatar_url": "https://avatars2.githubusercontent.com/oa/1508?v=4",
+      "id": 10562496024,
+      "node_id": "MDEzOlN0YXR1c0NvbnRleHQxMDU2MjQ5NjAyNA==",
+      "state": "success",
+      "description": "The Travis CI build passed",
+      "target_url": "https://travis-ci.org/github/solr-cool/solr-util/builds/720554527?utm_source=github_status&utm_medium=notification",
+      "context": "continuous-integration/travis-ci/push",
+      "created_at": "2020-08-24T07:03:05Z",
+      "updated_at": "2020-08-24T07:03:05Z"
+    }
+  ],
+  "total_download_count": 0,
+  "latest_download_count": 0
+}

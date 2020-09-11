@@ -1,1 +1,0 @@
-{ "name": "thymeleaf", "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.", "versions": [ { "version": "1.1.0", "date": "2020-08-21", "artifacts": [ { "url": "https://github.com/solr-cool/solr-thymeleaf/releases/download/1.1.0/solr-thymeleaf-1.1.0-jar-with-dependencies.jar" } ] } ] }

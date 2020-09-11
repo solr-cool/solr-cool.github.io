@@ -1,0 +1,24 @@
+{
+  "name": "offset-hl-formatter",
+  "full_name": "o19s/offset-hl-formatter",
+  "description": "Demonstration of using offsets in a Solr Highlighter Formatter",
+  "updated_at": "2020-06-17T12:31:48Z",
+  "stargazers_count": 0,
+  "watchers_count": 0,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "o19s",
+    "type": "Organization",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/339001?v=4",
+    "html_url": "https://github.com/o19s"
+  },
+  "statuses": [],
+  "total_download_count": 3,
+  "latest_download_count": 3
+}

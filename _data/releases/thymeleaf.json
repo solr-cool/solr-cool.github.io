@@ -1,0 +1,74 @@
+{
+  "releases": [
+    {
+      "name": "1.2.0",
+      "body": "Release version 1.2.0",
+      "html_url": "https://github.com/solr-cool/solr-thymeleaf/releases/tag/1.2.0",
+      "created_at": "2020-09-07T06:25:38Z",
+      "published_at": "2020-09-07T11:17:04Z",
+      "assets": [
+        {
+          "url": "https://api.github.com/repos/solr-cool/solr-thymeleaf/releases/assets/25087933",
+          "id": 25087933,
+          "node_id": "MDEyOlJlbGVhc2VBc3NldDI1MDg3OTMz",
+          "name": "solr-thymeleaf-1.2.0-jar-with-dependencies.jar",
+          "label": "",
+          "content_type": "application/zip",
+          "state": "uploaded",
+          "size": 7166292,
+          "download_count": 15,
+          "created_at": "2020-09-07T11:17:07Z",
+          "updated_at": "2020-09-07T11:17:14Z",
+          "browser_download_url": "https://github.com/solr-cool/solr-thymeleaf/releases/download/1.2.0/solr-thymeleaf-1.2.0-jar-with-dependencies.jar"
+        }
+      ]
+    },
+    {
+      "name": "1.1.0",
+      "body": "Release version 1.1.0",
+      "html_url": "https://github.com/solr-cool/solr-thymeleaf/releases/tag/1.1.0",
+      "created_at": "2020-04-21T14:29:56Z",
+      "published_at": "2020-08-21T13:26:34Z",
+      "assets": [
+        {
+          "url": "https://api.github.com/repos/solr-cool/solr-thymeleaf/releases/assets/24158462",
+          "id": 24158462,
+          "node_id": "MDEyOlJlbGVhc2VBc3NldDI0MTU4NDYy",
+          "name": "solr-thymeleaf-1.1.0-jar-with-dependencies.jar",
+          "label": "",
+          "content_type": "application/zip",
+          "state": "uploaded",
+          "size": 7166194,
+          "download_count": 87,
+          "created_at": "2020-08-21T13:26:40Z",
+          "updated_at": "2020-08-21T13:26:47Z",
+          "browser_download_url": "https://github.com/solr-cool/solr-thymeleaf/releases/download/1.1.0/solr-thymeleaf-1.1.0-jar-with-dependencies.jar"
+        }
+      ]
+    }
+  ],
+  "solr_package": {
+    "name": "thymeleaf",
+    "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
+    "versions": [
+      {
+        "version": "1.2.0",
+        "date": "2020-09-07",
+        "artifacts": [
+          {
+            "url": "https://github.com/solr-cool/solr-thymeleaf/releases/download/1.2.0/solr-thymeleaf-1.2.0-jar-with-dependencies.jar"
+          }
+        ]
+      },
+      {
+        "version": "1.1.0",
+        "date": "2020-08-21",
+        "artifacts": [
+          {
+            "url": "https://github.com/solr-cool/solr-thymeleaf/releases/download/1.1.0/solr-thymeleaf-1.1.0-jar-with-dependencies.jar"
+          }
+        ]
+      }
+    ]
+  }
+}

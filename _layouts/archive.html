@@ -65,8 +65,8 @@
 {% for package_hash in packages_by_name %}
 {% assign component_name = package_hash[0] %}
 {% assign component = package_hash[1] %}
-{% assign descriptor = site.data.versions[component_name] %}
-{% assign repo = site.data.repos[component_name] %}
+{% assign releases = site.data.releases[component_name] %}
+{% assign details = site.data.details[component_name] %}
 
 {% if component.category == category.name %}
 {% include component.html %}

@@ -1,0 +1,12 @@
+{
+  "releases": [
+    {
+      "name": "Solcolator-1.0.0",
+      "body": "Solcolator basic implementation",
+      "html_url": "https://github.com/SOLR4189/solcolator/releases/tag/v1.0.0",
+      "created_at": "2020-05-01T08:13:57Z",
+      "published_at": "2020-05-01T08:16:38Z",
+      "assets": []
+    }
+  ]
+}
