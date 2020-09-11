@@ -24,26 +24,36 @@
               {{ component.description }}
 		    </p>
 		    <ul class="list-inline">
+			  {% if details.license %}
 		      <li>
 		        <i class="fa fa-file-text-o"></i>
-		        <a href="http://choosealicense.com/licenses/apache-2.0/">
-		          {{ component.license }}
+		        <a href="{{ details.license.url }}">
+		          {{ details.license.name }}
 		        </a>
 			  </li>
-			  {% if repo.stargazers_count %}
+			  {% endif %}
+			  {% if details.owner %}
+		      <li>
+		        <i class="fa fa-user-circle"></i>
+		        <a href="{{ details.owner.html_url }}">
+		          {{ details.owner.login }}
+		        </a>
+			  </li>
+			  {% endif %}
+			  {% if details.stargazers_count %}
 			  <li>
 				<i class="fa fa-star-o"></i>
-				{{ repo.stargazers_count }}
+				{{ details.stargazers_count }}
 			  </li>
 			  {% endif %}
-			  {% if repo.total_download_count %}
+			  {% if details.total_download_count %}
 			  <li>
 				<i class="fa fa-arrow-circle-o-down"></i>
-				{{ repo.total_download_count }}
+				{{ details.total_download_count }}
 			  </li>
 			  {% endif %}
-			  {% if repo.statuses %}
-			  {% for status in repo.statuses limit:1 %}
+			  {% if details.statuses %}
+			  {% for status in details.statuses limit:1 %}
 			  <li class="text-{{ status.state }}">
 				<i class="fa fa-comment-o"></i>
 				<a href="{{ status.target_url }}" class="text-{{ status.state }}">{{ status.description }}</a>
