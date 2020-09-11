@@ -1,12 +1,12 @@
 - name: queryparsers
   description: Query Parsers
-  image: fa-scissors
+  image: fa-cut
 - name: analyzers
   description: Analyzers
   image: fa-cogs
 - name: responsewriters
   description: Response Writers
-  image: fa-file-text
+  image: fa-file-alt
 - name: updateprocessors
   description: Update Processors
   image: fa-spinner
@@ -15,4 +15,4 @@
   image: fa-ship
 - name: utilities
   description: Utilities
-  image: fa-gear
+  image: fa-cogs

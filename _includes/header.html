@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{{ page.title }}</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="DevCard Bootstrap 4 Template">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="apache, apache lucene, apache solr, solr, lucene
+              search, information retrieval, spell checking, faceting, inverted index, open source
+              plugins, extensions, query parser, response writer, analyzer">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0">
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="assets/css/pygments-github.css" rel="stylesheet" type="text/css" />
+
+    <!-- Google Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <!-- FontAwesome JS -->
+    <script defer src="assets/fontawesome/js/all.js"></script>
+
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="assets/plugins/tiny-slider/tiny-slider.css">
+
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme-solr.css">
+
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@shopping24">
+    <meta name="twitter:creator" content="@tboeghk">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.excerpt | strip_html | strip_newlines }}">
+    <meta name="twitter:image:src" content="{{ site.url }}/images/team/group/team_{{ author.team }}.jpg">
+
+</head>
+
+<body>
+    <header class="header text-center">
+        <div class="force-overflow">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                    aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div id="navigation" class="collapse navbar-collapse flex-column">
+                    <div class="profile-section pt-3 pt-lg-0">
+                        <img class="profile-image mb-3 mx-auto" src="assets/images/solr-logo.png" alt="image">
+
+                        <div class="bio mb-3">Browse in our plugin repository</div>
+                        <!--//bio-->
+                        <ul class="social-list list-inline py-2 mx-auto">
+                            <li class="list-inline-item"><a href="https://github.com/solr-cool/solr-cool.github.io"><i
+                                        class="fab fa-github-alt fa-fw"></i></a></li>
+                        </ul>
+                        <!--//social-list-->
+                        <hr>
+                    </div>
+                    <!--//profile-section-->
+
+                    <ul class="navbar-nav flex-column text-left">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html"><i class="fas fa-user fa-fw mr-2"></i>Overview<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="https://lucene.apache.org/solr/guide/package-manager.html#package-manager"><i
+                                    class="fas fa-question fa-fw mr-2"></i>Help</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!--//force-overflow-->
+    </header>
+
+    <div class="main-wrapper">
