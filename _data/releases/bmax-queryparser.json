@@ -1,0 +1,27 @@
+{
+  "releases": [
+    {
+      "name": "2.7.0",
+      "body": "Release version 2.7.0",
+      "html_url": "https://github.com/solr-cool/solr-bmax-queryparser/releases/tag/2.7.0",
+      "created_at": "2020-08-21T12:58:12Z",
+      "published_at": "2020-08-21T13:11:56Z",
+      "assets": [
+        {
+          "url": "https://api.github.com/repos/solr-cool/solr-bmax-queryparser/releases/assets/24158058",
+          "id": 24158058,
+          "node_id": "MDEyOlJlbGVhc2VBc3NldDI0MTU4MDU4",
+          "name": "solr-bmax-queryparser-2.7.0-jar-with-dependencies.jar",
+          "label": "",
+          "content_type": "application/zip",
+          "state": "uploaded",
+          "size": 183693,
+          "download_count": 11,
+          "created_at": "2020-08-21T13:11:59Z",
+          "updated_at": "2020-08-21T13:11:59Z",
+          "browser_download_url": "https://github.com/solr-cool/solr-bmax-queryparser/releases/download/2.7.0/solr-bmax-queryparser-2.7.0-jar-with-dependencies.jar"
+        }
+      ]
+    }
+  ]
+}

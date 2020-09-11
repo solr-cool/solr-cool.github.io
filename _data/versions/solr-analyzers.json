@@ -1,1 +1,0 @@
-{ "name": "solr-analyzers", "description": "A Solr analyzer collection of tokenizers and filters.", "versions": [ { "version": "1.1.0", "date": "2020-08-21", "artifacts": [ { "url": "https://github.com/solr-cool/solr-analyzers/releases/download/1.1.0/solr-analyzers-1.1.0-jar-with-dependencies.jar" } ] } ] }

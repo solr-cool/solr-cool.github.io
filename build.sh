@@ -25,21 +25,26 @@ if ! [ -x "$(command -v bats)" ]; then
   exit 1
 fi
 
+# target definitions
+source_package_dir=./_data/packages
+target_details_dir=./_data/details
+target_releases_dir=./_data/releases
+target_dir=./target
+target_test_dir=./target/package-tests
+
 # clean build
 rm -f repository.json
-rm -rf target
+rm -rf ${target_dir}
 rm -rf _site
-rm -rf _data/versions/*.json
-rm -rf _data/repos/*.json
-rm -rf _data/tests/*.json
-mkdir -p target
-mkdir -p target/package-tests
-mkdir -p _data/versions
-mkdir -p _data/repos
-mkdir -p _data/tests
+rm -rf ${target_details_dir}/*.json
+rm -rf ${target_releases_dir}/*.json
+mkdir -p ${target_dir}
+mkdir -p ${target_test_dir}
+mkdir -p ${target_details_dir}
+mkdir -p ${target_releases_dir}
 
 # iterate package definitions
-for plugin in ./_data/packages/*.yaml; do
+for plugin in ${source_package_dir}/*.yaml; do
   echo "---"
   echo "Processing ${plugin}"
   file=$(basename $plugin)
@@ -58,50 +63,60 @@ for plugin in ./_data/packages/*.yaml; do
   fi
 
   # prepare descriptor
-  descriptor_head=$(jq -n --arg name $name --arg description "$(yq read $plugin description)" '{"name":$name, "description": $description}')
+  solr_package_descriptor_head=$(jq -n --arg name $name --arg description "$(yq read $plugin description)" '{"name":$name, "description": $description}')
   
   # read recent versions from Github
   gh_repo_name=${package_url#https://github.com/}
-  gh_repo_details=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}")
+  gh_repo=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}")
   gh_repo_releases=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/releases?per_page=10")
   gh_repo_status=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/commits/master/status")
 
   # combine repo data
-  gh_repo_combined=$(echo ${gh_repo_details} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}')
-  gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson status "${gh_repo_status}" '. += {"statuses": $status.statuses }')
+  gh_repo_details=$(echo ${gh_repo} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}')
+  gh_repo_details=$(echo ${gh_repo_details} | jq --argjson repo "${gh_repo}" '. += {"owner": { "login": $repo.owner.login, "type": $repo.owner.type, "avatar_url": $repo.owner.avatar_url, "html_url": $repo.owner.html_url }}')
+  gh_repo_details=$(echo ${gh_repo_details} | jq --argjson status "${gh_repo_status}" '. += {"statuses": $status.statuses }')
 
   if [ ${#gh_repo_releases} -gt 8 ]; then
-    gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
-    gh_repo_combined=$(echo ${gh_repo_combined} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
+    gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
+    gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
   fi
-  echo ${gh_repo_combined} > _data/repos/${name}.json
+  echo "${gh_repo_details}" > ${target_details_dir}/${name}.json
 
-  # compile versions
-  versions=$(echo ${gh_repo_releases} | jq '[{"version": .[].name , "date": .[].published_at|fromdate|strftime("%Y-%m-%d"), "artifacts": [{ "url": .[].assets[0].browser_download_url }]}]')
+  # -------------------------------------------------------------------
+  # (1b) Check Github releases
+  # -------------------------------------------------------------------
 
-  # add versions to plugin descriptor
-  temp_descriptor=$(echo ${descriptor_head} | jq --argjson versions "${versions}" '. += {"versions": $versions}')
-  echo ${temp_descriptor} > _data/versions/${name}.json
+  # condense gh releases
+  gh_repo_releases_condensed=$(echo ${gh_repo_releases} | jq '[.[] | select(.prerelease == false) | {name: .name, body: .body, html_url: .html_url, created_at: .created_at, published_at: .published_at, assets: [.assets[] | select(.name | endswith("dependencies.jar")) | del(.uploader) ]}]')
+
+  # compile solr package versions
+  solr_package_versions=$(echo ${gh_repo_releases_condensed} | echo ${gh_repo_releases_condensed} | jq '[.[] | {version: .name , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
+
+  # add versions to solr package descriptor
+  solr_package_descriptor=$(echo ${solr_package_descriptor_head} | jq --argjson versions "${solr_package_versions}" '. += {"versions": $versions}')
 
   # -------------------------------------------------------------------
   # (2) Compile package descriptor
   # -------------------------------------------------------------------
   #
   # check for a manifest section
-  manifest=$(yq read $plugin manifest)
-  if [ -z "$manifest" ]; then
+  package_manifest=$(yq read $plugin package.manifest)
+  if [ -z "$package_manifest" ]; then
     echo "No package manifest given."
+
+    # write shortended release information for website
+    echo ${gh_repo_releases_condensed} | jq '{releases: .}' > ${target_releases_dir}/${name}.json
     continue;
   fi
 
+  # write full release information for website
+  echo ${gh_repo_releases_condensed} | jq --argjson desc "${solr_package_descriptor}" '{releases: .,solr_package: $desc}' > ${target_releases_dir}/${name}.json
+
   # append manifest to each version
-  versions_with_manifest=$(echo ${versions} | jq --argjson manifest "${manifest}" '.[] += {"manifest": $manifest}')
+  solr_package_descriptor=$(echo ${solr_package_descriptor} | jq --argjson manifest "${package_manifest}" '.versions[] += {"manifest": $manifest}')
 
-  # add versions to plugin descriptor
-  full_descriptor=$(echo ${descriptor_head} | jq --argjson versions "${versions_with_manifest}" '. += {"versions": $versions}')
-
-  # save descriptor part
-  echo ${full_descriptor} > ${descriptor}
+  # save descriptor
+  echo ${solr_package_descriptor} > ${descriptor}
 
   # -------------------------------------------------------------------
   # (3) Download & sign JARs

@@ -1,0 +1,18 @@
+{
+  "name": "solcolator",
+  "full_name": "SOLR4189/solcolator",
+  "description": "Implementation Saved Searches a la ElasticSearch Percolator",
+  "updated_at": "2020-08-03T15:23:08Z",
+  "stargazers_count": 5,
+  "watchers_count": 5,
+  "license": null,
+  "owner": {
+    "login": "SOLR4189",
+    "type": "User",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/40361741?v=4",
+    "html_url": "https://github.com/SOLR4189"
+  },
+  "statuses": [],
+  "total_download_count": 9,
+  "latest_download_count": 9
+}

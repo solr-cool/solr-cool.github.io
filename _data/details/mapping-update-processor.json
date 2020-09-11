@@ -1,0 +1,18 @@
+{
+  "name": "solr-mapping-processor",
+  "full_name": "cominvent/solr-mapping-processor",
+  "description": "Various 3rd party update processors",
+  "updated_at": "2017-07-19T20:49:57Z",
+  "stargazers_count": 0,
+  "watchers_count": 0,
+  "license": null,
+  "owner": {
+    "login": "cominvent",
+    "type": "Organization",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/1312200?v=4",
+    "html_url": "https://github.com/cominvent"
+  },
+  "statuses": [],
+  "total_download_count": 5,
+  "latest_download_count": 5
+}

@@ -1,0 +1,22 @@
+{
+  "name": "dataimporthandler",
+  "full_name": "rohitbemax/dataimporthandler",
+  "description": "Repository for DIH (Document Import Handler)",
+  "updated_at": "2020-09-10T18:22:06Z",
+  "stargazers_count": 7,
+  "watchers_count": 7,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "rohitbemax",
+    "type": "User",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/7569120?v=4",
+    "html_url": "https://github.com/rohitbemax"
+  },
+  "statuses": []
+}

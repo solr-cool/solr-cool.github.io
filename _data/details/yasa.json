@@ -1,0 +1,24 @@
+{
+  "name": "yasa",
+  "full_name": "yasa-org/yasa",
+  "description": "Yet Another Solr Admin",
+  "updated_at": "2020-09-03T09:59:07Z",
+  "stargazers_count": 29,
+  "watchers_count": 29,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "yasa-org",
+    "type": "Organization",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/64308246?v=4",
+    "html_url": "https://github.com/yasa-org"
+  },
+  "statuses": [],
+  "total_download_count": 107,
+  "latest_download_count": 60
+}

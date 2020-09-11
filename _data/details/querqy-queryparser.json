@@ -1,0 +1,22 @@
+{
+  "name": "querqy",
+  "full_name": "querqy/querqy",
+  "description": "Query preprocessor for Java-based search engines (Querqy Core and Solr implementation)",
+  "updated_at": "2020-09-08T22:57:59Z",
+  "stargazers_count": 107,
+  "watchers_count": 107,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "querqy",
+    "type": "Organization",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/58121055?v=4",
+    "html_url": "https://github.com/querqy"
+  },
+  "statuses": []
+}

@@ -1,1 +1,0 @@
-{ "name": "data-import-handler", "description": "Data Import Handler (DIH) provides a mechanism for importing content from a data store and indexing it. In addition to relational databases, DIH can index content from HTTP based data sources such as RSS and ATOM feeds, e-mail repositories, and structured XML where an XPath processor is used to generate fields.", "versions": [] }

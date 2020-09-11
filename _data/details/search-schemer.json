@@ -1,0 +1,29 @@
+{
+  "name": "SearchSchemer",
+  "full_name": "sematext/SearchSchemer",
+  "description": "Multi-directional schema converter for Solr, Elasticsearch, and Sensei",
+  "updated_at": "2019-05-22T14:32:26Z",
+  "stargazers_count": 44,
+  "watchers_count": 44,
+  "license": null,
+  "owner": {
+    "login": "sematext",
+    "type": "Organization",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/332582?v=4",
+    "html_url": "https://github.com/sematext"
+  },
+  "statuses": [
+    {
+      "url": "https://api.github.com/repos/sematext/SearchSchemer/statuses/0419b7b698cfe551d1e6691b0a7aeb0493283a91",
+      "avatar_url": "https://avatars2.githubusercontent.com/oa/1508?v=4",
+      "id": 319351824,
+      "node_id": "MDEzOlN0YXR1c0NvbnRleHQzMTkzNTE4MjQ=",
+      "state": "success",
+      "description": "The Travis CI build passed",
+      "target_url": "https://travis-ci.org/sematext/SearchSchemer/builds/82624972",
+      "context": "continuous-integration/travis-ci/push",
+      "created_at": "2015-09-28T20:26:39Z",
+      "updated_at": "2015-09-28T20:26:39Z"
+    }
+  ]
+}

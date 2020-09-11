@@ -56,25 +56,25 @@
       </div>
       <div class="col-md-4 summary">
 		<ul class="list-unstyled fa-ul">
-			{% if component.manifest %}		
+			{% if releases.solr_package %}		
 			<li class="text-success"><i class="fa-li fa fa-cloud-download"></i>Package Manager Installation</li>
-			{% elsif descriptor.versions[0] %}
+			{% elsif releases.releases[0] %}
 			<li class="text-info"><i class="fa-li fa fa-floppy-o"></i>Manual installation (JAR)</li>
 			{% else %}		
 			<li class="text-warning"><i class="fa-li fa fa-cogs"></i>Compile your own</li>
 			{% endif %}
 		</ul>
 
-		{% if descriptor.versions[0] %}
+		{% if releases.releases[0] %}
 		<ul class="list-unstyled fa-ul">
 			<li>
 				<strong>Recent Releases</strong>
 			</li>
-			{% for version in descriptor.versions limit: 3 %}
+			{% for r in releases.releases limit: 3 %}
 			<li>
 				<i class="fa-li fa fa-tag"></i>
-				{{ version.version }} 
-				<small class="text-muted">{{ version.date | date: "%B %-d, %Y" }}</small>
+				{{ r.name }} 
+				<small class="text-muted">{{ r.published_at | date: "%B %-d, %Y" }}</small>
 			</li>
 			{% endfor %}
 		</ul>

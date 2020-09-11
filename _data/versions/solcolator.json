@@ -1,1 +1,0 @@
-{ "name": "solcolator", "description": "Implementation Saved Searches a la ElasticSearch Percolator", "versions": [ { "version": "Solcolator-1.0.0", "date": "2020-05-01", "artifacts": [ { "url": "https://github.com/SOLR4189/solcolator/releases/download/v1.0.0/solcolator.io.readers.FileReader.jar" } ] } ] }

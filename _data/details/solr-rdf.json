@@ -1,0 +1,24 @@
+{
+  "name": "SolRDF",
+  "full_name": "SeaseLtd/SolRDF",
+  "description": "An RDF plugin for Solr ",
+  "updated_at": "2020-06-17T05:50:28Z",
+  "stargazers_count": 111,
+  "watchers_count": 111,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "SeaseLtd",
+    "type": "Organization",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/38129003?v=4",
+    "html_url": "https://github.com/SeaseLtd"
+  },
+  "statuses": [],
+  "total_download_count": null,
+  "latest_download_count": null
+}

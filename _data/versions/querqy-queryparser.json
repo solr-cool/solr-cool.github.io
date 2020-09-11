@@ -1,1 +1,0 @@
-{ "name": "querqy-queryparser", "description": "Querqy is a framework for query preprocessing in Java-based search engines. It comes with a powerful, rule-based preprocessor named 'Common Rules Preprocessor', which provides query-time synonyms, query-dependent boosting and down-ranking, and query-dependent filters.", "versions": [] }

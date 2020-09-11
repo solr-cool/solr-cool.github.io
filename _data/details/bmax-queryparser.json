@@ -1,0 +1,37 @@
+{
+  "name": "solr-bmax-queryparser",
+  "full_name": "solr-cool/solr-bmax-queryparser",
+  "description": "A synonym aware edismax query parser for Apache Solr",
+  "updated_at": "2020-08-27T07:56:33Z",
+  "stargazers_count": 0,
+  "watchers_count": 0,
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "owner": {
+    "login": "solr-cool",
+    "type": "Organization",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/12710677?v=4",
+    "html_url": "https://github.com/solr-cool"
+  },
+  "statuses": [
+    {
+      "url": "https://api.github.com/repos/solr-cool/solr-bmax-queryparser/statuses/511c8ce8da2bdebe49d081141efc212f4f1c01d9",
+      "avatar_url": "https://avatars2.githubusercontent.com/oa/1508?v=4",
+      "id": 10599752832,
+      "node_id": "MDEzOlN0YXR1c0NvbnRleHQxMDU5OTc1MjgzMg==",
+      "state": "success",
+      "description": "The Travis CI build passed",
+      "target_url": "https://travis-ci.org/github/solr-cool/solr-bmax-queryparser/builds/721608249?utm_source=github_status&utm_medium=notification",
+      "context": "continuous-integration/travis-ci/push",
+      "created_at": "2020-08-27T07:58:46Z",
+      "updated_at": "2020-08-27T07:58:46Z"
+    }
+  ],
+  "total_download_count": 11,
+  "latest_download_count": 11
+}
