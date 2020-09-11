@@ -56,7 +56,8 @@ openssl rsa -in solr.cool.pem -pubout -outform DER -out publickey.der
 > 💡 You are very welcome to add your Solr package to solr.cool. We
 > are open to both FOSS and commercially licensed packages.
 
-TBD.
+[Please read the contributing guidelines how to add your package to the repository](CONTRIBUTING.md).
+It's pretty easy, I swear!
 
 ## Deployment
 
