@@ -24,8 +24,8 @@ the [Jekyll `_data` folder](https://jekyllrb.com/docs/datafiles/)
 in this repo:
 
 * `_data/packages` – basic package information (manually curated)
-* `_data/repos` (_generated_) – scraped repository information of each package
-* `_data/versions` (_generated_) – scraped release version information of each package
+* `_data/details` (_generated_) – scraped repository information of each package
+* `_data/releases` (_generated_) – scraped release version information of each package
 
 ### Updating scraped package meta data
 
