@@ -100,7 +100,7 @@ for plugin in ${source_package_dir}/*.yaml; do
   gh_repo_releases_condensed=$(echo ${gh_repo_releases_condensed} | jq '[.[] | select(.assets | length > 0)]')
 
   # compile solr package versions
-  solr_package_versions=$(echo ${gh_repo_releases_condensed} | jq '[.[] | {version: .name|gsub("[a-zA-Z-_]";"") , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
+  solr_package_versions=$(echo ${gh_repo_releases_condensed} | jq '[.[] | {version: .name|gsub("[a-zA-Z_-]";"") , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
 
   # add versions to solr package descriptor
   solr_package_descriptor=$(echo ${solr_package_descriptor_head} | jq --argjson versions "${solr_package_versions}" '. += {"versions": $versions}')
