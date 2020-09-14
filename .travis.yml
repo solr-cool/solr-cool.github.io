@@ -31,4 +31,5 @@ script:
 - "./build.sh"
 
 after_failure:
+- cat _site/repository.json
 - cat target/TestReport*.bats.xml
