@@ -36,12 +36,14 @@
 					</li>
 					{% endif %}
 				</ul>
+				
 				{% if details.updated_at %}
-
 				<small class="float-right text-muted">
 					last updated {{ details.updated_at | date: "%B %-d, %Y" }}
 				</small>
 				{% endif %}
+				<br />
+				<span class="float-right badge badge-pill badge-primary">{{ package.category }}</span>
 			</div>
 		</div>
 		<div class="link-mask">

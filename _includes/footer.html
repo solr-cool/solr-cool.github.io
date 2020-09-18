@@ -1,31 +1,27 @@
-<footer class="footer text-center py-4">
-    <div class="col-md-3 col-md-offset-1">
-        <h6>Contributors</h6>
-        <ul class="list-unstyled">
-            {% for c in site.github.organization_members %}
-            <li>
-                <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
-            </li>
-            {% endfor %}
-            {% for c in site.github.contributors %}
-            <li>
-                <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h6>Contribute</h6>
-        <ul class="list-unstyled">
-            <li><a href="{{ site.github.repository_url }}/pulls">Add Component</a></li>
-            <li><a href="{{ site.github.issues_url }}">Issues</a></li>
-            <li><a href="https://github.com/orgs/solr-cool/people">Team</a></li>
-        </ul>
-    </div>
+<footer class="cta-section theme-bg-light py-5">
+    <div class="container single-col-max-width">
+        <div class="project-intro text-center">
+            <p class="mb-0">
+            <h6>Contributors</h6>
+            <ul class="list-unstyled">
+                {% for c in site.github.organization_members %}
+                <li>
+                    <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
+                </li>
+                {% endfor %}
+                {% for c in site.github.contributors %}
+                <li>
+                    <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            </p>
+        </div>
 
-  <!--  <small class="copyright">Template Copyright &copy; <a href="https://themes.3rdwavemedia.com/" target="_blank">3rd
-            Wave Media</a></small>-->
+    </div>
+    <!--//container-->
 </footer>
+
 </div>
 <!--//main-wrapper-->
 
@@ -33,9 +29,6 @@
 <script src="/assets/plugins/jquery-3.4.1.min.js"></script>
 <script src="/assets/plugins/popper.min.js"></script>
 <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-<script src="/assets/plugins/tiny-slider/min/tiny-slider.js"></script>
-<script src="/assets/js/testimonials.js"></script>
 
 <!--Page Specific JS -->
 <script type="text/javascript" src="/assets/plugins/imagesloaded.pkgd.min.js"></script>
