@@ -54,13 +54,15 @@ mkdir -p ${target_package_descriptor_dir}
 # Read repo details from GitHub API and write to temporary files
 # -------------------------------------------------------------------
 function fetchGithubDetails {
+  local name=$1
+  local package_url=$(getGithubRepoUrl $name)
   echo " Fetching GitHub repository & release information from ${package_url}"
 
   # read recent versions from Github
-  gh_repo_name=${package_url#https://github.com/}
-  gh_repo=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}")
-  gh_repo_releases=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/releases?per_page=10")
-  gh_repo_status=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/commits/master/status")
+  local gh_repo_name=${package_url#https://github.com/}
+  local gh_repo=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}")
+  local gh_repo_releases=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/releases?per_page=10")
+  local gh_repo_status=$(curl -u ${GH_USER}:${GH_ACCESS_TOKEN} -s -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/${gh_repo_name}/commits/master/status")
 
   echo "${gh_repo}" > ${target_gh_api_dir}/${name}_gh_repo.json
   echo "${gh_repo_releases}" > ${target_gh_api_dir}/${name}_gh_repo_releases.json
@@ -71,42 +73,60 @@ function fetchGithubDetails {
 # Writes GitHub repo details to details
 # -------------------------------------------------------------------
 function writeGithubDetails2Data {
+  local name=$1
   echo " Writing GitHub repo information into ${target_repo_details_dir}/${name}.json"
 
   # load temporary data
-  gh_repo=$(cat ${target_gh_api_dir}/${name}_gh_repo.json)
-  gh_repo_status=$(cat ${target_gh_api_dir}/${name}_gh_repo_status.json)
-  gh_repo_releases=$(cat ${target_gh_api_dir}/${name}_gh_repo_releases.json)
+  local gh_repo=$(cat ${target_gh_api_dir}/${name}_gh_repo.json)
+  local gh_repo_status=$(cat ${target_gh_api_dir}/${name}_gh_repo_status.json)
+  local gh_repo_releases=$(cat ${target_gh_api_dir}/${name}_gh_repo_releases.json)
 
   # combine repo data
-  gh_repo_details=$(echo ${gh_repo} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}')
-  gh_repo_details=$(echo ${gh_repo_details} | jq --argjson repo "${gh_repo}" '. += {"owner": { "login": $repo.owner.login, "type": $repo.owner.type, "avatar_url": $repo.owner.avatar_url, "html_url": $repo.owner.html_url }}')
-  gh_repo_details=$(echo ${gh_repo_details} | jq --argjson status "${gh_repo_status}" '. += {"statuses": $status.statuses }')
+  local gh_repo_details=$(echo ${gh_repo} | jq '{"name": .name, "full_name": .full_name, "description": .description, "updated_at": .updated_at, "stargazers_count": .stargazers_count, "watchers_count": .watchers_count, "license": .license}')
+  local gh_repo_details=$(echo ${gh_repo_details} | jq --argjson repo "${gh_repo}" '. += {"owner": { "login": $repo.owner.login, "type": $repo.owner.type, "avatar_url": $repo.owner.avatar_url, "html_url": $repo.owner.html_url }}')
+  local gh_repo_details=$(echo ${gh_repo_details} | jq --argjson status "${gh_repo_status}" '. += {"statuses": $status.statuses }')
 
   if [ ${#gh_repo_releases} -gt 8 ]; then
-    gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
-    gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
+    local gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"total_download_count": $releases | map(.assets | map(.download_count) | add) | add}')
+    local gh_repo_details=$(echo ${gh_repo_details} | jq --argjson releases "${gh_repo_releases}" '. += {"latest_download_count": $releases[0].assets | map(.download_count) | add}')
   fi
   echo "${gh_repo_details}" > ${target_repo_details_dir}/${name}.json
+}
+
+# check for tagged github releases
+function hasGitHubReleasesAndAssets {
+  local name=$1
+  local gh_repo_releases=$(cat ${target_gh_api_dir}/${name}_gh_repo_releases.json)
+
+  local gh_release_count=$(echo ${gh_repo_releases} | jq '. | length')
+  local gh_asset_count=$(echo ${gh_repo_releases} | jq '.[].assets | length')
+
+  if [[ $gh_release_count -gt 0 && ! -z $gh_asset_count ]]; then
+    return 0
+  else
+    return 1
+  fi
+
 }
 
 # -------------------------------------------------------------------
 # Write Github release information
 # -------------------------------------------------------------------
 function writeGithubReleases {
+  local name=$1
   echo " Writing GitHub release information into ${target_releases_dir}/${name}.json"
 
   # load temporary data
-  gh_repo_releases=$(cat ${target_gh_api_dir}/${name}_gh_repo_releases.json)
+  local gh_repo_releases=$(cat ${target_gh_api_dir}/${name}_gh_repo_releases.json)
 
   # condense gh releases
-  gh_repo_releases_condensed=$(echo "${gh_repo_releases}" | tr '\r\n' ' ' | jq '[.[] | select(.prerelease == false) | {name: .name, body: .body, html_url: .html_url, created_at: .created_at, published_at: .published_at, assets: [.assets[] | del(.uploader) | select(.name|endswith(".jar")) | select(.name|contains("source")|not) | select(.name|contains("javadoc")|not) ]}]')
+  local gh_repo_releases_condensed=$(echo "${gh_repo_releases}" | tr '\r\n' ' ' | jq '[.[] | select(.prerelease == false) | {name: .name, body: .body, html_url: .html_url, created_at: .created_at, published_at: .published_at, assets: [.assets[] | del(.uploader) | select(.name|endswith(".jar")) | select(.name|contains("source")|not) | select(.name|contains("javadoc")|not) ]}]')
 
   # remove releases without (.jar) artifacts
-  gh_repo_releases_condensed=$(echo ${gh_repo_releases_condensed} | jq '[.[] | select(.assets | length > 0)]')
+  local gh_repo_releases_condensed=$(echo ${gh_repo_releases_condensed} | jq '[.[] | select(.assets | length > 0)]')
 
   # write release information
-  echo ${gh_repo_releases_condensed} | jq '{releases: .}' > ${target_releases_dir}/${name}.json
+  echo ${gh_repo_releases_condensed} > ${target_releases_dir}/${name}.json
 }
 
 # -------------------------------------------------------------------
@@ -114,48 +134,78 @@ function writeGithubReleases {
 # descriptor
 # -------------------------------------------------------------------
 function writeGithubReleasesToSolrPackageDescriptor {
+  local name=$1
   echo " Transforming GitHub release information from ${target_releases_dir}/${name}.json to ${target_package_descriptor_dir}/${name}.json"
 
-  gh_repo_releases_condensed=$(cat ${target_releases_dir}/${name}.json)
+  # load temporary data
+  local gh_repo_releases_condensed=$(cat ${target_releases_dir}/${name}.json)
 
   # prepare descriptor
-  solr_package_descriptor_head=$(jq -n --arg name $name --arg description "$(yq read $plugin description)" '{"name":$name, "description": $description}')
+  local solr_package_descriptor_head=$(jq -n --arg name $name --arg description "$(yq read ${source_package_dir}/${name}.yaml description)" '{"name":$name, "description": $description}')
 
   # compile solr package versions
-  solr_package_versions=$(echo ${gh_repo_releases_condensed} | jq '[.releases | .[] | {version: .name|gsub("[a-zA-Z_-]";"") , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
+  local solr_package_versions=$(echo ${gh_repo_releases_condensed} | jq '[.[] | {version: .name|gsub("[a-zA-Z_-]";"") , date: .published_at|fromdate|strftime("%Y-%m-%d"), artifacts: [.assets[]|{url: .browser_download_url}]}]')
 
   # add versions to solr package descriptor
-  solr_package_descriptor=$(echo ${solr_package_descriptor_head} | jq --argjson versions "${solr_package_versions}" '. += {"versions": $versions}')
+  local solr_package_descriptor=$(echo ${solr_package_descriptor_head} | jq --argjson versions "${solr_package_versions}" '. += {"versions": $versions}')
 
   # check for a manifest section or install type
-  package_install=$(yq read $plugin package.install)
-  package_manifest=$(yq read $plugin package.manifest)
+  local package_manifest=$(yq read ${source_package_dir}/${name}.yaml package.manifest)
   
-  if [ -z "$package_install" ] && [ -z "$package_manifest" ]; then
-    echo " No Solr package information given."
-
-    # write shortended release information for website
-    echo ${gh_repo_releases_condensed} | jq '{releases: .}' > ${target_releases_dir}/${name}.json
-    continue;
-  fi
-
   # write full release information for website
   echo ${gh_repo_releases_condensed} | jq --argjson desc "${solr_package_descriptor}" '{releases: .,solr_package: $desc}' > ${target_releases_dir}/${name}.json
 
   # append manifest to each version if given
   if [ -n "$package_manifest" ]; then
     echo " Appending install manifest"
-    solr_package_descriptor=$(echo ${solr_package_descriptor} | jq --argjson manifest "${package_manifest}" '.versions[] += {"manifest": $manifest}')
+    local solr_package_descriptor=$(echo ${solr_package_descriptor} | jq --argjson manifest "${package_manifest}" '.versions[] += {"manifest": $manifest}')
   fi
 
   # save descriptor
   echo ${solr_package_descriptor} > ${target_package_descriptor_dir}/${name}.json
 }
 
+function hasSolrPackageDescriptor {
+  if [ -f ${target_package_descriptor_dir}/${1}.json ]; then
+    return 0
+  else
+    return 1
+  fi
+}
+
+function getPackageInstallMethod {
+  echo "$(yq read ${source_package_dir}/${1}.yaml package.install)"
+}
+
+function hasPackageInstallMethod {
+  if [ -z "$(yq read ${source_package_dir}/${1}.yaml package.install)" ]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
+function hasPackageInstallManifest {
+  if [ -z "$(yq read ${source_package_dir}/${1}.yaml package.manifest)" ]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
+function hasPackageInstallVia {
+  if [ -z "$(yq read ${source_package_dir}/${1}.yaml package.via)" ]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
 # -------------------------------------------------------------------
 # Write the markdown detail page
 # -------------------------------------------------------------------
 function writeMarkdownDetailPage {
+  local name=$1
   echo " Writing Markdown detail page to ${target_details_dir}/${name}.md"
 
   # write details markdown
@@ -171,32 +221,38 @@ EOM
 # Download & sign JARs
 # -------------------------------------------------------------------
 function downloadAndSignPackageArtifacts {
+  local name=$1
   echo " Downloading and signing package artifacts in ${target_package_descriptor_dir}/${name}.json"
 
   # find jars to sign
-  jars=$(jq -r '.versions[].artifacts[].url' ${target_package_descriptor_dir}/${name}.json)
+  local jars=$(jq -r '.versions[].artifacts[].url' ${target_package_descriptor_dir}/${name}.json)
 
   # iterate jars
   for jar in ${jars}; do
 
     # download
-    echo "Downloading ${jar}"
+    echo " Downloading ${jar}"
     curl -sfLo target/${name}.jar ${jar}
 
     # sign jars
-    echo -n "Signing ... "
-    signature=$(openssl dgst -sha1 -sign solr.cool.pem target/${name}.jar | openssl enc -base64 | tr -d \\n)
+    echo -n " Signing ... "
+    local signature=$(openssl dgst -sha1 -sign solr.cool.pem target/${name}.jar | openssl enc -base64 | tr -d \\n)
     echo ${signature}
 
     # append signature in plugin descriptor
     jq "(.versions[].artifacts[]|select(.url==\"${jar}\")) += {sig: \"${signature}\"}" ${target_package_descriptor_dir}/${name}.json | sponge ${target_package_descriptor_dir}/${name}.json
   done
 }
+
+function assembleSolrPackageDescriptors {
+  jq -s '.' ${target_package_descriptor_dir}/*.json > repository.json
+}
   
 # -------------------------------------------------------------------
 # Generate bats test
 # -------------------------------------------------------------------
 function generateBatsTest {
+  local name=$1
   echo "Generating BATS tests in /target/package-tests/${name}.bats"
 
   cat << EOT > ./target/package-tests/${name}.bats
@@ -213,7 +269,7 @@ load '../../test/helper/docker-support'
 EOT
 
   # collection installation
-  if [ "${package_install}" = "collection" ]; then
+  if [ "$(getPackageInstallMethod $name)" = "collection" ]; then
     cat << EOT >> ./target/package-tests/${name}.bats
 @test "solr package [${name}] deploy to collection" {
   run docker exec -it solr solr package deploy ${name} -collections films -y
@@ -224,7 +280,7 @@ EOT
   fi
 
   # cluster installation
-  if [ "${package_install}" = "cluster" ]; then
+  if [ "$(getPackageInstallMethod $name)" = "cluster" ]; then
     cat << EOT >> ./target/package-tests/${name}.bats
 @test "solr package [${name}] deploy to cluster" {
   run docker exec -it solr solr package deploy ${name} -cluster -y
@@ -251,6 +307,18 @@ function runBatsIntegrationTests {
   bats -o target --formatter junit test/teardown
 }
 
+function getGithubRepoUrl {
+  echo $(yq read ${source_package_dir}/$1.yaml url);
+}
+
+function isHostedOnGitHub {
+  if [[ ! $(getGithubRepoUrl $1) == *"https://github.com"* ]]; then
+    return 1
+  else
+    return 0
+  fi
+}
+
 # iterate package definitions
 for plugin in ${source_package_dir}/*.yaml; do
   echo ""
@@ -260,30 +328,38 @@ for plugin in ${source_package_dir}/*.yaml; do
   file=$(basename $plugin)
   name=${file%.yaml}
 
-  # 
-  package_url=$(yq read $plugin url)
-  
-  if [[ ! $package_url == *"https://github.com"* ]]; then
+  if isHostedOnGitHub $name; then
+    fetchGithubDetails $name
+    writeGithubDetails2Data $name
+
+    if hasGitHubReleasesAndAssets $name; then
+      writeGithubReleases $name
+
+      if hasPackageInstallMethod $name || hasPackageInstallManifest $name; then
+        writeGithubReleasesToSolrPackageDescriptor $name
+      fi
+    fi
+  else
     echo " Not hosted on Github."
-    continue;
   fi
 
-  fetchGithubDetails
-  writeGithubDetails2Data
-  writeGithubReleases
-  writeGithubReleasesToSolrPackageDescriptor
-  downloadAndSignPackageArtifacts
-  generateBatsTest
-  writeMarkdownDetailPage
+  writeMarkdownDetailPage $name
+
+  if hasSolrPackageDescriptor $name; then
+    downloadAndSignPackageArtifacts $name
+    generateBatsTest $name
+  fi
 
 done
 
+echo "---------------------------------------------------------------"
+echo " -> Assembling site & Solr package descriptor"
+echo "---------------------------------------------------------------"
 
-# -------------------------------------------------------------------
-# (5) Assemble descriptor
-# -------------------------------------------------------------------
-jq -s '.' ${target_package_descriptor_dir}/*.json > repository.json
-
+assembleSolrPackageDescriptors
 buildJekyllSite
 runBatsIntegrationTests
 
+echo "---------------------------------------------------------------"
+echo " Done."
+echo "---------------------------------------------------------------"

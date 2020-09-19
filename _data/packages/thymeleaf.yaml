@@ -1,9 +1,26 @@
+# basic description
 name: Thymeleaf response writer
 category: responsewriters
-description: A Solr response writer to use the Thymeleaf templating engine for HTML templating.
+description: |
+  A Solr response writer to use the Thymeleaf 
+  templating engine for HTML templating.
+
+# the url to the plugin. If this is a GitHub url,
+# releases and build status can be retrieved via
+# their api
 url: https://github.com/solr-cool/solr-thymeleaf
+
+# details on solr packaging
 package:
+
+    # Do not obtain packaging information via github,
+    # use the given url as repository.json instead
+    # via: ...
+
+    # how to install the package (collection|cluster)
     install: collection
+
+    # the manifest to generate
     manifest: |
       {
         "version-constraint": "6 - 9",
