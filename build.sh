@@ -33,6 +33,7 @@ target_releases_dir=./_data/releases
 target_dir=./target
 target_test_dir=./target/package-tests
 target_gh_api_dir=./target/gh-api-responses
+target_via_repo_dir=./target/via
 target_package_descriptor_dir=./target/solr-package-descriptors
 
 # clean build
@@ -48,6 +49,7 @@ mkdir -p ${target_releases_dir}
 mkdir -p ${target_dir}
 mkdir -p ${target_test_dir}
 mkdir -p ${target_gh_api_dir}
+mkdir -p ${target_via_repo_dir}
 mkdir -p ${target_package_descriptor_dir}
 
 # -------------------------------------------------------------------
@@ -178,7 +180,7 @@ function getPackageInstallMethod {
 }
 
 function hasPackageInstallMethod {
-  if [ -z "$(yq read ${source_package_dir}/${1}.yaml package.install)" ]; then
+  if [ -z "$(getPackageInstallMethod ${1})" ]; then
     return 1
   else
     return 0
@@ -193,12 +195,44 @@ function hasPackageInstallManifest {
   fi
 }
 
-function hasPackageInstallVia {
-  if [ -z "$(yq read ${source_package_dir}/${1}.yaml package.via)" ]; then
+function getPackageInstallRepo {
+  echo "$(yq read ${source_package_dir}/${1}.yaml package.repo)"
+}
+
+function hasPackageInstallRepo {
+  if [ -z "$(getPackageInstallRepo $1)" ]; then
     return 1
   else
     return 0
   fi
+}
+
+function writePackageRepoProxySolrPackageRepo {
+  local name=$1
+  local via_url=$(getPackageInstallRepo $1)
+  local via_url_base="${via_url%/*}/"
+  
+  echo " Downloading repo from $via_url"
+  curl -sfLo ${target_via_repo_dir}/${name}.json ${via_url}
+
+  # read repo content
+  local via_repo=$(cat ${target_via_repo_dir}/${name}.json | jq '.[0]')
+
+  # maybe fix name
+  local via_repo=$(echo $via_repo | jq ". += {name: \"${name}\"}")
+
+  # check for fqdn urls in artifacts
+  local artifact_urls=$(echo ${via_repo} | jq -r '.versions[].artifacts[].url')
+  for artifact_url in $artifact_urls
+  do
+    if [[ ! $artifact_url == http* ]]; then
+      echo "   Rewriting ${artifact_url} to ${via_url_base}/${artifact_url}"
+      local via_repo=$(echo ${via_repo} | jq "(.versions[].artifacts[]|select(.url==\"${artifact_url}\")) += {url: \"${via_url_base}${artifact_url}\"}")
+    fi
+  done
+
+  # write solr package descriptor
+  echo ${via_repo} > ${target_package_descriptor_dir}/${name}.json
 }
 
 # -------------------------------------------------------------------
@@ -231,11 +265,11 @@ function downloadAndSignPackageArtifacts {
   for jar in ${jars}; do
 
     # download
-    echo " Downloading ${jar}"
+    echo "   Downloading ${jar}"
     curl -sfLo target/${name}.jar ${jar}
 
     # sign jars
-    echo -n " Signing ... "
+    echo -n "   Signing ... "
     local signature=$(openssl dgst -sha1 -sign solr.cool.pem target/${name}.jar | openssl enc -base64 | tr -d \\n)
     echo ${signature}
 
@@ -341,6 +375,10 @@ for plugin in ${source_package_dir}/*.yaml; do
     fi
   else
     echo " Not hosted on Github."
+  fi
+
+  if hasPackageInstallRepo $name; then
+    writePackageRepoProxySolrPackageRepo $name
   fi
 
   writeMarkdownDetailPage $name

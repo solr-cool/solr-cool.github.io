@@ -6,4 +6,4 @@ pros:
     - native templating solution
     - only option post Solr 9 ;-)
 package:
-    via: https://raw.githubusercontent.com/erikhatcher/solritas/master/repo/repository.json
+    repo: https://raw.githubusercontent.com/erikhatcher/solritas/master/repo/repository.json

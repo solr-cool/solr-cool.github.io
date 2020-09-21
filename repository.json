@@ -1,5 +1,181 @@
 [
   {
+    "name": "solritas-responsewriter",
+    "description": "templated response writer",
+    "versions": [
+      {
+        "version": "0.9.5",
+        "date": "2019-12-18",
+        "artifacts": [
+          {
+            "url": "https://raw.githubusercontent.com/erikhatcher/solritas/master/repo/solritas-0.9.5.jar",
+            "sig": "EtBgn0bX+b6uHT0inpEWDesz/k5HvsOvHjhS4jHGXFnvMQHtQvhglYTq6pfqJ+dE3s+LB98w/EM278D4JdKrEw=="
+          },
+          {
+            "url": "https://raw.githubusercontent.com/erikhatcher/solritas/master/repo/velocity-engine-core-2.1.jar",
+            "sig": "RCeqDoYuIbEMSwnevn/yrORaJ/2uBiPGH8+B4XIYmVVeKaovER2FX39qHgOv7FaApQg2DxI+WOXzcLXJAG3Eow=="
+          },
+          {
+            "url": "https://raw.githubusercontent.com/erikhatcher/solritas/master/repo/velocity-tools-generic-3.0.jar",
+            "sig": "AvqJ4ASb1CCCiuqoB9Av9jZnRTuCePB0WRlTgFRfypv0rdYDSXHM3H9WDY82IAP9MV1hg5AZKTziadXQpfk//A=="
+          }
+        ],
+        "manifest": {
+          "version-constraint": "8 - 9",
+          "plugins": [
+            {
+              "name": "response-writer",
+              "setup-command": {
+                "path": "/api/collections/${collection}/config",
+                "payload": {
+                  "add-queryresponsewriter": {
+                    "name": "solritas",
+                    "class": "solritas:org.apache.solr.response.VelocityResponseWriter"
+                  }
+                },
+                "method": "POST"
+              },
+              "uninstall-command": {
+                "path": "/api/collections/${collection}/config",
+                "payload": {
+                  "delete-queryresponsewriter": "solritas"
+                },
+                "method": "POST"
+              },
+              "verify-command": {
+                "path": "/api/collections/${collection}/config/queryResponseWriter?componentName=solritas&meta=true",
+                "method": "GET",
+                "condition": "$['config'].['queryResponseWriter'].['solritas'].['_packageinfo_'].['version']",
+                "expected": "${package-version}"
+              }
+            },
+            {
+              "name": "request-handler",
+              "setup-command": {
+                "path": "/api/collections/${collection}/config",
+                "payload": {
+                  "add-requesthandler": {
+                    "name": "/browse",
+                    "class": "solr.SearchHandler",
+                    "defaults": {
+                      "debug": "true",
+                      "df": "${DF}"
+                    },
+                    "useParams": "query,facets,solritas,browse"
+                  }
+                },
+                "method": "POST"
+              },
+              "uninstall-command": {
+                "path": "/api/collections/${collection}/config",
+                "payload": {
+                  "delete-requesthandler": "/browse"
+                },
+                "method": "POST"
+              },
+              "verify-command": {
+                "path": "/api/collections/${collection}/config/requestHandler?componentName=/browse&meta=true",
+                "method": "GET",
+                "condition": "$['config'].['requestHandler'].['/browse'].['name']",
+                "expected": "/browse"
+              }
+            },
+            {
+              "name": "paramset-query",
+              "setup-command": {
+                "path": "/api/collections/${collection}/config/params",
+                "payload": {
+                  "set": {
+                    "query": {
+                      "defType": "edismax",
+                      "q.alt": "*:*",
+                      "rows": "10",
+                      "fl": "*,score"
+                    }
+                  }
+                },
+                "method": "POST"
+              },
+              "uninstall-command": {
+                "path": "/api/collections/${collection}/config/params",
+                "payload": {
+                  "unset": "query"
+                },
+                "method": "POST"
+              },
+              "verify-command": {
+                "path": "/api/collections/${collection}/config/params/query",
+                "method": "GET",
+                "condition": "$['response'].['params'].['query'].['defType']",
+                "expected": "edismax"
+              }
+            },
+            {
+              "name": "paramset-facets",
+              "setup-command": {
+                "path": "/api/collections/${collection}/config/params",
+                "payload": {
+                  "set": {
+                    "facets": {
+                      "facet": "on",
+                      "facet.mincount": "1"
+                    }
+                  }
+                },
+                "method": "POST"
+              },
+              "uninstall-command": {
+                "path": "/api/collections/${collection}/config/params",
+                "payload": {
+                  "unset": "facets"
+                },
+                "method": "POST"
+              },
+              "verify-command": {
+                "path": "/api/collections/${collection}/config/params/facets",
+                "method": "GET",
+                "condition": "$['response'].['params'].['facets'].['facet']",
+                "expected": "on"
+              }
+            },
+            {
+              "name": "paramset-velocity",
+              "setup-command": {
+                "path": "/api/collections/${collection}/config/params",
+                "payload": {
+                  "set": {
+                    "solritas": {
+                      "wt": "solritas",
+                      "v.template": "browse",
+                      "v.layout": "layout"
+                    }
+                  }
+                },
+                "method": "POST"
+              },
+              "uninstall-command": {
+                "path": "/api/collections/${collection}/config/params",
+                "payload": {
+                  "unset": "solritas"
+                },
+                "method": "POST"
+              },
+              "verify-command": {
+                "path": "/api/collections/${collection}/config/params/solritas",
+                "method": "GET",
+                "condition": "$['response'].['params'].['solritas'].['wt']",
+                "expected": "solritas"
+              }
+            }
+          ],
+          "parameter-defaults": {
+            "DF": "_text_"
+          }
+        }
+      }
+    ]
+  },
+  {
     "name": "thymeleaf",
     "description": "A Solr response writer to use the Thymeleaf \ntemplating engine for HTML templating.",
     "versions": [

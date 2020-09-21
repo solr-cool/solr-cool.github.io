@@ -16,7 +16,7 @@
           "content_type": "application/java-archive",
           "state": "uploaded",
           "size": 6962701,
-          "download_count": 101,
+          "download_count": 111,
           "created_at": "2020-07-07T14:50:08Z",
           "updated_at": "2020-07-07T14:50:12Z",
           "browser_download_url": "https://github.com/yasa-org/yasa/releases/download/v0.5.2/yasa-solr-plugin-0.5.2.jar"
@@ -39,7 +39,7 @@
           "content_type": "application/java-archive",
           "state": "uploaded",
           "size": 5396875,
-          "download_count": 42,
+          "download_count": 48,
           "created_at": "2020-06-27T06:53:35Z",
           "updated_at": "2020-06-27T06:53:49Z",
           "browser_download_url": "https://github.com/yasa-org/yasa/releases/download/v0.5.1/yasa-solr-plugin-0.5.1.jar"
