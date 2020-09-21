@@ -5,7 +5,11 @@ lsi: false
 # exclude meta files
 exclude:
   - README.md
-  - tests
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - LICENSE
+  - CNAME
+  - test
   - target
   - "*.sh"
   - solr.cool.pem
