@@ -2,7 +2,7 @@
   "name": "solr-thymeleaf",
   "full_name": "solr-cool/solr-thymeleaf",
   "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
-  "updated_at": "2020-09-07T06:25:41Z",
+  "updated_at": "2020-09-21T09:10:06Z",
   "stargazers_count": 0,
   "watchers_count": 0,
   "license": {
@@ -20,18 +20,18 @@
   },
   "statuses": [
     {
-      "url": "https://api.github.com/repos/solr-cool/solr-thymeleaf/statuses/11192bb8686dc289935540ea8ff8d8e552484f64",
+      "url": "https://api.github.com/repos/solr-cool/solr-thymeleaf/statuses/bf0309b327391f7ee7dceeaa7d6aa4301ea44fc6",
       "avatar_url": "https://avatars2.githubusercontent.com/oa/1508?v=4",
-      "id": 10692054476,
-      "node_id": "MDEzOlN0YXR1c0NvbnRleHQxMDY5MjA1NDQ3Ng==",
+      "id": 10818744556,
+      "node_id": "MDEzOlN0YXR1c0NvbnRleHQxMDgxODc0NDU1Ng==",
       "state": "success",
       "description": "The Travis CI build passed",
-      "target_url": "https://travis-ci.org/github/solr-cool/solr-thymeleaf/builds/724888066?utm_source=github_status&utm_medium=notification",
+      "target_url": "https://travis-ci.org/github/solr-cool/solr-thymeleaf/builds/728927786?utm_source=github_status&utm_medium=notification",
       "context": "continuous-integration/travis-ci/push",
-      "created_at": "2020-09-07T11:19:16Z",
-      "updated_at": "2020-09-07T11:19:16Z"
+      "created_at": "2020-09-21T09:12:31Z",
+      "updated_at": "2020-09-21T09:12:31Z"
     }
   ],
-  "total_download_count": 138,
-  "latest_download_count": 37
+  "total_download_count": 200,
+  "latest_download_count": 77
 }

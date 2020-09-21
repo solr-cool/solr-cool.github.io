@@ -1,7 +1,7 @@
 [
   {
     "name": "thymeleaf",
-    "description": "A Solr response writer to use the Thymeleaf templating engine for HTML templating.",
+    "description": "A Solr response writer to use the Thymeleaf \ntemplating engine for HTML templating.",
     "versions": [
       {
         "version": "1.2.0",

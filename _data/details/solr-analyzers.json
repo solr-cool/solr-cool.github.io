@@ -2,7 +2,7 @@
   "name": "solr-analyzers",
   "full_name": "solr-cool/solr-analyzers",
   "description": "A repository for all open source tokenizers and filters",
-  "updated_at": "2020-09-07T19:04:18Z",
+  "updated_at": "2020-09-21T09:10:38Z",
   "stargazers_count": 0,
   "watchers_count": 0,
   "license": {
@@ -20,16 +20,16 @@
   },
   "statuses": [
     {
-      "url": "https://api.github.com/repos/solr-cool/solr-analyzers/statuses/8abe6edf64a75aca80eb83a4386f2005427ec12e",
+      "url": "https://api.github.com/repos/solr-cool/solr-analyzers/statuses/19c9079d1520f46af16c133ea9385de04b7f05d6",
       "avatar_url": "https://avatars2.githubusercontent.com/oa/1508?v=4",
-      "id": 10695266858,
-      "node_id": "MDEzOlN0YXR1c0NvbnRleHQxMDY5NTI2Njg1OA==",
+      "id": 10818744763,
+      "node_id": "MDEzOlN0YXR1c0NvbnRleHQxMDgxODc0NDc2Mw==",
       "state": "success",
       "description": "The Travis CI build passed",
-      "target_url": "https://travis-ci.org/github/solr-cool/solr-analyzers/builds/725026802?utm_source=github_status&utm_medium=notification",
+      "target_url": "https://travis-ci.org/github/solr-cool/solr-analyzers/builds/728927882?utm_source=github_status&utm_medium=notification",
       "context": "continuous-integration/travis-ci/push",
-      "created_at": "2020-09-07T19:06:22Z",
-      "updated_at": "2020-09-07T19:06:22Z"
+      "created_at": "2020-09-21T09:12:33Z",
+      "updated_at": "2020-09-21T09:12:33Z"
     }
   ],
   "total_download_count": 0,
