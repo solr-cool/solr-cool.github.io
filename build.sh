@@ -25,6 +25,9 @@ if ! [ -x "$(command -v bats)" ]; then
   exit 1
 fi
 
+# what to build
+build_filter="${1:-*}"
+
 # target definitions
 target_details_dir=./packages
 source_package_dir=./_data/packages
@@ -40,9 +43,9 @@ target_package_descriptor_dir=./target/solr-package-descriptors
 rm -f repository.json
 rm -rf ${target_dir}
 rm -rf _site
-rm -rf ${target_details_dir}/*.md
-rm -rf ${target_repo_details_dir}/*.json
-rm -rf ${target_releases_dir}/*.json
+rm -rf ${target_details_dir}/${build_filter}.md
+rm -rf ${target_repo_details_dir}/${build_filter}.json
+rm -rf ${target_releases_dir}/${build_filter}.json
 mkdir -p ${target_details_dir}
 mkdir -p ${target_repo_details_dir}
 mkdir -p ${target_releases_dir}
@@ -354,7 +357,7 @@ function isHostedOnGitHub {
 }
 
 # iterate package definitions
-for plugin in ${source_package_dir}/*.yaml; do
+for plugin in ${source_package_dir}/${build_filter}.yaml; do
   echo ""
   echo "---------------------------------------------------------------"
   echo " -> Building ${plugin}"
