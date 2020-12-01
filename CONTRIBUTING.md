@@ -23,8 +23,8 @@ filename wisely at this will be _installation slug_ of you package.
 The file name must end with `.yaml`. 
 
 > A good starting point is either
-the [thymeleaf](_data/packages/thymeleaf.ymal) or the 
-[solritas-responsewriter](_data/packages/solritas-responsewriter.ymal)
+the [thymeleaf](_data/packages/thymeleaf.yaml) or the
+[solritas-responsewriter](_data/packages/solritas-responsewriter.yaml)
 package.
 
 #### 3. Edit package descriptor
@@ -53,7 +53,7 @@ package:
   # proxy all releases in your repository
   repo: https://raw.githubusercontent.com/erikhatcher/solritas/master/repo/repository.json
 
-  # deploy "collection" oder "cluster" wide
+  # deploy "collection" or "cluster" wide
   #
   # See: https://lucene.apache.org/solr/guide/8_6/package-manager.html#deploy-command
   install: collection
@@ -116,6 +116,15 @@ script. If you're on a Mac, use [Homebrew](https://brew.sh)
 
 ```bash
 $ brew install jq yq bats-core
+```
+
+##### 4.2 Install Git submodules
+
+tests depend on [bats-support](https://github.com/ztombol/bats-support),
+and [bat-assert](https://github.com/ztombol/bats-assert)
+
+```bash
+$ git submodule update --init --recursive
 ```
 
 #### 5. Create pull request
