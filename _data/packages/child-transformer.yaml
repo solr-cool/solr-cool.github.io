@@ -9,4 +9,5 @@ pros:
 cons:
   - Doesn't support fetching multi-level nested documents
 package:
+  install: collection
   repo: https://raw.githubusercontent.com/munendrasn/child-subquery/master/repo/repository.json
