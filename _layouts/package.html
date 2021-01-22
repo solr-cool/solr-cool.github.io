@@ -1,0 +1,99 @@
+{% assign descriptor = site.data.releases[page.package_name] %}
+{% assign details = site.data.details[page.package_name] %}
+{% assign package = site.data.packages[page.package_name] %}
+
+{% include header.html %}
+
+<section class="cta-section theme-bg-light py-5">
+  <div class="container single-col-max-width">
+    <h2 class="heading text-center">Package: {{ package.name }}</h2>
+    <div class="project-intro text-center">
+      <p class="mb-0 lead">{{ details.description }}</p>
+      <p class="mb-0"><span class="badge badge-pill badge-primary">{{ package.category }}</span></p>
+
+    </div>
+
+  </div>
+  <!--//container-->
+</section>
+<section class="project px-3 py-5 p-md-5">
+  <div class="container">
+    <div class="project-meta media flex-column flex-md-row p-4 theme-bg-light">
+      <img class="project-thumb mb-3 mb-md-0 mr-md-5 rounded d-none d-md-inline-block"
+        src="/assets/images/project/project-9.jpg" alt="">
+      <div class="media-body">
+        <div class="client-info">
+          <h3 class="client-name font-weight-bold mb-4">{{ package.name }}</h3>
+          <ul class="client-meta list-unstyled">
+            <li class="mb-2"><i class="fas fa-industry fa-fw mr-2"></i><strong>Installation:</strong>
+              {% if package.manifest %}
+              <span class="text-success"><i class="fa-li fa fa-cloud-download"></i>Package Manager
+                Installation</span>
+              {% elsif descriptor.releases[0] %}
+              <span class="text-info"><i class="fa-li fa fa-save"></i>Manual installation (JAR)</span>
+              {% else %}
+              <span class="text-warning"><i class="fa-li fa fa-cogs"></i>Compile your own</span>
+              {% endif %}
+            </li>
+            <li class="mb-2"><i class="fas fa-users fa-fw mr-2"></i><strong>License:</strong> <a class="theme-link"
+                href="{{ package.license_url }}">{{ details.license.name }}</a></li>
+            <li class="mb-2"><strong><i class="fas fa-link fa-fw mr-2"></i>Website:</strong> <a class="theme-link"
+                href="{{ package.url }}">{{ package.url }}</a></li>
+
+          </ul>
+          <div class="client-bio mb-4">{{ package.description }}</div>
+
+          <!-- Release info -->
+          {% if descriptor.releases[0] %}
+          <h4 class="subheading mb-3">Recent Releases:</h4>
+          <ul class="list-unstyled fa-ul">
+            {% for r in descriptor.releases limit: 3 %}
+            <li>
+              <i class="fa fa-tag"></i>
+              {{ r.name }}
+              <small class="text-muted">{{ r.published_at | date: "%B %-d, %Y" }}</small>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          <!-- statuses -->
+          {% if details.statuses %}
+          <h4 class="subheading mb-3">Build status:</h4>
+          <ul class="list-unstyled fa-ul">
+            {% for status in details.statuses %}
+            <li class="text-{{ status.state }}">
+              <i class="fa fa-comment"></i>
+              <a href="{{ status.target_url }}" class="text-{{ status.state }}">{{ status.description }}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+      <!--//media-body-->
+    </div>
+    <!--//project-meta-->
+    <div class="project-sections py-5">
+      <div class="project-section mb-5">
+        <h3 class="project-section-title mb-3">Details</h3>
+        <h5 class="project-section-title mb-3">Pro's</h5>
+        <ul class="fa-ul">
+          {% for p in package.pros %}
+          <li><i class="fa fa-plus-square"></i> {{ p }}</li>
+          {% endfor %}
+        </ul>
+
+        <h5 class="project-section-title mb-3">Con's</h5>
+        <ul class="fa-ul">
+          {% for p in package.cons %}
+          <li><i class="fa fa-minus-square"></i> {{ p }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <!--//project-section-->
+    </div>
+  </div>
+</section>
+
+{% include footer.html %}

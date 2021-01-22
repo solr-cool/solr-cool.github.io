@@ -1,0 +1,41 @@
+<footer class="cta-section theme-bg-light py-5">
+    <div class="container single-col-max-width">
+        <div class="project-intro text-center">
+            <p class="mb-0">
+            <h6>Contributors</h6>
+            <ul class="list-unstyled">
+                {% for c in site.github.organization_members %}
+                <li>
+                    <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
+                </li>
+                {% endfor %}
+                {% for c in site.github.contributors %}
+                <li>
+                    <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            </p>
+        </div>
+
+    </div>
+    <!--//container-->
+</footer>
+
+</div>
+<!--//main-wrapper-->
+
+<!-- Javascript -->
+<script src="/assets/plugins/jquery-3.4.1.min.js"></script>
+<script src="/assets/plugins/popper.min.js"></script>
+<script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<!--Page Specific JS -->
+<script type="text/javascript" src="/assets/plugins/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="/assets/plugins/isotope.pkgd.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/isotope-custom.js"></script>
+
+</body>
+
+</html>

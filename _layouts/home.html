@@ -1,0 +1,58 @@
+{% include header.html %}
+<section class="about-me-section p-3 p-lg-5 theme-bg-light">
+  <div class="container">
+    <div class="profile-teaser media flex-column flex-lg-row">
+
+      <div class="media-body">
+        <h2 class="name font-weight-bold mb-1">Welcome to solr.cool</h2>
+        <div class="tagline mb-3">Your package repository for solr</div>
+        <div class="bio mb-4">This is an overview of all available solr packages which are simply installable since <a
+            href="https://lucene.apache.org/solr/guide/package-manager.html#package-manager">Solr 8.4</a>. Simply use
+          this url as the repository url in solr installation and you can access all these packages.
+        </div>
+        <!--//bio-->
+        <div class="mb-4">
+          <a class="btn btn-primary mr-2 mb-3" href="#overview"><i class="fas fa-arrow-alt-circle-right mr-2"></i><span
+              class="d-none d-md-inline">View</span> plugins</a>
+          <a class="btn btn-secondary mb-3"
+            href="https://lucene.apache.org/solr/guide/package-manager.html#package-manager"><i
+              class="fas fa-question mr-2"></i><span class="d-none d-md-inline">View</span> help</a>
+        </div>
+      </div>
+      <!--//media-body-->
+    </div>
+  </div>
+</section>
+<!--//about-me-section-->
+
+<section class="projects-list px-3 py-5 p-md-5">
+  <div class="container">
+    <h2 class="section-title font-weight-bold mb-3" id="overview">Overview</h2>
+
+    <div class="text-center">
+      <ul id="filters" class="filters mb-5 mx-auto pl-0">
+        <li class="type active mb-3 mb-lg-0" data-filter="*">All</li>
+        {% for category in site.data.categories %}
+        <li class="type  mb-3 mb-lg-0" data-filter=".{{ category.name }}">{{ category.description }}</li>
+        {% endfor %}
+      </ul>
+      <!--//filters-->
+    </div>
+
+    <div class="project-cards row isotope">
+      {% assign packages_by_name = site.data.packages | sort %}
+      {% for package_hash in packages_by_name %}
+      {% assign package_name = package_hash[0] %}
+      {% assign package = package_hash[1] %}
+      {% assign descriptor = site.data.releases[package_name] %}
+      {% assign details = site.data.details[package_name] %}
+      {% include package_small.html %}
+      {% endfor %}
+    </div>
+    <!--//row-->
+
+  </div>
+  <div class="section-intro mb-5">{{ content }}</div>
+</section>
+
+{% include footer.html %}

@@ -1,6 +1,6 @@
 ---
-layout: archive
-title: "Solr plugin directory"
+layout: home
+title: "Solr.cool: Package repository"
 ---
 
 ## Contributing
