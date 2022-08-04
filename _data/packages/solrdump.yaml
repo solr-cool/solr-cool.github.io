@@ -1,6 +1,6 @@
 name: solrdump
 category: utilities
-description: "Export documents from a SOLR index as JSON, fast and simply from the command line."
+description: "Export documents from a Solr index as JSON, fast and simply from the command line."
 installation: go or rpm/apt package
 url: https://github.com/ubleipzig/solrdump
 license: GPL-3.0 license
