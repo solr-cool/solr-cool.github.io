@@ -13,6 +13,9 @@
 - name: searchcomponents
   description: Search Components
   image: fa-ship
+- name: doctransformers
+  description: Document Transformers
+  image: fa-file-text
 - name: utilities
   description: Utilities
   image: fa-gear

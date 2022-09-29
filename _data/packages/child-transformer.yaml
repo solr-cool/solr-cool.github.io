@@ -1,0 +1,13 @@
+name: ChildSubquery Document Transformer
+category: doctransformers
+description: A document transformer to retrieve children for matched Parent docs with support for searching on child docs
+url: https://github.com/munendrasn/child-subquery
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
+pros:
+  - Support searching on child documents along with filtering, sorting
+cons:
+  - Doesn't support fetching multi-level nested documents
+package:
+  install: collection
+  repo: https://raw.githubusercontent.com/munendrasn/child-subquery/master/repo/repository.json
