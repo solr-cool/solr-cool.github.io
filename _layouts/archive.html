@@ -96,11 +96,6 @@
          <div class="col-md-3 col-md-offset-1">
             <h6>Contributors</h6>
             <ul class="list-unstyled">
-              {% for c in site.github.organization_members %}
-              <li>
-                <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
-              </li>
-              {% endfor %}
               {% for c in site.github.contributors %}
               <li>
                 <a href="{{ c.html_url }}"><i class="fa fa-github contributor-github"></i>{{ c.login }}</a>
