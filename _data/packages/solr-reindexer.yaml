@@ -1,0 +1,7 @@
+name: solr-reindexer
+category: utilities
+description: "Reindexes documents from a Solr query to a destination collection"
+installation: Executable UberJar
+url: https://github.com/sematext/solr-reindexer
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

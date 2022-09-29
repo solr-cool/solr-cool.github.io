@@ -1,0 +1,7 @@
+name: solr-dump
+category: utilities
+description: "Dump Solr documents to JSON files; Read from JSON to Solr"
+installation: python
+url: https://github.com/o19s/solr_dump
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
