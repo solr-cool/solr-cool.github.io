@@ -1,5 +1,5 @@
 name: Language Detection Component
-category: searchcomponents
+category: attic
 description: Solr search component for language detection.
 installation: Build Your Own
 url: https://gist.github.com/vsdev1/8397079

@@ -1,5 +1,5 @@
     <div class="row">
-      <div class="col-md-8 well">
+      <div class="col-md-12 well">
 	    <div class="media">
 	      <div class="media-left">
 	        <a href="{{ component.url }}">
@@ -13,7 +13,7 @@
 		  <div class="media-body">
 		    <h4 class="media-heading">
 		      <a href="{{ component.url }}"><code>{{ component.name }}</code></a>
-		      
+
 			  {% if repo.updated_at %}
 		      <small class="pull-right">
                 last updated {{ repo.updated_at | date: "%B %-d, %Y" }}
@@ -40,6 +40,7 @@
 		        </a>
 			  </li>
 			  {% endif %}
+			  <!--
 			  {% if details.stargazers_count %}
 			  <li>
 				<i class="fa fa-star-o"></i>
@@ -60,17 +61,19 @@
 			  </li>
 			  {% endfor %}
 			  {% endif %}
+			-->
 		    </ul>
 		  </div>
 		</div>
       </div>
+	  <!--
       <div class="col-md-4 summary">
 		<ul class="list-unstyled fa-ul">
-			{% if releases.solr_package %}		
+			{% if releases.solr_package %}
 			<li class="text-success"><i class="fa-li fa fa-cloud-download"></i>Package Manager Installation</li>
 			{% elsif releases.releases[0] %}
 			<li class="text-info"><i class="fa-li fa fa-floppy-o"></i>Manual installation (JAR)</li>
-			{% else %}		
+			{% else %}
 			<li class="text-warning"><i class="fa-li fa fa-cogs"></i>Compile your own</li>
 			{% endif %}
 		</ul>
@@ -83,12 +86,12 @@
 			{% for r in releases.releases limit: 3 %}
 			<li>
 				<i class="fa-li fa fa-tag"></i>
-				{{ r.name }} 
+				{{ r.name }}
 				<small class="text-muted">{{ r.published_at | date: "%B %-d, %Y" }}</small>
 			</li>
 			{% endfor %}
 		</ul>
 		{% endif %}
       </div>
+	-->
     </div>
-  

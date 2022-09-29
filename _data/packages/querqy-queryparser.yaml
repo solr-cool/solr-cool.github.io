@@ -4,5 +4,3 @@ description: Querqy is a framework for query preprocessing in Java-based search 
 url: https://github.com/querqy/querqy
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
-pros:
-    - Used in production

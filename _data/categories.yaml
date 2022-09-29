@@ -7,12 +7,15 @@
 - name: responsewriters
   description: Response Writers
   image: fa-file-text
-- name: updateprocessors
-  description: Update Processors
-  image: fa-spinner
+#- name: updateprocessors
+#  description: Update Processors
+#  image: fa-spinner
 - name: searchcomponents
   description: Search Components
   image: fa-ship
 - name: utilities
   description: Utilities
   image: fa-gear
+- name: attic
+  description: Attic (unmaintained)
+  image: fa-chain-broken

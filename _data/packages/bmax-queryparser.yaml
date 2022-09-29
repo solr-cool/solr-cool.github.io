@@ -1,60 +1,6 @@
 name: Bmax Query Parser
-category: queryparsers
+category: attic
 description: A boosting dismax query parser for Apache Solr. The bmax query parser relies on field types  and tokenizer chains to parse the user query, discover synonyms, boost and penalize terms at  query time. Hence it is highly configurable. The lucene query composed is a boosted and  reranked dismax query with a minimum must match of 100%.
 url: https://github.com/solr-cool/solr-bmax-queryparser
 license: Apache License v2
 license_url: http://choosealicense.com/licenses/apache-2.0/
-pros:
-  - For E-Commerce centric applications
-  - Used in production
-cons:
-  - Native Lucene query syntax not supported
-manifest_deactivated: |
-  {
-    "version-constraint": "6 - 9",
-    "plugins": [
-      {
-        "name": "queryparser",
-        "setup-command": {
-          "path": "/api/collections/${collection}/config",
-          "payload": {
-            "add-queryparser": {
-              "name": "${BMAX_DEF_TYPE}",
-              "class": "bmax:com.s24.search.solr.query.bmax.BmaxQParserPlugin"
-            }
-          },
-          "method": "POST"
-        },
-        "uninstall-command": {
-          "path": "/api/collections/${collection}/config",
-          "payload": {
-            "delete-queryparser": "${BMAX_DEF_TYPE}"
-          },
-          "method": "POST"
-        }
-      },
-      {
-        "name": "searchcomponent",
-        "setup-command": {
-          "path": "/api/collections/${collection}/config",
-          "payload": {
-            "add-searchcomponent": {
-              "name": "${BMAX_DEF_TYPE}.booster",
-              "class": "bmax:com.s24.search.solr.component.BmaxBoostTermComponent"
-            }
-          },
-          "method": "POST"
-        },
-        "uninstall-command": {
-          "path": "/api/collections/${collection}/config",
-          "payload": {
-            "delete-searchcomponent": "${BMAX_DEF_TYPE}.booster"
-          },
-          "method": "POST"
-        }
-      }
-    ],
-    "parameter-defaults": {
-      "BMAX_DEF_TYPE": "bmax"
-    }
-  }
