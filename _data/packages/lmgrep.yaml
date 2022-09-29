@@ -1,0 +1,12 @@
+name: lmgrep
+category: utilities
+description: "Grep-like utility based on Lucene Monitor compiled with GraalVM native-image "
+pros:
+  - Support Lucene query syntax
+  - Single binary CLI utility
+  - Fast startup thanks to GraalVM native-image compiler
+cons:
+  - Early release
+url: https://github.com/dainiusjocas/lucene-grep
+package:
+  install: cluster
