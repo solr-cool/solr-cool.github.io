@@ -1,0 +1,7 @@
+name: Solr JSON import & export
+category: utilities
+description: Save your collection in json format and restore it where and when you need
+installation: Solr Plugin (JAR)
+url: https://github.com/freedev/solr-import-export-json
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/

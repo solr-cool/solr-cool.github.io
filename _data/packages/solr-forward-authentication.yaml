@@ -1,0 +1,10 @@
+name: Solr Forward Authentication Plugin
+category: utilities
+description: |
+  A simple forward authentication plugin for Solr. Forward authentication
+  moves the authentication process out of Solr into a reverse proxy like
+  Traefik or Nginx running in front of Solr.
+installation: Solr Plugin (JAR)
+url: https://github.com/solr-cool/solr-forward-authentication-plugin
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
