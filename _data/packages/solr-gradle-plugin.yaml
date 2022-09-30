@@ -1,0 +1,7 @@
+name: Solr Gradle config uploader
+category: utilities
+description: A plugin for easily uploading and downloading solr configs via Gradle
+installation: Solr Gradle Plugin
+url: https://github.com/nsoft/solr-gradle
+license: Apache License v2
+license_url: http://choosealicense.com/licenses/apache-2.0/
