@@ -1,0 +1,7 @@
+name: Solr MCP Server
+category: utilities
+description: MCP server for Apache Solr integration
+installation: Standalone Server
+url: https://github.com/adityamparikh/solr-mcp-server
+license: none
+license_url: none
