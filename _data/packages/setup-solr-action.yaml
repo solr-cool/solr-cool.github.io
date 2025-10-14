@@ -1,0 +1,12 @@
+name: Apache Solr Setup GitHub Action
+category: utilities
+description: "A GitHub Action that automates setup of Apache Solr for CI/CD pipelines, enabling quick and consistent Solr environments for testing and deployment."
+pros:
+  - Easy to integrate in GitHub Actions workflows
+  - Automates Solr setup for CI/CD pipelines
+cons:
+  - Currently limited to GitHub Actions environments
+installation: GitHub Actions Marketplace
+url: https://github.com/DhavalGojiya/setup-solr-action
+license: MIT License
+license_url: https://opensource.org/licenses/MIT
