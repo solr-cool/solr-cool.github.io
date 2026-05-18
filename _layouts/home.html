@@ -1,0 +1,16 @@
+---
+layout: default
+---
+{% assign post = site.posts.first %}
+
+{% include hero.html post=post %}
+
+<div class="article-wrap">
+  {% include toc.html post=post %}
+
+  <article class="article">
+    {{ post.content }}
+  </article>
+</div>
+
+{% include cta.html %}

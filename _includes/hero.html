@@ -1,0 +1,43 @@
+<!-- ───────────────────── HERO ───────────────────── -->
+<section class="hero" id="article">
+  <div class="hero__grid">
+    <div class="hero__main">
+      <h1 class="hero__title">{{ include.post.title_html | default: include.post.title }}</h1>
+      <p class="hero__lede">{{ include.post.lede }}</p>
+      <div class="hero__tags">
+        {% for tag in include.post.tags_display %}
+          <span class="tag {{ tag.style }}">#{{ tag.text }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <aside class="hero__side">
+      <div>
+        <p class="label">Published</p>
+        <p class="value">{{ include.post.published | date: '%B&nbsp;%Y' }}<small>Last updated · {{ include.post.updated | default: include.post.published | date: '%B&nbsp;%-d,&nbsp;%Y' }}</small></p>
+      </div>
+      <div>
+        <p class="label">Author</p>
+        <div class="author">
+          <div class="author__avatar">{{ site.author.avatar_initials }}</div>
+          <div>
+            <div class="author__name">{{ site.author.name }}</div>
+            <div class="author__handle">@{{ site.author.handle }}</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="label">Reading time</p>
+        <p class="value">{{ include.post.reading_time }}</p>
+      </div>
+      <div class="side-share">
+        <p class="label">Share / Cite</p>
+        <div class="side-share__links">
+          <a href="#article"><span class="glyph">↗</span> Copy&nbsp;link</a>
+          <a href="#comment-form"><span class="glyph">✎</span> Comment</a>
+          <a href="mailto:{{ site.email }}?subject=Re%3A%20{{ include.post.title | url_encode }}"><span class="glyph">✉</span> Email</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

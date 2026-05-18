@@ -1,0 +1,14 @@
+---
+layout: default
+---
+{% include hero.html post=page %}
+
+<div class="article-wrap">
+  {% include toc.html post=page %}
+
+  <article class="article">
+    {{ content }}
+  </article>
+</div>
+
+{% include cta.html %}

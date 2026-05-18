@@ -1,0 +1,24 @@
+<!-- ───────────────────── FOOTER ───────────────────── -->
+<footer class="site-footer" id="about">
+  <div class="footer__grid">
+    <div class="footer__brand">
+      <span class="footer__crosshair" aria-hidden="true"><span></span></span>
+      <span class="footer__wordmark">solr<span>.</span>cool</span>
+      <small>// {{ site.tagline }} &mdash; 2026 onward</small>
+    </div>
+    <div class="footer__col">
+      <h5>Sections</h5>
+      <a href="#article">Latest post</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="footer__col">
+      <h5>Contact</h5>
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <a href="#consult">Consultancy</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span>© {{ 'now' | date: '%Y' }} solr.cool &mdash; built by {{ site.author.name }}</span>
+    <span>// Last build: {{ site.time | date: '%B&nbsp;%-d,&nbsp;%Y' }}</span>
+  </div>
+</footer>

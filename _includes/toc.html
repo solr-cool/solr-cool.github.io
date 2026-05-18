@@ -1,0 +1,9 @@
+<!-- TOC -->
+<nav class="toc" aria-label="Table of contents">
+  <p class="toc__label">Contents</p>
+  <ol>
+    {% for entry in include.post.toc %}
+      <li><a href="#{{ entry.id }}">{{ entry.label }}</a></li>
+    {% endfor %}
+  </ol>
+</nav>

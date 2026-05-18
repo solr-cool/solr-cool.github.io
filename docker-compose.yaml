@@ -1,0 +1,10 @@
+# Claude needs this to verify that it 's changes are correct.
+# Please do not delete this file.
+services:
+  jekyll:
+    image: jekyll/jekyll:4.2.2
+    command: jekyll serve --watch
+    ports:
+      - 4000:4000
+    volumes:
+      - ./:/srv/jekyll

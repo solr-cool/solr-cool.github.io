@@ -1,0 +1,29 @@
+title: solr.cool
+tagline: Field notes on open-source search
+description: Field notes on open-source search — Solr, hybrid retrieval, RAG and agentic stacks.
+url: https://solr.cool
+
+author:
+  name: Torsten Bøgh Køster
+  handle: tboeghk
+  avatar_initials: tbk
+
+email: hello@solr.cool
+
+markdown: kramdown
+kramdown:
+  auto_ids: true
+  input: GFM
+  syntax_highlighter: rouge
+
+permalink: /:title/
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - target
+  - test
+  - vendor
+  - .bundle
+  - .gk
