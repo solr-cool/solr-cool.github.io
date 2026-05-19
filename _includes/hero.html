@@ -1,4 +1,5 @@
 <!-- ───────────────────── HERO ───────────────────── -->
+{% assign post_author = site.data.authors[include.post.author] %}
 <section class="hero" id="article">
   <div class="hero__grid">
     <div class="hero__main">
@@ -19,10 +20,10 @@
       <div>
         <p class="label">Author</p>
         <div class="author">
-          <div class="author__avatar">{{ site.author.avatar_initials }}</div>
+          <div class="author__avatar">{{ post_author.avatar_initials }}</div>
           <div>
-            <div class="author__name">{{ site.author.name }}</div>
-            <div class="author__handle">@{{ site.author.handle }}</div>
+            <div class="author__name">{{ post_author.name }}</div>
+            <div class="author__handle">@{{ post_author.handle }}</div>
           </div>
         </div>
       </div>
@@ -41,3 +42,28 @@
     </aside>
   </div>
 </section>
+
+{% if include.post %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ include.post.title | jsonify }},
+  "description": {{ include.post.description | default: include.post.lede | jsonify }},
+  "datePublished": "{{ include.post.published | date_to_xmlschema }}",
+  "dateModified": "{{ include.post.updated | default: include.post.published | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": {{ post_author.name | jsonify }},
+    "url": {{ post_author.url | jsonify }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.title | jsonify }},
+    "logo": { "@type": "ImageObject", "url": "{{ '/assets/favicon.svg' | absolute_url }}" }
+  },
+  "mainEntityOfPage": "{{ include.post.url | absolute_url }}",
+  "image": "{{ include.post.image | default: '/assets/social-card.png' | absolute_url }}"
+}
+</script>
+{% endif %}

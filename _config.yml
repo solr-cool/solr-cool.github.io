@@ -3,12 +3,32 @@ tagline: Field notes on open-source search
 description: Field notes on open-source search — Solr, hybrid retrieval, RAG and agentic stacks.
 url: https://solr.cool
 
-author:
-  name: Torsten Bøgh Köster
-  handle: tboeghk
-  avatar_initials: tbk
-
 email: hello@solr.cool
+
+logo: /assets/favicon.svg
+
+social:
+  name: Torsten Bøgh Köster
+  links:
+    - https://github.com/tboeghk
+    - https://twitter.com/tboeghk
+
+twitter:
+  username: tboeghk
+  card: summary_large_image
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      image: /assets/social-card.png
+      author: tboeghk
 
 markdown: kramdown
 kramdown:
