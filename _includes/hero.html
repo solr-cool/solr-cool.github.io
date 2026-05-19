@@ -33,9 +33,9 @@
       <div class="side-share">
         <p class="label">Share / Cite</p>
         <div class="side-share__links">
-          <a href="#article"><span class="glyph">↗</span> Copy&nbsp;link</a>
-          <a href="#comment-form"><span class="glyph">✎</span> Comment</a>
-          <a href="mailto:{{ site.email }}?subject=Re%3A%20{{ include.post.title | url_encode }}"><span class="glyph">✉</span> Email</a>
+          <a href="{{ include.post.url | absolute_url }}"><span class="glyph">↗</span> Copy&nbsp;link</a>
+          <a href="https://opensourceconnections.com/slack/"><span class="glyph">✎</span> Discuss</a>
+          <a href="mailto:{{ site.email }}"><span class="glyph">✉</span> Email</a>
         </div>
       </div>
     </aside>

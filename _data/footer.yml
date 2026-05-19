@@ -1,0 +1,4 @@
+columns:
+  - title: Contact
+    links:
+      - email: true

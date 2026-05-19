@@ -2,7 +2,7 @@
 layout: post
 title: Hybrid Search Architecture for Apache Solr 10 and beyond
 title_html: 'Hybrid Search Architecture<br />for <span class="hl">Apache&nbsp;Solr&nbsp;10</span> and <span class="ul">beyond</span>'
-lede: 'Lexical search plus vectors, fused with RRF, optionally reranked. The question is no longer <em>whether</em> an engine can do this &mdash; it&rsquo;s <em>how mature, how operationally expensive, how scalable</em>. A working assessment for teams sitting on Apache Solr.'
+lede: 'Lexical search plus vectors, fused with RRF, optionally reranked. The question is no longer <em>whether</em> an engine can do this &mdash; it&rsquo;s <em>how mature, how operationally expensive, how scalable</em>. A working assessment for <strong>teams sitting on Apache&nbsp;Solr</strong>.'
 description: "An honest 2026 assessment of open-source hybrid-search options on top of Apache Solr — Solr 10, OpenSearch, Elasticsearch, Vespa, Qdrant/Weaviate — and the layered architecture that keeps the engine replaceable."
 published: 2026-05-18
 updated: 2026-05-18
@@ -486,7 +486,7 @@ If you build it this way, a later switch to OpenSearch costs only the adapter sw
 > Keep the **domain API**, the **reranker**, and the **composer** Solr-free. Those three layers clean, everything else is fixable. Those three layers dirty, nothing is.
 {:.is-red}
 
-The honest answer to "which engine ages best" is therefore: the one you hard-wire the least.
+So the honest answer to "which engine ages best" is therefore: the one you hard-wire the least.
 
 ## Sources for Deeper Research  {#sources}
 
@@ -524,9 +524,8 @@ The honest answer to "which engine ages best" is therefore: the one you hard-wir
   <h4 class="process-note__head">How this came together</h4>
   <p>
     This document is the residue of <strong>a couple of weeks of musing
-    with Claude</strong> &mdash; drafts that turned into chapters, chapters
-    that collapsed back into footnotes, arguments rewritten against
-    themselves.
+    with Claude</strong> and discussing architecture ideas with
+    <strong>Tobias Kässmann</strong>.
   </p>
   <p>
     What you&rsquo;re reading is a <em>living document</em>. As Solr&nbsp;10
@@ -537,6 +536,6 @@ The honest answer to "which engine ages best" is therefore: the one you hard-wir
   </p>
   <p class="process-note__sig">
     <span>— Torsten Bøgh Köster, May&nbsp;2026</span>
-    <span class="process-note__stamp">Published&nbsp;May&nbsp;18,&nbsp;2026</span>
+    <span class="process-note__stamp">Published&nbsp;{{ page.date | date: "%B&nbsp;%-d,&nbsp;%Y" }}</span>
   </p>
 </aside>

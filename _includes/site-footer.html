@@ -6,16 +6,18 @@
       <span class="footer__wordmark">solr<span>.</span>cool</span>
       <small>// {{ site.tagline }} &mdash; 2026 onward</small>
     </div>
+    {% for column in site.data.footer.columns %}
     <div class="footer__col">
-      <h5>Sections</h5>
-      <a href="#article">Latest post</a>
-      <a href="#about">About</a>
-    </div>
-    <div class="footer__col">
-      <h5>Contact</h5>
+      <h5>{{ column.title }}</h5>
+      {% for link in column.links %}
+        {% if link.email %}
       <a href="mailto:{{ site.email }}">{{ site.email }}</a>
-      <a href="#consult">Consultancy</a>
+        {% else %}
+      <a href="{{ link.url }}">{{ link.text }}</a>
+        {% endif %}
+      {% endfor %}
     </div>
+    {% endfor %}
   </div>
   <div class="footer__bottom">
     <span>© {{ 'now' | date: '%Y' }} solr.cool &mdash; built by {{ site.author.name }}</span>
