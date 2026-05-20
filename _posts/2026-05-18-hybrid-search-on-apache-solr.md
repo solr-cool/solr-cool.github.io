@@ -11,11 +11,11 @@ tags_display:
   - { text: "hybrid-search",      style: "tag--red tag--rot1" }
   - { text: "apache-solr-10",     style: "tag--ink tag--rot2" }
   - { text: "opensearch",         style: "tag--yellow tag--rot3" }
-  - { text: "semantic-search",    style: "tag--rot1" }
-  - { text: "solr-cloud",         style: "tag--rot2" }
+  - { text: "vespa",              style: "tag--rot1" }
+  - { text: "semantic-search",    style: "tag--rot2" }
   - { text: "agentic-retrieval",  style: "tag--red tag--rot3" }
-  - { text: "colbert",            style: "tag--rot1" }
-  - { text: "rag",                style: "tag--rot2" }
+  - { text: "reranking",          style: "tag--rot1" }
+  - { text: "late-interaction",   style: "tag--rot2" }
 toc:
   - { id: starting-point, label: "Starting Point" }
   - { id: candidates,     label: "The Candidates in Detail" }
