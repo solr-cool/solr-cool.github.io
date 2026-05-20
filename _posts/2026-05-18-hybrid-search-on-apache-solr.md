@@ -45,6 +45,7 @@ The serious open-source candidates fall into three categories:
 1. **Lucene-based search platforms:** Solr, OpenSearch, Elasticsearch
 2. **AI-native search engine:** Vespa
 3. **Vector-first databases with BM25:** Qdrant, Weaviate, Milvus
+4. **DX-first lightweight engines with vector add-on:** Typesense, Meilisearch
 
 The evaluation of these categories runs through the following functional areas, which together in modern search systems make the difference between "works" and "competitive":
 
@@ -130,25 +131,39 @@ Qdrant (Rust, Apache&nbsp;2.0), Weaviate (Go, BSD-3), Milvus (Go/C++, Apache&nbs
   </table>
 </div>
 
+### Typesense / Meilisearch <small style="font-weight:400;font-size:16px;color:var(--ink-soft)">(DX-first with vector add-on)</small>
+
+Typesense (C++, GPL-3.0) and Meilisearch (Rust, MIT) are the two notable open-source engines built around developer experience first &mdash; instant-search, typo tolerance and clean APIs &mdash; that have since added hybrid search as a feature on top. Typesense ships native hybrid since v0.25 with alpha-blend and RRF, plus built-in embedder integrations (OpenAI, PaLM, Voyage, GTE). Meilisearch added hybrid in v1.6 with a `semanticRatio` parameter and pluggable embedders (OpenAI, HuggingFace, Ollama, REST). Both make hybrid a one-parameter switch &mdash; the DX bar the Lucene family struggles to clear.
+
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Pros</th><th>Cons</th></tr></thead>
+    <tbody><tr>
+      <td>Outstanding DX for greenfield product or instant-search use cases. Typo tolerance and prefix matching are first-class &mdash; the area where they genuinely lead. Hybrid is a one-parameter switch. Tiny operational footprint, single binary, fast to stand up. Meilisearch&rsquo;s MIT license is as clean as it gets.</td>
+      <td>Lexical depth, faceting, learning-to-rank and ranking flexibility all noticeably below the Lucene family &mdash; tokenizers, analyzers, synonyms, phrase slop, hierarchical facets are either basic or missing. Typesense&rsquo;s GPL-3.0 is a real procurement flag in many enterprise contexts. Distributed and HA modes are less battle-tested; serious-scale stories are thin. <strong>Not realistic Solr migration targets</strong> &mdash; a Solr shop would lose more than it gains. Their natural competitor is Algolia, not Solr.</td>
+    </tr></tbody>
+  </table>
+</div>
+
 ### Candidate Evaluation Matrix  {#matrix}
 
 <div class="table-wrap">
   <table>
     <thead><tr>
-      <th>Criterion</th><th>Solr&nbsp;10</th><th>OpenSearch</th><th>Elasticsearch</th><th>Vespa</th><th>Qdrant / Weaviate</th>
+      <th>Criterion</th><th>Solr&nbsp;10</th><th>OpenSearch</th><th>Elasticsearch</th><th>Vespa</th><th>Qdrant / Weaviate</th><th>Typesense / Meilisearch</th>
     </tr></thead>
     <tbody>
-      <tr><td>License (clean OSS)</td><td><span class="ok">✔</span> Apache 2.0</td><td><span class="ok">✔</span> Apache 2.0</td><td><span class="warn">⚠</span> AGPLv3 / SSPL</td><td><span class="ok">✔</span> Apache 2.0</td><td><span class="ok">✔</span> Apache 2.0 / BSD</td></tr>
-      <tr><td>Hybrid search DX</td><td><span class="warn">⚠</span> raw</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> very good</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td></tr>
-      <tr><td>Lexical depth</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> very good</td><td><span class="warn">⚠</span> basic</td></tr>
-      <tr><td>Faceting / aggregations</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> very good</td><td><span class="warn">⚠</span> weak</td></tr>
-      <tr><td>Autosuggest (e-comm level)</td><td><span class="warn">⚠</span> building blocks</td><td><span class="warn">⚠</span> building blocks</td><td><span class="ok">✔</span> search_as_you_type + LTR</td><td><span class="ok">✔</span> reference</td><td><span class="warn">⚠</span> basic</td></tr>
-      <tr><td>Vector performance</td><td><span class="ok">✔</span> good (with 10)</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> top tier</td><td><span class="ok">✔</span> very good</td></tr>
-      <tr><td>Late interaction (ColBERT/ColPali)</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> in progress</td><td><span class="ok">✔</span> native</td><td><span class="ok">✔</span> first-class</td></tr>
-      <tr><td>Ranking flexibility</td><td><span class="ok">✔</span> LTR mature</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> ML stack</td><td><span class="ok">✔</span> multi-phase</td><td><span class="warn">⚠</span> rerank hook</td></tr>
-      <tr><td>Operational maturity</td><td><span class="ok">✔</span> high</td><td><span class="ok">✔</span> high</td><td><span class="ok">✔</span> high</td><td><span class="warn">⚠</span> steep</td><td><span class="ok">✔</span> simple</td></tr>
-      <tr><td>Migration cost (from current)</td><td><span class="ok">✔</span> none</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> very large</td><td><span class="bad">✘</span> large</td></tr>
-      <tr><td>Community momentum</td><td><span class="warn">⚠</span> stable</td><td><span class="ok">✔</span> growing</td><td><span class="ok">✔</span> large</td><td><span class="warn">⚠</span> niche</td><td><span class="ok">✔</span> growing</td></tr>
+      <tr><td>License (clean OSS)</td><td><span class="ok">✔</span> Apache 2.0</td><td><span class="ok">✔</span> Apache 2.0</td><td><span class="warn">⚠</span> AGPLv3 / SSPL</td><td><span class="ok">✔</span> Apache 2.0</td><td><span class="ok">✔</span> Apache 2.0 / BSD</td><td><span class="warn">⚠</span> GPL-3.0 / MIT</td></tr>
+      <tr><td>Hybrid search DX</td><td><span class="warn">⚠</span> raw</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> very good</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> very good</td></tr>
+      <tr><td>Lexical depth</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> very good</td><td><span class="warn">⚠</span> basic</td><td><span class="warn">⚠</span> basic</td></tr>
+      <tr><td>Faceting / aggregations</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> excellent</td><td><span class="ok">✔</span> very good</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> basic</td></tr>
+      <tr><td>Autosuggest (e-comm level)</td><td><span class="warn">⚠</span> building blocks</td><td><span class="warn">⚠</span> building blocks</td><td><span class="ok">✔</span> search_as_you_type + LTR</td><td><span class="ok">✔</span> reference</td><td><span class="warn">⚠</span> basic</td><td><span class="ok">✔</span> very good</td></tr>
+      <tr><td>Vector performance</td><td><span class="ok">✔</span> good (with 10)</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> top tier</td><td><span class="ok">✔</span> very good</td><td><span class="ok">✔</span> good</td></tr>
+      <tr><td>Late interaction (ColBERT/ColPali)</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> in progress</td><td><span class="ok">✔</span> native</td><td><span class="ok">✔</span> first-class</td><td><span class="bad">✘</span> none</td></tr>
+      <tr><td>Ranking flexibility</td><td><span class="ok">✔</span> LTR mature</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> ML stack</td><td><span class="ok">✔</span> multi-phase</td><td><span class="warn">⚠</span> rerank hook</td><td><span class="warn">⚠</span> limited</td></tr>
+      <tr><td>Operational maturity</td><td><span class="ok">✔</span> high</td><td><span class="ok">✔</span> high</td><td><span class="ok">✔</span> high</td><td><span class="warn">⚠</span> steep</td><td><span class="ok">✔</span> simple</td><td><span class="ok">✔</span> simple</td></tr>
+      <tr><td>Migration cost (from current)</td><td><span class="ok">✔</span> none</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> very large</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> large</td></tr>
+      <tr><td>Community momentum</td><td><span class="warn">⚠</span> stable</td><td><span class="ok">✔</span> growing</td><td><span class="ok">✔</span> large</td><td><span class="warn">⚠</span> niche</td><td><span class="ok">✔</span> growing</td><td><span class="ok">✔</span> growing</td></tr>
     </tbody>
   </table>
 </div>
@@ -168,7 +183,7 @@ Before deciding, it's worth looking at the direction of innovation. Six trends I
 
 ### Recommendation  {#recommendation}
 
-**If the customer were starting greenfield** — without the existing Solr investment — and the profile is "classical search engine with hybrid extension, medium-to-large data volume, no megascale RAG," I would recommend **OpenSearch**. The hybrid DX is mature, RRF and score normalization are built in, the license is clean, security features are included at no extra cost, and the ecosystem is large enough that for most problems someone has already posted a solution.
+**If the customer were starting greenfield** — without the existing Solr investment — and the profile is "classical search engine with hybrid extension, medium-to-large data volume, no megascale RAG," I would recommend **OpenSearch**. The hybrid DX is mature, RRF and score normalization are built in, the license is clean, security features are included at no extra cost, and the ecosystem is large enough that for most problems someone has already posted a solution. (For a *smaller* greenfield profile — product catalog or instant-search at moderate scale, where the alternative would be Algolia — Typesense or Meilisearch are the right call. They are not, however, realistic replacements for a serious Solr-class e-commerce or site search.)
 
 **However:** The customer is *not* starting greenfield — they're facing the Solr&nbsp;9-to-10 upgrade. And here the recommendation flips: **Solr&nbsp;10 is sufficient in the overwhelming majority of cases for hybrid search**, and migration cost to OpenSearch would be substantial (schema modeling, query language, indexing pipeline, ops, monitoring, team skills). Solr&nbsp;10 closes the exact gaps that 9.x still had — with quantization, GPU codec, SeededKnn and PatienceKnn termination.
 
@@ -261,7 +276,8 @@ There are two ways to design a search API today, and a system built well can sup
 ┌──────────────────────────────┐                        │
 │    Telemetry & click logs    │◀───────────────────────┘
 │ structured, linked to Query-IR
-└──────────────────────────────┘</pre>
+└──────────────────────────────┘
+</pre>
 
 ### The Agentic Alternative — Thin Primitives, an Orchestrating Agent  {#agentic}
 
