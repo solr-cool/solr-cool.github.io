@@ -45,7 +45,7 @@ The serious open-source candidates fall into three categories:
 1. **Lucene-based search platforms:** Solr, OpenSearch, Elasticsearch
 2. **AI-native search engine:** Vespa
 3. **Vector-first databases with BM25:** Qdrant, Weaviate, Milvus
-4. **DX-first lightweight engines with vector add-on:** Typesense, Meilisearch
+4. **DX-first (developer-experience-first) lightweight engines with vector add-on:** Typesense, Meilisearch
 
 The evaluation of these categories runs through the following functional areas, which together in modern search systems make the difference between "works" and "competitive":
 
@@ -54,7 +54,7 @@ The evaluation of these categories runs through the following functional areas, 
 3. **Facets and aggregations** — counted refinements on the current result set, hierarchical or pivot, distinct from OLAP-style aggregations
 4. **Autosuggest / search-as-you-type** — its own path with its own index, latency class (P99 &lt; 50&nbsp;ms), and ranking logic
 5. **Ranking and personalization** — from static boosts through learning-to-rank to real-time multi-phase ranking with user features
-6. **Generative SERP layer** — RAG answers, agentic query plans, multimodal and late-interaction retrieval, dynamic result composition
+6. **Generative SERP (Search Engine Results Page) layer** — RAG (Retrieval-Augmented Generation) answers, agentic query plans, multimodal and late-interaction retrieval, dynamic result composition
 
 > The most honest answer to **"which engine ages best"**: the one you hard-wire the **least**.
 {:.epigraph}
@@ -175,7 +175,7 @@ Before deciding, it's worth looking at the direction of innovation. Six trends I
 - **Late-interaction models migrate from reranker to retrieval layer.** ColBERT was the start; ColPali/ColQwen are the natural continuation — multi-vector representations per document, MaxSim matching, no OCR pipeline drama with PDFs or images. Vespa, Qdrant and Weaviate support this in production today; Lucene-based engines have a harder time structurally because the index has historically been single-vector-centric.
 - **LLM and cross-encoder rerankers become standard stage&nbsp;2.** The math is uncontested: hybrid retrieval on top-100, then a cross-encoder or LLM reranker on top-10. Voyage, Cohere, Jina, FlashRank, ColBERT-v2 are the building blocks. Engine-neutral, runs externally.
 - **Generative answers and "generative UI" on the SERP.** The display becomes dynamic: comparison table when the query looks like one; map when geo; carousel when products; pure answer when FAQ-like. The engine doesn't decide this; the layer above does.
-- **Agentic search and multi-step query plans.** An LLM decomposes the user question into sub-queries, calls retrieval as a tool, checks the results, refines, asks back. MCP is becoming the standard interface here.
+- **Agentic search and multi-step query plans.** An LLM decomposes the user question into sub-queries, calls retrieval as a tool, checks the results, refines, asks back. MCP (Model Context Protocol) is becoming the standard interface here.
 - **Real-time personalization in the ranking stage.** Multi-phase ranking where user context, session, embedding similarity to past behavior, and business logic come together. Native in Vespa, via LTR in Lucene-based engines.
 - **Multimodality as default.** Image-to-text, text-to-image, mixed queries. CLIP, SigLIP, ColPali are the tools — for visually rich sites a realistic use case in 2–3&nbsp;years.
 
@@ -322,7 +322,7 @@ The combination matters more than any individual mitigation. A realistic product
 
 A resilient stack accepts three truths. First, *the engine is the longest-lived component, but not the most valuable one* — you swap it maybe once every five years; the layers above grow every year. Second, *ranking is its own subsystem*, not an engine feature. Third, *the SERP is composed in the application layer*, not in the index.
 
-#### Layer&nbsp;1 — Stable Domain API (the Search BFF)
+#### Layer&nbsp;1 — Stable Domain API (the Search BFF — Backend for Frontend)
 
 The most important decision in the whole stack. The client (web, app, later agents via MCP) speaks *not* with the engine but with its own domain API, formulated in the language of your search — `/search?q=...&filter=type:trick&page=2`, not `/solr/select?q=...&fq=...&rows=10`. The response format is also independent: `{ hits: [...], facets: [...], suggestions: [...], answer?: {...} }` — and contains *no* Solr-specific fields.
 
@@ -330,7 +330,7 @@ Take this seriously, and you can switch engines later without touching the clien
 
 #### Layer&nbsp;2 — Query Understanding
 
-Incoming query → outgoing structured representation (the internal *Query IR*). Spellcheck/did-you-mean, synonym expansion, language detection, intent classification, and increasingly LLM-based: sub-query decomposition, HyDE-style query hypotheses, entity linking to your own vocabulary.
+Incoming query → outgoing structured representation — the internal *Query IR* (Intermediate Representation). Spellcheck/did-you-mean, synonym expansion, language detection, intent classification, and increasingly LLM-based: sub-query decomposition, HyDE-style query hypotheses, entity linking to your own vocabulary.
 
 Important: this stage returns an object, not a rewritten string. A good query IR looks like:
 
