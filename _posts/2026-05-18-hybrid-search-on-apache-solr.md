@@ -5,7 +5,6 @@ title_html: 'Hybrid Search Architecture<br />for <span class="hl">Apache&nbsp;So
 lede: 'Lexical search plus vectors, fused with RRF, optionally reranked. The question is no longer <em>whether</em> an engine can do this &mdash; it&rsquo;s <em>how mature, how operationally expensive, how scalable</em>. A working assessment for <strong>teams sitting on Apache&nbsp;Solr</strong>.'
 description: "An honest 2026 assessment of open-source hybrid-search options on top of Apache Solr — Solr 10, OpenSearch, Elasticsearch, Vespa, Qdrant/Weaviate — and the layered architecture that keeps the engine replaceable."
 published: 2026-05-18
-updated: 2026-05-18
 reading_time: "~26&nbsp;min"
 tags_display:
   - { text: "hybrid-search",      style: "tag--red tag--rot1" }
