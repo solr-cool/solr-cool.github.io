@@ -146,7 +146,17 @@ Typesense (C++, GPL-3.0) and Meilisearch (Rust, MIT) are the two notable open-so
 
 ### Nixiesearch <small style="font-weight:400;font-size:16px;color:var(--ink-soft)">(Honorable mention)</small>
 
-Worth a look even if it doesn't enter the scoring: [Nixiesearch](https://www.nixiesearch.ai/){:target="_blank" rel="noopener"}, by the same Roman Grebennikov behind the hseb benchmark above. Apache&nbsp;2.0 and Lucene-based like Solr and OpenSearch, but with a different operational shape &mdash; storage and compute are decoupled: the index lives on S3-compatible object storage and the compute nodes are stateless, so there's no cluster state to babysit and backups, upgrades, schema changes and auto-scaling become low-risk. Hybrid search is built in via RRF, embedding inference (ONNX/Sentence-Transformers) and reranking run locally, and there's a RAG API and pull-based Spark indexing on top. It's young and niche &mdash; not a realistic Solr migration target today &mdash; but it's the most architecturally interesting reimagining of a Lucene engine in this list, and it happened to top the author's own vendor-neutral benchmark.
+Worth a look even if it doesn't enter the scoring: [Nixiesearch](https://www.nixiesearch.ai/){:target="_blank" rel="noopener"}, by the same Roman Grebennikov behind the hseb benchmark (see below). Apache&nbsp;2.0 and Lucene-based like Solr and OpenSearch, but with a different operational shape &mdash; storage and compute are decoupled: the index lives on S3-compatible object storage and the compute nodes are stateless, so there's no cluster state to babysit and backups, upgrades, schema changes and auto-scaling become low-risk. Hybrid search is built in via RRF, embedding inference (ONNX/Sentence-Transformers) and reranking run locally, and there's a RAG API and pull-based Spark indexing on top. It's young and niche &mdash; not a realistic Solr migration target today &mdash; but it's the most architecturally interesting reimagining of a Lucene engine in this list, and it happened to top the author's own vendor-neutral benchmark.
+
+<div class="table-wrap">
+  <table>
+    <thead><tr><th>Pros</th><th>Cons</th></tr></thead>
+    <tbody><tr>
+      <td>Clean Apache&nbsp;2.0 and a Lucene lexical foundation. The decoupled storage/compute design is the standout &mdash; index on S3-compatible object storage, stateless compute nodes, no cluster state to babysit, so backups, upgrades, schema changes and auto-scaling are low-risk. Hybrid (RRF), local ONNX embedding inference and reranking, and a RAG API are built in. Deploys on Kubernetes, Docker or AWS&nbsp;Lambda.</td>
+      <td>Young and niche &mdash; small community, thin production and at-scale track record. Pull-based Spark indexing instead of the familiar POST ingestion is an adjustment. Feature breadth (faceting depth, analyzers, ops tooling) is not at Solr/OpenSearch level, so it&rsquo;s <strong>not a realistic Solr migration target</strong>. Shares the Lucene multi-vector / late-interaction weakness.</td>
+    </tr></tbody>
+  </table>
+</div>
 
 ### Candidate Evaluation Matrix  {#matrix}
 
@@ -171,7 +181,7 @@ Worth a look even if it doesn't enter the scoring: [Nixiesearch](https://www.nix
   </table>
 </div>
 
-> **A note on benchmarks.** Treat vendor performance numbers with suspicion — every engine's own benchmark conveniently wins. Roman Grebennikov built [hseb](https://github.com/hseb-benchmark/hseb){:target="_blank" rel="noopener"} precisely to benchmark engines vendor-neutrally on your own data. In his tests **OpenSearch&nbsp;3 came out on top** — ahead of Qdrant, pgvector and Nixiesearch — with Elasticsearch last. The lesson isn't "OpenSearch always wins"; it's *benchmark it yourself* ([talk](https://www.youtube.com/watch?v=VVjGVDJefGg&list=PL9IXkWSmb36peUPGzdzjAZ0dDmaSnzUw&index=6){:target="_blank" rel="noopener"}).
+> **A note on benchmarks.** Treat vendor performance numbers with suspicion — every engine's own benchmark conveniently wins. Roman Grebennikov built [hseb](https://github.com/hseb-benchmark/hseb){:target="_blank" rel="noopener"} precisely to benchmark engines vendor-neutrally on your own data. In his tests **OpenSearch&nbsp;3 came out on top** — ahead of Qdrant, pgvector and Nixiesearch — with Elasticsearch last. The lesson isn't "OpenSearch always wins"; it's *benchmark it yourself*.
 
 ## Where Is the SERP Heading — and What Does That Mean for Engine Choice?  {#serp}
 
