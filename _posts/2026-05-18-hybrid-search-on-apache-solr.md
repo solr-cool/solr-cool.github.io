@@ -83,7 +83,7 @@ Apache 2.0, Linux Foundation governance since 2024, Lucene-based. Version 3.2 ex
     <thead><tr><th>Pros</th><th>Cons</th></tr></thead>
     <tbody><tr>
       <td>Truly open source. Security (RBAC, FLS/DLS, audit) is in the free distribution &mdash; with Elastic this costs Platinum/Enterprise. Very active push toward AI features. Large ecosystem, Kibana-equivalent dashboards. AWS integration if desired.</td>
-      <td>Performance benchmarks show it lags 40&ndash;140% behind Elasticsearch (vendor benchmarks, read with caution). Operational complexity similar to Elasticsearch. A migration from Solr is a real migration: schema, query language, tooling, configuration. Multi-vector late-interaction shares the Lucene weakness with Solr.</td>
+      <td>Operational complexity similar to Elasticsearch. A migration from Solr is a real migration: schema, query language, tooling, configuration. Multi-vector late-interaction shares the Lucene weakness with Solr.</td>
     </tr></tbody>
   </table>
 </div>
@@ -159,13 +159,15 @@ Typesense (C++, GPL-3.0) and Meilisearch (Rust, MIT) are the two notable open-so
       <tr><td>Autosuggest (e-comm level)</td><td><span class="warn">⚠</span> building blocks</td><td><span class="warn">⚠</span> building blocks</td><td><span class="ok">✔</span> search_as_you_type + LTR</td><td><span class="ok">✔</span> reference</td><td><span class="warn">⚠</span> basic</td><td><span class="ok">✔</span> very good</td></tr>
       <tr><td>Vector performance</td><td><span class="ok">✔</span> good (with 10)</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> top tier</td><td><span class="ok">✔</span> very good</td><td><span class="ok">✔</span> good</td></tr>
       <tr><td>Late interaction (ColBERT/ColPali)</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> weak</td><td><span class="warn">⚠</span> in progress</td><td><span class="ok">✔</span> native</td><td><span class="ok">✔</span> first-class</td><td><span class="bad">✘</span> none</td></tr>
-      <tr><td>Ranking flexibility</td><td><span class="ok">✔</span> LTR mature</td><td><span class="ok">✔</span> good</td><td><span class="ok">✔</span> ML stack</td><td><span class="ok">✔</span> multi-phase</td><td><span class="warn">⚠</span> rerank hook</td><td><span class="warn">⚠</span> limited</td></tr>
+      <tr><td>Ranking flexibility</td><td><span class="ok">✔</span> LTR mature</td><td><span class="ok">✔</span> LTR mature</td><td><span class="ok">✔</span> ML stack</td><td><span class="ok">✔</span> multi-phase</td><td><span class="warn">⚠</span> rerank hook</td><td><span class="warn">⚠</span> limited</td></tr>
       <tr><td>Operational maturity</td><td><span class="ok">✔</span> high</td><td><span class="ok">✔</span> high</td><td><span class="ok">✔</span> high</td><td><span class="warn">⚠</span> steep</td><td><span class="ok">✔</span> simple</td><td><span class="ok">✔</span> simple</td></tr>
       <tr><td>Migration cost (from current)</td><td><span class="ok">✔</span> none</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> very large</td><td><span class="bad">✘</span> large</td><td><span class="bad">✘</span> large</td></tr>
       <tr><td>Community momentum</td><td><span class="warn">⚠</span> stable</td><td><span class="ok">✔</span> growing</td><td><span class="ok">✔</span> large</td><td><span class="warn">⚠</span> niche</td><td><span class="ok">✔</span> growing</td><td><span class="ok">✔</span> growing</td></tr>
     </tbody>
   </table>
 </div>
+
+> **A note on benchmarks.** Treat vendor performance numbers with suspicion — every engine's own benchmark conveniently wins. Roman Grebennikov built [hseb](https://github.com/hseb-benchmark/hseb){:target="_blank" rel="noopener"} precisely to benchmark engines vendor-neutrally on your own data. In his tests **OpenSearch&nbsp;3 came out on top** — ahead of Qdrant, pgvector and Nixiesearch — with Elasticsearch last. The lesson isn't "OpenSearch always wins"; it's *benchmark it yourself* ([talk](https://www.youtube.com/watch?v=VVjGVDJefGg&list=PL9IXkWSmb36peUPGzdzjAZ0dDmaSnzUw&index=6){:target="_blank" rel="noopener"}).
 
 ## Where Is the SERP Heading — and What Does That Mean for Engine Choice?  {#serp}
 
@@ -521,6 +523,12 @@ So the honest answer to "which engine ages best" is therefore: the one you hard-
 - [Alexander Reelsen: Mirror, mirror, what am I typing next?](https://spinscale.de/posts/2023-01-18-mirror-mirror-what-am-i-typing-next.html){:target="_blank" rel="noopener"}
 - [Alexander Reelsen: Implementing a Modern E-Commerce Search](https://spinscale.de/posts/2020-06-22-implementing-a-modern-ecommerce-search.html){:target="_blank" rel="noopener"}
 - [Pureinsights: Elasticsearch vs OpenSearch in 2025](https://pureinsights.com/blog/2025/elasticsearch-vs-opensearch-2025/){:target="_blank" rel="noopener"}
+
+#### Independent benchmarks
+
+- [hseb — vendor-neutral hybrid search engine benchmark (Roman Grebennikov)](https://github.com/hseb-benchmark/hseb){:target="_blank" rel="noopener"}
+- [Roman Grebennikov: benchmarking search engines without vendor bias (talk)](https://www.youtube.com/watch?v=VVjGVDJefGg&list=PL9IXkWSmb36peUPGzdzjAZ0dDmaSnzUw&index=6){:target="_blank" rel="noopener"}
+- [Roman Grebennikov: slides](https://docs.google.com/presentation/d/1WVBxlwvCHc-lt4yyt9F_a_eKkVX2NOp-ChGWiPFvkwM/edit){:target="_blank" rel="noopener"}
 
 #### Research and curated collections
 
