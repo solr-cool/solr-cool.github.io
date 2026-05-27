@@ -146,7 +146,7 @@ Typesense (C++, GPL-3.0) and Meilisearch (Rust, MIT) are the two notable open-so
 
 ### Nixiesearch <small style="font-weight:400;font-size:16px;color:var(--ink-soft)">(Honorable mention)</small>
 
-Worth a look even if it doesn't enter the scoring: [Nixiesearch](https://www.nixiesearch.ai/){:target="_blank" rel="noopener"}, by the same Roman Grebennikov behind the hseb benchmark (see below). Apache&nbsp;2.0 and Lucene-based like Solr and OpenSearch, but with a different operational shape &mdash; storage and compute are decoupled: the index lives on S3-compatible object storage and the compute nodes are stateless, so there's no cluster state to babysit and backups, upgrades, schema changes and auto-scaling become low-risk. Hybrid search is built in via RRF, embedding inference (ONNX/Sentence-Transformers) and reranking run locally, and there's a RAG API and pull-based Spark indexing on top. It's young and niche &mdash; not a realistic Solr migration target today &mdash; but it's the most architecturally interesting reimagining of a Lucene engine in this list, and it happened to top the author's own vendor-neutral benchmark.
+Worth a look even if it doesn't enter the scoring: [Nixiesearch](https://www.nixiesearch.ai/){:target="_blank" rel="noopener"}, by the same Roman Grebennikov behind the hseb benchmark (see below). It's an Apache&nbsp;2.0, Lucene-based engine like Solr and OpenSearch &mdash; but with a different operational shape: storage and compute are decoupled, with the index on S3-compatible object storage and stateless compute nodes. The most architecturally interesting reimagining of a Lucene engine in this list, and it happened to top the author's own vendor-neutral benchmark.
 
 <div class="table-wrap">
   <table>
