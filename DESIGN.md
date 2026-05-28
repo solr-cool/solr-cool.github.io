@@ -116,7 +116,7 @@ Internal structure leans on full-width `3px` ink borders between grid cells rath
 | Tag | `.tag` + `--red`/`--yellow`/`--ink` | mono 12px, `2px` border, lowercase; rotation modifiers |
 | Blog card | `.more__card` | paper, `3px` right border, min-height 220px, flex column |
 | Card status | `.status` + `.is-soon` / `.is-draft` | mono 11px chip; soon=yellow, draft=red/paper |
-| Blockquote | `blockquote` + `.is-red` | ink panel, paper text, Archivo Black 22px, `10px` red shadow, red left bar; `.is-red` inverts |
+| Blockquote | `blockquote` + `.is-red` | ink panel, paper text, Archivo Black 22px, `10px` red shadow, red left bar; `strong` and `a` use yellow accent (hover: yellow bg / ink text); `.is-red` inverts panel + bar |
 | Code block | `pre` | ink/paper, `3px` border, `8px` red shadow, mono 12px, `▶ ASCII / DIAGRAM` label tab (`.is-json` → `▶ QUERY-IR JSON`) |
 | Inline code | `code` | mono 0.86em, `--bg-2` bg, `1.5px` border |
 | Table | `.table-wrap` + `table` | `3px` border + `8px` red shadow; ink header row (mono uppercase), even rows `--bg-2`; status text `.ok` red / `.warn` `#B5631A` / `.bad` `--red-deep` |

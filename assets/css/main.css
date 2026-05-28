@@ -654,6 +654,8 @@
   .article blockquote p { margin: 0; }
   .article blockquote p::first-letter { all: unset; }
   .article blockquote strong { color: var(--yellow); }
+  .article blockquote a { color: var(--yellow); text-decoration-color: var(--yellow); }
+  .article blockquote a:hover { background: var(--yellow); color: var(--ink); text-decoration-color: var(--ink); }
 
   .article blockquote.is-red {
     background: var(--red);
@@ -662,6 +664,8 @@
   }
   .article blockquote.is-red::before { background: var(--ink); }
   .article blockquote.is-red strong { color: var(--ink); background: var(--yellow); padding: 0 4px; }
+  .article blockquote.is-red a { color: var(--yellow); text-decoration-color: var(--yellow); }
+  .article blockquote.is-red a:hover { background: var(--yellow); color: var(--ink); text-decoration-color: var(--ink); }
 
   /* Code & ASCII */
   .article pre {
