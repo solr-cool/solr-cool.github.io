@@ -11,7 +11,6 @@ Deployed by GitHub Pages directly — no Actions workflow.
 ## Build & verify
 
 - `docker compose up` — uses `jekyll/jekyll:4.2.2`, serves on `localhost:4000`. The `docker-compose.yaml` exists so agents can verify changes; do not delete it.
-- `bundle exec jekyll serve` — local Ruby alternative.
 
 ## Layout
 

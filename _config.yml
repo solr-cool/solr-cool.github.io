@@ -1,12 +1,11 @@
 title: solr.cool
 tagline: Field notes on open-source search
-description: Field notes on open-source search — Solr, hybrid retrieval, RAG and agentic stacks.
+description: Field notes on open-source search — Apache Solr, hybrid retrieval with RRF, semantic vectors, RAG pipelines and agentic retrieval stacks. Practical assessments for teams running production search.
 url: https://solr.cool
 
 email: hello@solr.cool
 
 logo: /assets/favicon.svg
-image: /assets/social-card.png
 
 social:
   name: Torsten Bøgh Köster
@@ -31,6 +30,11 @@ defaults:
     values:
       image: /assets/social-card.png
       author: tboeghk
+  - scope:
+      path: ""
+      type: pages
+    values:
+      image: /assets/social-card.png
 
 markdown: kramdown
 kramdown:
