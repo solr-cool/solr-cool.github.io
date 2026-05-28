@@ -426,7 +426,7 @@ The layers above optimize the *relevance path*: full-text query in, ranked hits 
 - **Domain API:** Filters and facets must be *first-class*. `/search?q=...&filter[category]=trick&facet[]=brand`. The response format needs its own `facets` section with buckets, counts, and the currently active selection.
 - **Query Understanding** does noticeably less here. The exception is *natural-language filter extraction*: "cheap BMX bikes under 500 euros" should become `{q: "BMX bikes", filter: {price: "<500"}}`.
 - **Retrieval Orchestrator:** the browse path forks from the relevance path. Pure filter queries need no hybrid fusion, no RRF, no embeddings.
-- **Engine Adapter:** the most important technical pitfall is here. Filters must go to the KNN search as *pre-filter*, not as *post-filter*. Solr&nbsp;10 supports pre-filtering via the `filter` clause of the KNN query, OpenSearch via `efficient_filter`, Qdrant via native filter conditions.
+- **Engine Adapter:** the most important technical pitfall is here. Filters must go to the KNN search as *pre-filter*, not as *post-filter*. Solr&nbsp;10 supports pre-filtering via the `filter` clause of the KNN query, OpenSearch via `efficient_filter`, Qdrant via native filter conditions. One consequence is worth flagging upfront: pre-filter makes the KNN `topK` cap observable. Under post-filter, facet and result were drawn from the same fixed window and agreed by construction; under pre-filter, counts read off the hybrid hit list shift as filters are applied.
 - **Reranking** is skipped in the browse path. Reranking a purely filtered list with no query is pointless.
 - **Result Composition** builds the facet UI from the engine's buckets — and decides *which* facets are displayed (sticky, conditional, hierarchical).
 
