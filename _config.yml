@@ -35,6 +35,7 @@ defaults:
       type: pages
     values:
       image: /assets/social-card.png
+      author: tboeghk
 
 markdown: kramdown
 kramdown:
